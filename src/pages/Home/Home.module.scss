@@ -1,10 +1,17 @@
 .testColor{
     background-color: aqua;
+    
 }
+.link{
+    position: absolute;
+    z-index: 100}
 .background{
     position: fixed;
     top: 0px;
     left:0px;
     bottom: 0px;
     right:0px;
+    z-index: 0;
+    height: 100vh;
+    background-color: rgb(21, 74, 104);
 }

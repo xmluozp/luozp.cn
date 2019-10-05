@@ -8,6 +8,8 @@ export default (props) => {
             <div className="animation_title">This is about me title</div>
             about me
             <br/>hj
+
+            <div className="test3d"></div>
         </div>
     );
 }

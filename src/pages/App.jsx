@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import styles from './App.module.scss';
-import './App.scss';
 import { Link, Route, withRouter } from 'react-router-dom';
-// import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Home from './Home/Home';
 import AboutMe from './AboutMe/AboutMe';
-
+import TechStack from './TechStack/TechStack';
 
 
 function App(props) {
@@ -29,20 +27,37 @@ function App(props) {
   // Main JSX
   return (
 
+
     <>
 
       {/* header */}
-      <header className={styles.header}>
-        <div className={styles.box}>
-          <Link to="/"><div className={styles.boxleft}>Logo</div></Link>
-          <div className={styles.boxright}>
-            <AnimationLink to="/" lock={navLocks} >
-              <p>HOME</p>
-            </AnimationLink>
-            <AnimationLink to="/aboutme" lock={navLocks} >
-              <p>About Me</p>
-            </AnimationLink>
+
+      <header className={`${styles.header} ${location.pathname === '/' ? styles.nav_avatar : styles.nav_side}`}>
+
+        <AnimationLink to={location.pathname === '/' ? "/aboutme" : "/"} lock={navLocks} >
+          <div className={styles.avatar}>
+
           </div>
+        </AnimationLink>
+
+        <div className={styles.navitems}>
+          <ul>
+            <li>
+              <AnimationLink to="/" lock={navLocks} >
+                <p>HOME</p>
+              </AnimationLink>
+            </li>
+            <li>
+              <AnimationLink to="/aboutme" lock={navLocks} >
+                <p>About Me</p>
+              </AnimationLink>
+            </li>
+            <li>
+              <AnimationLink to="/techstack" lock={navLocks} >
+                <p>Tech Stack</p>
+              </AnimationLink>
+            </li>
+          </ul>
         </div>
       </header>
 
@@ -51,6 +66,7 @@ function App(props) {
 
         <AnimationRoute path="/" exact component={Home} onLock={handleLockNav} onUnlock={handleUnlockNav} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handleLockNav} onUnlock={handleUnlockNav} />
+        <AnimationRoute path="/techstack" exact component={TechStack} onLock={handleLockNav} onUnlock={handleUnlockNav} />
 
       </section>
     </>
@@ -61,7 +77,6 @@ export default withRouter(App);
 
 
 //---------------------------------Wrapper for animation
-
 // Animation for switch pages
 const AnimationRoute = withRouter((props) => {
 
@@ -69,12 +84,12 @@ const AnimationRoute = withRouter((props) => {
     <TransitionGroup>
       <CSSTransition
         classNames="slide-in"
-        timeout={2000}
+        timeout={500}
         key={props.location.pathname}
         unmountOnExit
         onExit={props.onLock}
         onExited={props.onUnlock}
-
+        appear={true}
       >
         <div className={props.location.pathname} data-path={props.location.pathname}>
           <Route {...props} />

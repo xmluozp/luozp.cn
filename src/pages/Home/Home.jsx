@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Home.module.scss';
-
+import { Link, Route, withRouter } from 'react-router-dom';
 
 export default (props) => {
 
@@ -18,8 +18,8 @@ export default (props) => {
           colorMode: "lerp",
           birdSize: 1,
           wingSpan: 27.00,
-          alignment: 26.00,
-          quantity: 5.00,
+          alignment: 100.00,
+          quantity: 4.00,
           backgroundAlpha: 0.00,
         }))
     }
@@ -30,9 +30,6 @@ export default (props) => {
 
   return (
     <div className="page_container">
-      home
-
-            <code>hihihi</code>
       <div ref={myRef} className={styles.background}></div>
     </div>
 
