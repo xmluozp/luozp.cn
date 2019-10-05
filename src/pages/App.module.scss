@@ -1,0 +1,29 @@
+.header{ 
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+
+/* z-index */
+.header{ z-index: 1000;}
+
+
+.main{ z-index: 100;}
+
+
+.linkselected{
+    text-decoration: underline;
+    font-size: 50px;
+    color: aquamarine;
+    transition: all 1000ms ease-in-out;
+}
+
+.linkregular{
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+    transition: all 1000ms ease-in-out;
+}
+
