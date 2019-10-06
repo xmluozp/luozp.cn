@@ -1,4 +1,4 @@
-$animation_time_page: 500ms;
+$animation_time_page: 2500ms; 
 
 .main {
   perspective: calc(200vh);
@@ -13,50 +13,73 @@ $animation_time_page: 500ms;
 
 :global {
   .page_container {
-    position: unset;
+    // position: unset;
     min-height: 100vh;
     // overflow: auto;
     background-color: transparent;
   }
 
-  /* slide animation */
-  .slide-in-appear {
-    opacity: 1;
+  %page-enter-prepare{
 
-    transform-style: preserve-3d;
-    transform: translate3D(-50vw, 50vh, 50vh) rotateX(90deg);
-    transition: all $animation_time_page/2 ease-out;
-
-    // & means .slide-in-appear.slide-in-appear-active.  if you have a space like "& .slidexxxx" it will be ".xxx .slidexxxx"
-  }
-  .slide-in-appear-active {
-    transition: all $animation_time_page/2 ease-out;
-    transform: translate3D(0, 0, 0) rotateY(0deg);
     position: absolute;
     z-index: 500;
+    opacity: 1;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform: translate3D(-100vw, 50vh, 50vh) rotateX(90deg);
+  }
 
-    .page_container {
-      transition: all $animation_time_page/2 ease-out;
-      transform: scale(0.8, 0.8) translateX(-15vw);
-      background-color: #e0e0e0;
-      position: absolute;
-      z-index: 500;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      box-shadow: 0px 0px 20px 0px #353535ab;
-      border: 1px solid #ffffff;
-    }
+  %page-enter-endpoint{
+    display:block;
+  }
+  %page-enter-done{
+    position: unset;
+    z-index: unset;
+    width: unset;
+    height: unset;
+    overflow: unset;
+  }
+
+  %page-exit-prepare{
+    position: absolute;
+    z-index: 600;
+    opacity: 1;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    transform: scale(0.8, 0.8) translateX(-15vw);
+    box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
+    border: 1px solid #ffffff;
+  }
+  %page-exit-endpoint{
+    @extend %page-exit-prepare;
+    opacity: 0;
+    // transform: scale(1,1) translateY(0vh);
+  }
+
+
+  /* slide animation */
+  .slide-in-appear {
+    @extend %page-enter-prepare;
+  }
+  .slide-in-appear-active {
+    @extend %page-enter-endpoint;
+    animation-name: animation_page_show;
+    animation-duration: $animation_time_page;
+    animation-fill-mode: forwards;
+    // transition: all $animation_time_page ease-out;
   }
 
   .slide-in-appear-done {
-    transition: all $animation_time_page ease-out;
-
-    .page_container {
-      transition: all $animation_time_page/2 ease-out;
-      transform: scale(1, 1) translateX(0vw);
-    }
+    @extend %page-enter-done;
+    // transition: all $animation_time_page ease-out;
   }
+
+
   .slide-in-enter {
     @extend .slide-in-appear;
   }
@@ -69,59 +92,20 @@ $animation_time_page: 500ms;
   }
 
   .slide-in-exit {
-    opacity: 1;
-    position: absolute;
-    z-index: 0;
+    @extend %page-exit-prepare;
+
     // transform-style: preserve-3d;
     // transform: translate3D(0, 0, 0) rotateX(0deg);
+    animation-name: animation_page_hide;
+    animation-duration: $animation_time_page;
+    animation-fill-mode: forwards;
 
-
-    transform: scaleY(100vh) translateY(0vh);
-    transition: all $animation_time_page ease-out;
-
-    .page_container {
-        position: absolute;
-        z-index: 0;
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-        transition: all $animation_time_page/2 ease-out;
-        transform: scale(0.8, 0.8) translateX(-15vw);
-      }
-
-    &.slide-in-exit-active {
-      position: absolute;
-      z-index: 0;
-      opacity: 0;
-      transform: scaleY(0) translateY(100vh);
-
-      .page_container {
-        transform: scale(1, 1) translateX(0vw);
-      }
-
-      //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
-    }
   }
+  .slide-in-exit-active {
 
-  //   @keyframes animation_tv_fade {
-  //     10% {
-  //       transform: scale(1, 0.002);
-  //     }
-  //     35% {
-  //       transform: scale(0.2, 0.002);
-  //       opacity: 1;
-  //     }
+    @extend %page-exit-endpoint;
 
-  //     50% {
-  //       transform: scale(0.2, 0.002);
-  //       opacity: 0;
-  //     }
-  //     85% {
-  //       transform: scale(1, 0.002);
-  //       opacity: 1;
-  //     }
-  //     100% {
-  //       transform: scale(1, 1);
-  //     }
-  //   }
+
+    //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
+  }
 }

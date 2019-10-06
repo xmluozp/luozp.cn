@@ -32,24 +32,3 @@
   }
 }
 
-@keyframes :global(animation_tv_fade) {
-  10% {
-    transform: scale(1, 0.002);
-  }
-  35% {
-    transform: scale(0.2, 0.002);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(0.2, 0.002);
-    opacity: 0;
-  }
-  85% {
-    transform: scale(1, 0.002);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1, 1);
-  }
-}

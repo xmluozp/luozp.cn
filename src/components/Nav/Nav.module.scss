@@ -70,7 +70,7 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
 
   transition: top $animation_time_page/2 ease-out, right $animation_time_page/2 ease-in,
     background-color $animation_time_page/2 ease-out, border-radius $animation_time_page/2 ease-out;
-  transition-delay: $animation_time_page * 2;
+  transition-delay: $animation_time_page * 1.5;
 
   .avatar {
     height: 14rem;
