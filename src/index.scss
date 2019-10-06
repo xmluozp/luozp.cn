@@ -18,3 +18,13 @@ code {
   width: 100%;
   overflow-x:hidden;
 }
+
+
+/* ============ z-index */
+.z_nav {
+  z-index: 1000;
+}
+
+.z_main {
+  z-index: 100;
+}

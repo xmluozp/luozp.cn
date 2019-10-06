@@ -1,0 +1,144 @@
+$animation_time_page: 500ms;
+
+/*
+nav_entrance / nav_side / nav_mobileside (control movement between entrance and inner pages)
+    desktop:animation_menu (put the background of inner pages)
+        avatar 
+        mobile:navitems_display / mobile:navitems_hide (toggle the nav menu)
+            navitems (width and styles of nav menu)
+*/
+
+
+
+
+// navigation bar
+.header {
+  position: fixed;
+}
+.avatar {
+  background-color: rgba(218, 218, 218, 0.548);
+  border: 1px solid #049aa5;
+  display: inline-block;
+  margin-bottom: -3.2rem;
+}
+.animation_menu {
+  background-color: #ffffff;
+
+  transition: all $animation_time_page/2 ease-out;
+  transition-delay: 1s;
+}
+
+// link
+.navitems {
+  display: block;
+  width: 15rem;
+  height: 50vh;
+  overflow: hidden;
+
+  ul,
+  li {
+    display: block;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.linkselected {
+  text-decoration: underline;
+  font-size: 2.5rem;
+  color: aquamarine;
+  display: block;
+  transition: all $animation_time_page ease-in-out;
+  //   animation-name: animation_tv_fade;
+  //   animation-duration: 4s;
+}
+.linkregular {
+  text-decoration: none;
+  font-size: 2rem;
+  color: black;
+  transition: all $animation_time_page ease-in-out;
+}
+
+// ============animation of nav
+
+// animation nav hide(entrance)---desktop
+.nav_entrance {
+  top: calc(50vh - 14rem);
+  right: calc(50vw - 7rem);
+  text-align: right;
+  background-color: transparent;
+  border-radius: 7rem;
+
+  transition: top $animation_time_page/2 ease-out, right $animation_time_page/2 ease-in,
+    background-color $animation_time_page/2 ease-out, border-radius $animation_time_page/2 ease-out;
+  transition-delay: 0.5s;
+
+  .avatar {
+    height: 14rem;
+    width: 14rem;
+    border-radius: 7rem;
+    margin-bottom: 0rem;
+
+    transition: all $animation_time_page/2 ease-out;
+    transition-delay: 1s;
+  }
+  .navitems {
+    height: 0px;
+    transition: all $animation_time_page ease-out;
+  }
+  .animation_menu {
+    background-color: transparent;
+    transition: all $animation_time_page/2 ease-out;
+  }
+}
+
+// animation nav showup--desktop
+.nav_side {
+  top: 0rem;
+  right: 0rem;
+  text-align: right;
+  border-radius: 0rem;
+
+  transition: top $animation_time_page/2 ease-in, right $animation_time_page/2 ease-out,
+    background-color $animation_time_page/2 ease-out, border-radius $animation_time_page/2 ease-out;
+  transition-delay: $animation_time_page;
+
+  .avatar {
+    background-color: #ffffff;
+    border: none;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 3em;
+    transition: all $animation_time_page ease-out;
+  }
+  .navitems {
+    transition: all $animation_time_page ease-out;
+    transition-delay: $animation_time_page * 2;
+  }
+}
+
+// animation nav hide(entrance)---mobile
+// as same as desktop
+
+// animation nav showup--mobile
+.nav_mobileside {
+  @extend .nav_side;
+  text-align: right;
+  background-color: transparent;
+
+  top: 1rem;
+  .avatar {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 1em;
+    margin-bottom: -1.6rem;
+  }
+
+  .navitems_display {
+    display: block;
+  }
+  .navitems_hide {
+    display: none;
+  }
+}
