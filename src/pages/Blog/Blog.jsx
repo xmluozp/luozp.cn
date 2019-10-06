@@ -4,7 +4,7 @@ import styles from './AboutWebsite.module.scss';
 export default (props) => {
     return (
         <div>
-            about me
+            blog
         </div>
     );
 }

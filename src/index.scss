@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Philosopher&display=swap');
-
 body {
   margin: 0;
   font-family: 'Philosopher', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-
 }
-
+li{
+  list-style: none;
+}
 code {
   font-family: 'Philosopher', sans-serif;
 }
@@ -16,5 +16,5 @@ code {
 #root{
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x:hidden;
 }

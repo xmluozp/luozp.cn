@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Home.module.scss';
-import { Link, Route, withRouter } from 'react-router-dom';
 
 export default (props) => {
 
