@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './App.module.scss';
 import './App.scss';
 import { BrowserView, MobileView } from 'react-device-detect';
@@ -24,27 +24,37 @@ function App(props) {
     { title: "About", to: "/aboutwebsite" },
   ];
 
-
-  let timeoutCleanup;
-
   // have a lock list. in order to prevent messing up page animations when hitting nav items too quick
   const handleLockNav = (e) => {
 
-    console.log(e);
     setRouteAnimationFinished(false);
-    const currentLocks = navLocks.slice();
-    if (!currentLocks.includes(e.getAttribute('data-path'))) currentLocks.push(e.getAttribute('data-path'));
-    setNavLocks(currentLocks);
+    // handle async of set state
+    setNavLocks(prevState => {
+      const currentLocks = prevState.slice();
+      if (!currentLocks.includes(e.getAttribute('data-path'))) currentLocks.push(e.getAttribute('data-path'));
+      return currentLocks;
+    });
   }
   const handleUnlockNav = (e) => {
-    setNavLocks([]);
+
+    const path = e.getAttribute('data-path');
+
+    // handle async of set state
+    setNavLocks(prevState => {
+      return new Array(...prevState.filter((value) => {
+        return value !== path;
+      }))
+    });
   }
   const handleCleanUp = (timeout) => {
-    clearTimeout(timeoutCleanup);
-    setTimeout(() => {
-      timeoutCleanup = setRouteAnimationFinished(true);
-    }, timeout/2);
+
+
   }
+  useEffect(()=>{ 
+    if(navLocks.length === 0 && routeAnimationFinished === false){
+      setRouteAnimationFinished(true);
+    }
+   }, [navLocks])
 
 
   // Main JSX
@@ -69,7 +79,7 @@ export default withRouter(App);
 // Animation for switch pages
 const AnimationRouteTest = withRouter((props) => {
 
-  const timeout = 5000;
+  const timeout = 2000;
 
   const clearup = () => {
     props.onCleanUp(timeout / 2);
@@ -108,10 +118,10 @@ const AnimationRouteTest = withRouter((props) => {
 // Animation for switch pages
 const AnimationRoute = withRouter((props) => {
 
-  const timeout = 2500;
+  const timeout = 500;
 
   const clearup = () => {
-    props.onCleanUp(timeout / 2);
+    props.onCleanUp(timeout * 1.5);
   }
 
   // "Transition group" because we want to temporary keep the page while its exiting.
@@ -127,6 +137,8 @@ const AnimationRoute = withRouter((props) => {
         onExited={props.onUnlock}
         onEnter={props.onLock}
         onEntered={(e) => { props.onUnlock(e); clearup() }}
+
+
         appear={true}
       >
         <div className={props.path} data-path={props.path}>

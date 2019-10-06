@@ -1,4 +1,4 @@
-$animation_time_page: 2500ms; 
+$animation_time_page: 500ms; 
 
 .main {
   perspective: calc(200vh);
@@ -19,9 +19,9 @@ $animation_time_page: 2500ms;
     background-color: transparent;
   }
 
+  //========================= page enter
   %page-enter-prepare{
-
-    position: absolute;
+    position: fixed;
     z-index: 500;
     opacity: 1;
     display: block;
@@ -43,15 +43,16 @@ $animation_time_page: 2500ms;
     overflow: unset;
   }
 
+  //========================= page exit
   %page-exit-prepare{
-    position: absolute;
-    z-index: 600;
+    position: fixed;
+    z-index: 400;
     opacity: 1;
     display: block;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    transform: scale(0.8, 0.8) translateX(-15vw);
+    transform: scale(1, 1) translateX(0);
     box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
     border: 1px solid #ffffff;
   }
@@ -96,15 +97,13 @@ $animation_time_page: 2500ms;
 
     // transform-style: preserve-3d;
     // transform: translate3D(0, 0, 0) rotateX(0deg);
-    animation-name: animation_page_hide;
-    animation-duration: $animation_time_page;
-    animation-fill-mode: forwards;
-
   }
   .slide-in-exit-active {
 
     @extend %page-exit-endpoint;
-
+    animation-name: animation_page_hide;
+    animation-duration: $animation_time_page;
+    animation-fill-mode: forwards;
 
     //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
   }
