@@ -17,10 +17,10 @@ function App(props) {
   const [navLocks, setNavLocks] = useState([]);
   const navLinks = [
     {title: "Home", to: "/"},
-    {title: "About Me", to: "/aboutme"},
+    {title: "Skill Sets", to: "/techstack"},
+    {title: "Personal", to: "/aboutme"},
     {title: "Blog", to: "/blog"},
-    {title: "Tech Stack", to: "/techstack"},
-    {title: "About Website", to: "/aboutwebsite"},
+    {title: "About", to: "/aboutwebsite"},
   ];
 
 
@@ -45,8 +45,6 @@ function App(props) {
   }
 
 
-
-
   // Main JSX
   return (
     <>
@@ -64,8 +62,6 @@ function App(props) {
 }
 
 export default withRouter(App);
-
-
 
 //---------------------------------Wrapper for animation
 // Animation for switch pages
@@ -98,4 +94,3 @@ const AnimationRoute = withRouter((props) => {
     </TransitionGroup >
   );
 })
-

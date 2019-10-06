@@ -68,7 +68,7 @@ const NavItems = withRouter((props) => {
         <div className={styles.navitems}>
             <ul>
                 {navLinks.map((item, key) => {
-                    return (<li>
+                    return (<li key={key}>
                         <AnimationLink to={item.to} lock={navLocks} >
                             {item.title}
                         </AnimationLink>

@@ -6,11 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   // height: 100vh;
 }
-li{
+ul, li{
   list-style: none;
-}
-code {
-  font-family: 'Philosopher', sans-serif;
+  padding: 0px;
+  margin: 0px;
 }
 
 #root{

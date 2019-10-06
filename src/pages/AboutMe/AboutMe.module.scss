@@ -1,3 +1,55 @@
-.testColor{
-    background-color: red;
+.testColor {
+  background-color: red;
+}
+
+:global {
+  .test3d {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 30px;
+    left: 50px;
+    background-color: coral;
+    display: block;
+    animation-name: bounce;
+    animation-duration: 4s;
+  }
+
+  .testanimation-enter {
+    animation-name: animation_tv_fade;
+    animation-duration: 4s;
+  }
+
+  .testanimation-enter-active {
+    animation-name: animation_tv_fade;
+    animation-duration: 4s;
+  }
+
+  .testanimation-enter-done {
+    transition: all 1s ease-in-out;
+    animation-name: animation_tv_fade;
+    animation-duration: 4s;
+  }
+}
+
+@keyframes :global(animation_tv_fade) {
+  10% {
+    transform: scale(1, 0.002);
+  }
+  35% {
+    transform: scale(0.2, 0.002);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.2, 0.002);
+    opacity: 0;
+  }
+  85% {
+    transform: scale(1, 0.002);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }
