@@ -21,64 +21,66 @@ $animation_time_page: 500ms;
   width: 15rem;
   height: 50vh;
   overflow: hidden;
-  ul{background-color: blanchedalmond}
-  ul,li{
-    display:block;
-    text-align: left;
-    padding:0px;
-    margin:0px;
-  }
 
+  ul,
+  li {
+    display: block;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+  }
 }
 // ============animation of nav
 
 // animation nav hide
 .nav_entrance {
-  transition: top $animation_time_page/2 ease-out, right $animation_time_page/2 ease-in,
-    background-color $animation_time_page/2 ease-out, border-radius $animation_time_page/2 ease-out;
-  transition-delay: .5s;
   top: calc(50vh - 14rem);
   right: calc(50vw - 7rem);
   text-align: right;
   background-color: transparent;
   border-radius: 7rem;
-  
+
+  transition: top $animation_time_page/2 ease-out, right $animation_time_page/2 ease-in,
+    background-color $animation_time_page/2 ease-out, border-radius $animation_time_page/2 ease-out;
+  transition-delay: 0.5s;
+
   .avatar {
-    transition: all $animation_time_page/2 ease-out;
-    transition-delay: 1s;
     height: 14rem;
     width: 14rem;
     border-radius: 7rem;
     margin-bottom: 0rem;
+
+    transition: all $animation_time_page/2 ease-out;
+    transition-delay: 1s;
   }
   .navitems {
-    transition: all $animation_time_page ease-out;
     height: 0px;
+    transition: all $animation_time_page ease-out;
   }
   .animation_menu {
-    transition: all $animation_time_page/2 ease-out;
     background-color: transparent;
+    transition: all $animation_time_page/2 ease-out;
   }
 }
 
 // animation nav showup
 .nav_side {
+  top: 0rem;
+  right: 0rem;
+  text-align: right;
+  border-radius: 0rem;
+
   transition: top $animation_time_page/2 ease-in, right $animation_time_page/2 ease-out,
     background-color $animation_time_page/2 ease-out, border-radius $animation_time_page/2 ease-out;
   transition-delay: $animation_time_page;
-  top: 1rem;
-  right: 1rem;
-  text-align: right;
-  //   background-color: #2a2b64;
-  border-radius: 0rem;
 
   .avatar {
-    transition: all $animation_time_page ease-out;
     background-color: #ffffff;
     border: none;
     height: 6rem;
     width: 6rem;
     border-radius: 3em;
+    transition: all $animation_time_page ease-out;
   }
   .navitems {
     transition: all $animation_time_page ease-out;
@@ -88,9 +90,9 @@ $animation_time_page: 500ms;
 
 .nav_mobileside {
   @extend .nav_side;
-  top: 0rem;
   text-align: right;
   background-color: transparent;
+
   top: 1rem;
   .avatar {
     height: 3rem;
@@ -99,11 +101,11 @@ $animation_time_page: 500ms;
     margin-bottom: -1.6rem;
   }
 
-  .navitems_display{
-    display:block;
+  .navitems_display {
+    display: block;
   }
   .navitems_hide {
-    display:none;
+    display: none;
   }
 }
 
@@ -111,10 +113,10 @@ $animation_time_page: 500ms;
   text-decoration: underline;
   font-size: 2.5rem;
   color: aquamarine;
+  display: block;
   transition: all $animation_time_page ease-in-out;
   //   animation-name: animation_tv_fade;
   //   animation-duration: 4s;
-  display: block;
 }
 .linkregular {
   text-decoration: none;
@@ -126,7 +128,12 @@ $animation_time_page: 500ms;
 .main {
   perspective: calc(200vh);
 }
-
+.main_lock{
+    height: 100vh;
+}
+.main_unlock{
+    height: auto;
+}
 /* ============ z-index */
 .header {
   z-index: 1000;
@@ -146,19 +153,20 @@ $animation_time_page: 500ms;
 
   /* slide animation */
   .slide-in-appear {
+    opacity: 1;
+
     transform-style: preserve-3d;
     transform: translate3D(-50vw, 50vh, 50vh) rotateX(90deg);
     transition: all $animation_time_page/2 ease-out;
-    opacity: 1;
+
     // & means .slide-in-appear.slide-in-appear-active.  if you have a space like "& .slidexxxx" it will be ".xxx .slidexxxx"
   }
   .slide-in-appear-active {
     transition: all $animation_time_page/2 ease-out;
     transform: translate3D(0, 0, 0) rotateY(0deg);
-    opacity: 1;
     position: absolute;
     z-index: 500;
-    background-color: aqua;
+
     .page_container {
       transition: all $animation_time_page/2 ease-out;
       transform: scale(0.8, 0.8) translateX(-15vw);
@@ -192,23 +200,26 @@ $animation_time_page: 500ms;
 
   .slide-in-exit {
     opacity: 1;
+    position: absolute;
+    z-index: 0;
     // transform-style: preserve-3d;
     // transform: translate3D(0, 0, 0) rotateX(0deg);
 
     transform: scaleY(100vh) translateY(0vh);
     transition: all $animation_time_page ease-out;
- 
     &.slide-in-exit-active {
-
-    .page_container {
+      position: absolute;
+      z-index: 0;
+      opacity: 0;
+      transform: scaleY(0) translateY(100vh);
+      .page_container {
         position: absolute;
         z-index: 0;
         height: 100vh;
-        width: 100vw;  
-        overflow: hidden;  
-    }
-      opacity: 0;
-      transform: scaleY(0) translateY(100vh);
+        width: 100vw;
+        overflow: hidden;
+      }
+
       //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
     }
   }
