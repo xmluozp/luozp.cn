@@ -1,52 +1,57 @@
 $animation_time_page: 500ms;
-
+//先设置各种停留状态
 /*
 nav_entrance / nav_side / nav_mobileside (control movement between entrance and inner pages)
-    desktop:animation_menu (put the background of inner pages)
+    desktop:background (put the background of inner pages)
         avatar 
         mobile:navitems_display / mobile:navitems_hide (toggle the nav menu)
             navitems (width and styles of nav menu)
 */
 
 // navigation bar
-.header {
+.container {
   position: fixed;
-}
-.avatar {
-  background-color: rgba(218, 218, 218, 0.548);
-  border: 1px solid #049aa5;
-  display: inline-block;
-  margin-bottom: -3.2rem;
-}
 
-// link
-.navitems {
-  display: block;
-  width: 15rem;
-  height: 50vh;
-  overflow: hidden;
-
-  ul, li {
-    display: block;
-    text-align: left;
-
-    .linkselected {
-      text-decoration: underline;
-      font-size: 2.5rem;
-      color: aquamarine;
-      display: block;
-      transition: all $animation_time_page ease-in-out;
-      //   animation-name: animation_tv_fade;
-      //   animation-duration: 4s;
+  .background {
+    .avatar {
+      background-color: rgba(218, 218, 218, 0.548);
+      border: 1px solid #049aa5;
+      display: inline-block;
+      margin-bottom: -3.2rem;
     }
-    .linkregular {
-      text-decoration: none;
-      font-size: 2rem;
-      color: black;
-      transition: all $animation_time_page ease-in-out;
+
+    // link
+    .navitems {
+      display: block;
+      width: 15rem;
+      height: 50vh;
+      overflow: hidden;
+
+      ul,
+      li {
+        display: block;
+        text-align: left;
+
+        .linkselected {
+          text-decoration: underline;
+          font-size: 2.5rem;
+          color: aquamarine;
+          display: block;
+          transition: all $animation_time_page ease-in-out;
+          //   animation-name: animation_tv_fade;
+          //   animation-duration: 4s;
+        }
+        .linkregular {
+          text-decoration: none;
+          font-size: 2rem;
+          color: black;
+          transition: all $animation_time_page ease-in-out;
+        }
+      }
     }
   }
 }
+
 
 // ============animation of nav
 
@@ -84,7 +89,7 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
   .navitems {
     @extend %navitems-hide;
   }
-  .animation_menu {
+  .background {
     background-color: transparent;
 
     transition: all $animation_time_page/2 ease-out;
@@ -113,7 +118,7 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
   .navitems {
     @extend %navitems-show;
   }
-  .animation_menu {
+  .background {
     background-color: #ffffff;
 
     transition: all $animation_time_page/2 ease-out;

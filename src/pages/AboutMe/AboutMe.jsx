@@ -20,9 +20,6 @@ export default (props) => {
             <br />
 
             <button onClick={handleDisplay}>set display </button>
-
-            
-
                 <CSSTransition
                     classNames="testanimation"
                     in = {display}

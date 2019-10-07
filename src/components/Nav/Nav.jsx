@@ -27,8 +27,8 @@ export default withRouter((props) => {
             {/* header */}
             <BrowserView>
                 {/* check if display icon as the avatar(entrance) or a nav(inner pages) */}
-                <header className={`z_nav ${styles.header} ${location.pathname === '/' ? styles.nav_entrance : styles.nav_side}`}>
-                    <div className={styles.animation_menu}>
+                <header className={`z_nav ${styles.container} ${location.pathname === '/' ? styles.nav_entrance : styles.nav_side}`}>
+                    <div className={styles.background}>
                         {/* if its entrance, hit the avatar will go to: [about me] */}
                         <AnimationLink to={location.pathname === '/' ? "/aboutme" : "/"} lock={navLocks} >
                             <div className={styles.avatar}></div>
@@ -42,7 +42,7 @@ export default withRouter((props) => {
 
             <MobileView>
                 {/* check if display icon as the avatar(entrance) or a mobile nav(inner pages) */}
-                <header className={`z_nav ${styles.header} ${location.pathname === '/' ? styles.nav_entrance : styles.nav_mobileside}`}>
+                <header className={`z_nav ${styles.container} ${location.pathname === '/' ? styles.nav_entrance : styles.nav_mobileside}`}>
 
                     {/* if its inner pages, hit the avatar will display the nav*/}
                     <Link to="/aboutme" onClick={handleToggleMenu}>

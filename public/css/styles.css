@@ -1,0 +1,16 @@
+.global_loader{
+    display:block;
+    position: fixed;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    z-index: 1000;
+    margin: auto;
+    opacity: 1;
+    transform: scale(2,2);
+    transition: opacity 1s ease-out; 
+}
+.global_loader_hide{
+    opacity: 0;
+}

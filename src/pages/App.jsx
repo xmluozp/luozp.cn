@@ -4,6 +4,7 @@ import './App.scss';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { Link, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+// import ReactLoading from 'react-loading';
 import Home from './Home/Home';
 import AboutMe from './AboutMe/AboutMe';
 import AboutWebsite from './AboutWebsite/AboutWebsite';
@@ -14,19 +15,30 @@ import Nav from '../components/Nav/Nav';
 
 function App(props) {
 
+  // only run once. hide the loader for the website
+  if(document.getElementById('global_loader')){
+    document.getElementById('global_loader').classList.add('global_loader_hide');
+    setTimeout(() => {
+      document.getElementById('global_loader')&& document.getElementById('global_loader').remove();
+    }, 2000);
+  }
+
+  
+  
+
   const [routeAnimationFinished, setRouteAnimationFinished] = useState(true);
   const [navLocks, setNavLocks] = useState([]);
   const navLinks = [
     { title: "Home", to: "/" },
-    { title: "Skill Sets", to: "/techstack" },
     { title: "Personal", to: "/aboutme" },
+    { title: "Skill Sets", to: "/techstack" },
+
     { title: "Blog", to: "/blog" },
     { title: "About", to: "/aboutwebsite" },
   ];
 
   // have a lock list. in order to prevent messing up page animations when hitting nav items too quick
   const handleLockNav = (e) => {
-
     setRouteAnimationFinished(false);
     // handle async of set state
     setNavLocks(prevState => {
@@ -51,6 +63,8 @@ function App(props) {
       setRouteAnimationFinished(true);
     }
   }, [navLocks])
+
+
 
 
   // Main JSX

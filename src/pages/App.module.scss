@@ -1,8 +1,17 @@
-$animation_time_page: 800ms; 
-$cube_height : 100vh;
-$cube_width : 100vw;
-$cube_distance : 50vh;
+$animation_time_page: 800ms;
+$cube_height: 100vh;
+$cube_width: 100vw;
+$cube_distance: 50vh;
 // dont forget to se App.scss
+
+
+.onLoad{
+
+}
+.onLoadEnd{
+    display: none;
+}
+
 
 
 .main {
@@ -17,6 +26,9 @@ $cube_distance : 50vh;
   height: auto;
 }
 
+
+
+
 :global {
   .page_container {
     // position: unset;
@@ -26,23 +38,23 @@ $cube_distance : 50vh;
   }
 
   //========================= page enter
-  %page-enter-prepare{
+  %page-enter-prepare {
     position: fixed;
     z-index: 400;
     opacity: 1;
     display: block;
-    width: 100vw;
-    height: 100vh;
+    width: $cube_width;
+    height: $cube_height;
     overflow: hidden;
     border: 1px solid rgb(49, 82, 172);
     // transform-style: preserve-3d;
     // transform: translate3D(-100vw, 50vh, 50vh) rotateX(90deg);
   }
 
-  %page-enter-endpoint{
-    display:block;
+  %page-enter-endpoint {
+    display: block;
   }
-  %page-enter-done{
+  %page-enter-done {
     position: unset;
     z-index: unset;
     width: unset;
@@ -51,24 +63,23 @@ $cube_distance : 50vh;
   }
 
   //========================= page exit
-  %page-exit-prepare{
+  %page-exit-prepare {
     position: fixed;
     z-index: 500;
     opacity: 1;
     display: block;
-    width: 100vw;
-    height: 100vh;
+    width: $cube_width;
+    height: $cube_height;
     overflow: hidden;
     // transform: scale(1, 1) translateX(0);
     // box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
     border: 1px solid rgb(49, 82, 172);
   }
-  %page-exit-endpoint{
+  %page-exit-endpoint {
     @extend %page-exit-prepare;
     opacity: 0;
     // transform: scale(1,1) translateY(0vh);
   }
-
 
   /* slide animation */
   .slide-in-appear {
@@ -88,7 +99,6 @@ $cube_distance : 50vh;
     // transition: all $animation_time_page ease-out;
   }
 
-
   .slide-in-enter {
     @extend .slide-in-appear;
   }
@@ -105,15 +115,15 @@ $cube_distance : 50vh;
 
     // transform-style: preserve-3d;
     // transform: translate3D(0, 0, 0) rotateX(0deg);
+    .page_container {
+    }
   }
   .slide-in-exit-active {
-
     @extend %page-exit-endpoint;
     animation-name: animation_cube_hide;
     animation-duration: $animation_time_page;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-
     //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
   }
 }

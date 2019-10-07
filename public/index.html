@@ -10,6 +10,8 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="stylesheet" type="text/css" href="css/loading.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -25,29 +27,18 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    
     <script src="js/three.r92.min.js"></script>
     <script src="js/vanta.birds.min.js"></script>
-    <script>
-      // document.addEventListener('DOMContentLoaded', (event) => {
-      //   //resource: https://www.vantajs.com
-      //   window.VANTA.BIRDS({
-      //     el: "body",
-      //     backgroundColor: 0x4c7ebb,
-      //     color1: 0x91d8ff,
-      //     color2: 0x5669,
-      //     colorMode: "lerp",
-      //     birdSize: 1,
-      //     wingSpan: 27.00,
-      //     alignment: 26.00,
-      //     quantity: 5.00,
-      //     backgroundAlpha: 0.00
-      //   })
-      // })
-    </script>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="global_loader" class="global_loader">
+        <div id="loader">
+            <div id="shadow"></div>
+            <div id="box"></div>
+          </div>
+    </div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
