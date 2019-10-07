@@ -46,15 +46,11 @@ function App(props) {
       }))
     });
   }
-  const handleCleanUp = (timeout) => {
-
-
-  }
-  useEffect(()=>{ 
-    if(navLocks.length === 0 && routeAnimationFinished === false){
+  useEffect(() => {
+    if (navLocks.length === 0 && routeAnimationFinished === false) {
       setRouteAnimationFinished(true);
     }
-   }, [navLocks])
+  }, [navLocks])
 
 
   // Main JSX
@@ -63,11 +59,11 @@ function App(props) {
       <Nav navLocks={navLocks} navLinks={navLinks} />
       {/* section */}
       <section className={`z_main ${styles.main} ${routeAnimationFinished ? styles.main_unlock : styles.main_lock}`}>
-        <AnimationRoute path="/" exact component={Home} onLock={handleLockNav} onUnlock={handleUnlockNav} onCleanUp={handleCleanUp} />
-        <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handleLockNav} onUnlock={handleUnlockNav} onCleanUp={handleCleanUp} />
-        <AnimationRoute path="/blog" exact component={Blog} onLock={handleLockNav} onUnlock={handleUnlockNav} onCleanUp={handleCleanUp} />
-        <AnimationRoute path="/techstack" exact component={TechStack} onLock={handleLockNav} onUnlock={handleUnlockNav} onCleanUp={handleCleanUp} />
-        <AnimationRoute path="/aboutwebsite" exact component={AboutWebsite} onLock={handleLockNav} onUnlock={handleUnlockNav} onCleanUp={handleCleanUp} />
+        <AnimationRoute path="/" exact component={Home} onLock={handleLockNav} onUnlock={handleUnlockNav} />
+        <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handleLockNav} onUnlock={handleUnlockNav} />
+        <AnimationRoute path="/blog" exact component={Blog} onLock={handleLockNav} onUnlock={handleUnlockNav} />
+        <AnimationRoute path="/techstack" exact component={TechStack} onLock={handleLockNav} onUnlock={handleUnlockNav} />
+        <AnimationRoute path="/aboutwebsite" exact component={AboutWebsite} onLock={handleLockNav} onUnlock={handleUnlockNav} />
       </section>
     </>
   );
@@ -76,7 +72,8 @@ function App(props) {
 export default withRouter(App);
 
 //---------------------------------Wrapper for animation
-// Animation for switch pages
+
+// test only:
 const AnimationRouteTest = withRouter((props) => {
 
   const timeout = 2000;
@@ -86,31 +83,13 @@ const AnimationRouteTest = withRouter((props) => {
   }
 
   return (
-
-    <div className="slide-in-exit-active" data-path={props.path}>
-      <Route {...props} />
-
-
-
-
-      {/* <CSSTransition
-          classNames="slide-in"
-          timeout={timeout}
-          in={props.location.pathname === props.path}
-          unmountOnExit
-          onExit={props.onLock}
-          onExited={props.onUnlock}
-          onEnter={props.onLock}
-          onEntered={(e) => { props.onUnlock(e); clearup() }}
-          appear={true}
-        >
-          <div className={props.path} data-path={props.path}>
-            <Route {...props} />
-          </div>
-
-        </CSSTransition> */}
-    </div>
-
+    <div className="test-sence">
+      <div className="test-rotate1" data-path={props.path}>
+        animation_cube_show {/*<Route {...props} /> */}
+      </div>
+      <div className="test-rotate2" data-path={props.path}>
+        animation_cube_hide {/*<Route {...props} /> */}
+      </div></div>
   );
 })
 
@@ -118,11 +97,8 @@ const AnimationRouteTest = withRouter((props) => {
 // Animation for switch pages
 const AnimationRoute = withRouter((props) => {
 
-  const timeout = 500;
+  const timeout = 800;
 
-  const clearup = () => {
-    props.onCleanUp(timeout * 1.5);
-  }
 
   // "Transition group" because we want to temporary keep the page while its exiting.
   // here is "key" attribute, CSSTransition is "in" attribute
@@ -132,13 +108,10 @@ const AnimationRoute = withRouter((props) => {
         classNames="slide-in"
         timeout={timeout}
         key={props.location.pathname === props.path}
-
         onExit={props.onLock}
         onExited={props.onUnlock}
         onEnter={props.onLock}
-        onEntered={(e) => { props.onUnlock(e); clearup() }}
-
-
+        onEntered={props.onUnlock}
         appear={true}
       >
         <div className={props.path} data-path={props.path}>

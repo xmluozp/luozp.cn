@@ -1,10 +1,16 @@
-$animation_time_page: 500ms; 
+$animation_time_page: 800ms; 
+$cube_height : 100vh;
+$cube_width : 100vw;
+$cube_distance : 50vh;
+// dont forget to se App.scss
+
 
 .main {
-  perspective: calc(200vh);
+  perspective: 100vh;
 }
 .main_lock {
-  height: 100vh;
+  height: $cube_height;
+  width: $cube_width;
   overflow: hidden;
 }
 .main_unlock {
@@ -22,14 +28,15 @@ $animation_time_page: 500ms;
   //========================= page enter
   %page-enter-prepare{
     position: fixed;
-    z-index: 500;
+    z-index: 400;
     opacity: 1;
     display: block;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    transform-style: preserve-3d;
-    transform: translate3D(-100vw, 50vh, 50vh) rotateX(90deg);
+    border: 1px solid rgb(49, 82, 172);
+    // transform-style: preserve-3d;
+    // transform: translate3D(-100vw, 50vh, 50vh) rotateX(90deg);
   }
 
   %page-enter-endpoint{
@@ -46,15 +53,15 @@ $animation_time_page: 500ms;
   //========================= page exit
   %page-exit-prepare{
     position: fixed;
-    z-index: 400;
+    z-index: 500;
     opacity: 1;
     display: block;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    transform: scale(1, 1) translateX(0);
-    box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
-    border: 1px solid #ffffff;
+    // transform: scale(1, 1) translateX(0);
+    // box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
+    border: 1px solid rgb(49, 82, 172);
   }
   %page-exit-endpoint{
     @extend %page-exit-prepare;
@@ -69,8 +76,9 @@ $animation_time_page: 500ms;
   }
   .slide-in-appear-active {
     @extend %page-enter-endpoint;
-    animation-name: animation_page_show;
+    animation-name: animation_cube_show;
     animation-duration: $animation_time_page;
+    animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     // transition: all $animation_time_page ease-out;
   }
@@ -101,8 +109,9 @@ $animation_time_page: 500ms;
   .slide-in-exit-active {
 
     @extend %page-exit-endpoint;
-    animation-name: animation_page_hide;
+    animation-name: animation_cube_hide;
     animation-duration: $animation_time_page;
+    animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 
     //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
