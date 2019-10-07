@@ -26,10 +26,9 @@ $cube_distance: 50vh;
   height: auto;
 }
 
-
-
-
+// Css transition needs global
 :global {
+
   .page_container {
     // position: unset;
     min-height: 100vh;
@@ -47,8 +46,6 @@ $cube_distance: 50vh;
     height: $cube_height;
     overflow: hidden;
     border: 1px solid rgb(49, 82, 172);
-    // transform-style: preserve-3d;
-    // transform: translate3D(-100vw, 50vh, 50vh) rotateX(90deg);
   }
 
   %page-enter-endpoint {
@@ -71,8 +68,7 @@ $cube_distance: 50vh;
     width: $cube_width;
     height: $cube_height;
     overflow: hidden;
-    // transform: scale(1, 1) translateX(0);
-    // box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
+
     border: 1px solid rgb(49, 82, 172);
   }
   %page-exit-endpoint {
@@ -91,12 +87,10 @@ $cube_distance: 50vh;
     animation-duration: $animation_time_page;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-    // transition: all $animation_time_page ease-out;
   }
 
   .slide-in-appear-done {
     @extend %page-enter-done;
-    // transition: all $animation_time_page ease-out;
   }
 
   .slide-in-enter {

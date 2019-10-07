@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { BrowserView, MobileView } from 'react-device-detect';
+import React, { useState, useEffect } from 'react';
+import { BrowserView, MobileView, isMobileOnly } from 'react-device-detect';
 import { Link, withRouter } from 'react-router-dom';
 
 import styles from './Nav.module.scss';
 
 
 export default withRouter((props) => {
+
+    const avatarClasses = [
+        styles.stage_entrance,
+        styles.stage_nav
+    ];
+
     const { location, navLocks, navLinks } = props;
     const [navDisplayItems, setNavDisplayItems] = useState(true);
+    const [cssAvatarStage, setCssAvatarStage] = useState(avatarClasses[0]);
+    const classOfDevice = isMobileOnly ? styles.nav_mobileside : null;
+
 
     // mobile only: toggle menu
     const handleToggleMenu = (e) => {
@@ -21,40 +30,40 @@ export default withRouter((props) => {
         }
     }
 
+    useEffect(() => {
+        let stageClass = '';
+        // set animation stages
+        switch (location.pathname) {
+            case '/':
+                stageClass = avatarClasses[0];
+                break;
+
+            default:
+                stageClass = avatarClasses[1];
+                break;
+        }
+
+        setCssAvatarStage(stageClass);
+    }, [location])
 
     return (
         <>
-            {/* header */}
-            <BrowserView>
-                {/* check if display icon as the avatar(entrance) or a nav(inner pages) */}
-                <header className={`z_nav ${styles.container} ${location.pathname === '/' ? styles.nav_entrance : styles.nav_side}`}>
-                    <div className={styles.background}>
-                        {/* if its entrance, hit the avatar will go to: [about me] */}
-                        <AnimationLink to={location.pathname === '/' ? "/aboutme" : "/"} lock={navLocks} >
-                            <div className={styles.avatar}></div>
-                        </AnimationLink>
+            {/* avatar */}
+            <div className={["z_avatar", styles.avatar, classOfDevice, cssAvatarStage].join(' ')}>
+                <Link to="/aboutme" onClick={handleToggleMenu}>
 
-                        <NavItems navLocks={navLocks} navLinks={navLinks} />
+                </Link>
+            </div>
 
-                    </div>
-                </header>
-            </BrowserView>
+            {/* nav bar */}
+            {/* check if display icon as the avatar(entrance) or a nav(inner pages) */}
+            <header className={["z_nav", styles.container, classOfDevice, cssAvatarStage].join(' ')}>
 
-            <MobileView>
-                {/* check if display icon as the avatar(entrance) or a mobile nav(inner pages) */}
-                <header className={`z_nav ${styles.container} ${location.pathname === '/' ? styles.nav_entrance : styles.nav_mobileside}`}>
+                <div className={`${styles.navitems} ${navDisplayItems ? styles.navitems_show : styles.navitems_hide}`}>
+                    <NavItems navLocks={navLocks} navLinks={navLinks} />
+                </div>
 
-                    {/* if its inner pages, hit the avatar will display the nav*/}
-                    <Link to="/aboutme" onClick={handleToggleMenu}>
-                        <div className={styles.avatar}></div>
-                    </Link>
-
-                    {/* display the nav */}
-                    <div className={navDisplayItems ? styles.navitems_display : styles.navitems_hide}>
-                        <NavItems navLocks={navLocks} navLinks={navLinks} />
-                    </div>
-                </header>
-            </MobileView>
+            </header>
         </>
     )
 })
@@ -65,17 +74,17 @@ const NavItems = withRouter((props) => {
     const { navLocks, navLinks } = props;
 
     return (
-        <div className={styles.navitems}>
-            <ul>
-                {navLinks.map((item, key) => {
-                    return (<li key={key}>
-                        <AnimationLink to={item.to} lock={navLocks} >
-                            {item.title}
-                        </AnimationLink>
-                    </li>)
-                })}
-            </ul>
-        </div>
+
+        <ul>
+            {navLinks.map((item, key) => {
+                return (
+                    <AnimationLink to={item.to} lock={navLocks} key={key}>
+                        {item.title}
+                    </AnimationLink>
+                )
+            })}
+        </ul>
+
     )
 });
 
@@ -89,8 +98,10 @@ const AnimationLink = withRouter((props) => {
     }
 
     return (
-        <Link to={to} onClick={handleClick} className={lock && lock.includes(to) || props.location.pathname === to ? styles.linkselected : styles.linkregular}>
-            {props.children}
-        </Link>
+        <li>
+            <Link to={to} onClick={handleClick} className={lock && lock.includes(to) || props.location.pathname === to ? styles.linkselected : styles.linkregular}>
+                {props.children}
+            </Link>
+        </li>
     )
 })
