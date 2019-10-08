@@ -1,3 +1,4 @@
+@import '../../assets/styles/colors.scss';
 .testColor{
     // background-color: aqua;
     
@@ -13,5 +14,5 @@
     right:0px;
     z-index: 0;
     height: 100vh;
-    background-color: rgb(21, 74, 104);
+    background-color: $color_bgmiddle;
 }

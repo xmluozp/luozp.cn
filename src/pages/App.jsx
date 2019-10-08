@@ -16,12 +16,12 @@ import Nav from '../components/Nav/Nav';
 function App(props) {
 
   // only run once. hide the loader for the website
-  if(document.getElementById('global_loader')){
+  // if(document.getElementById('global_loader')){
     document.getElementById('global_loader').classList.add('global_loader_hide');
-    setTimeout(() => {
-      document.getElementById('global_loader')&& document.getElementById('global_loader').remove();
-    }, 2000);
-  }
+  //   setTimeout(() => {
+  //     document.getElementById('global_loader')&& document.getElementById('global_loader').remove();
+  //   }, 2000);
+  // }
 
   
   

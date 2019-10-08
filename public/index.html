@@ -27,9 +27,28 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    <script src="js/three.r92.min.js"></script>
-    <script src="js/vanta.birds.min.js"></script>
 
+    <script id="shader-fs" type="x-shader/x-fragment">
+      #ifdef GL_ES
+       precision highp float;
+     #endif
+     void main(void) {
+     gl_FragColor = vec4(0.2, 0.3, 0.4, 1.0);
+     }
+   
+   </script>
+   
+   <script id="shader-vs" type="x-shader/x-vertex">
+   attribute vec3 vertexPosition;
+   
+   uniform mat4 modelViewMatrix;
+   uniform mat4 perspectiveMatrix;
+   
+   void main(void) {
+     gl_Position = perspectiveMatrix * modelViewMatrix * vec4(  vertexPosition, 1.0);
+   }
+   
+   </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

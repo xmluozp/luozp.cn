@@ -1,8 +1,10 @@
+@import '../assets/styles/colors.scss';
+
 $animation_time_page: 800ms;
 $cube_height: 100vh;
 $cube_width: 100vw;
 $cube_distance: 50vh;
-// dont forget to se App.scss
+// dont forget to set App.scss
 
 
 .onLoad{
@@ -45,7 +47,8 @@ $cube_distance: 50vh;
     width: $cube_width;
     height: $cube_height;
     overflow: hidden;
-    border: 1px solid rgb(49, 82, 172);
+    border: 1px solid $color_bglight;
+    border-bottom: 2px solid $color_bgreverse;
   }
 
   %page-enter-endpoint {
@@ -57,6 +60,7 @@ $cube_distance: 50vh;
     width: unset;
     height: unset;
     overflow: unset;
+    border:none;
   }
 
   //========================= page exit
@@ -69,7 +73,7 @@ $cube_distance: 50vh;
     height: $cube_height;
     overflow: hidden;
 
-    border: 1px solid rgb(49, 82, 172);
+    border: 1px solid $color_bgreverse;
   }
   %page-exit-endpoint {
     @extend %page-exit-prepare;
@@ -80,12 +84,14 @@ $cube_distance: 50vh;
   /* slide animation */
   .slide-in-appear {
     @extend %page-enter-prepare;
+    transform: translateZ($cube_height / 3);
   }
   .slide-in-appear-active {
     @extend %page-enter-endpoint;
-    animation-name: animation_cube_show;
+    transform: translateZ($cube_height / 3);
+    animation-name: animation_zoomin;
     animation-duration: $animation_time_page;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
   }
 
@@ -94,10 +100,14 @@ $cube_distance: 50vh;
   }
 
   .slide-in-enter {
-    @extend .slide-in-appear;
+    @extend %page-enter-prepare;
   }
   .slide-in-enter-active {
-    @extend .slide-in-appear-active;
+    @extend %page-enter-endpoint;
+    animation-name: animation_cube_show;
+    animation-duration: $animation_time_page;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
   }
 
   .slide-in-enter-done {

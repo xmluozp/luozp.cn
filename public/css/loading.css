@@ -21,7 +21,7 @@
   #box {
       width: 50px;
       height: 50px;
-      background: rgb(0, 84, 211);
+      background: rgb(233, 238, 241);
       animation: animate .5s linear infinite;
       position: absolute;
       top: 0;
@@ -55,7 +55,7 @@
   #shadow {
       width: 50px;
       height: 5px;
-      background: #000;
+      background: #1e1f26;
       opacity: 0.1;
       position: absolute;
       top: 59px;

@@ -1,3 +1,4 @@
+@import '../assets/styles/colors.scss';
 $cube_height : 100vh;
 $cube_width : 100vw;
 $cube_distance : 50vh;
@@ -10,7 +11,6 @@ $cube_distance : 50vh;
       transform: scale(0.2, 0.002);
       opacity: 1;
     }
-  
     50% {
       transform: scale(0.2, 0.002);
       opacity: 0;
@@ -33,15 +33,15 @@ $cube_distance : 50vh;
     }
     50%{
         transform: translate3D(0, 0, 0) rotateY(0deg) scale(0.8, 0.8) translateX(-15vw);
-        background-color: #e0e0e0;
+        background-color: $color_bglight;
         box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
-        border: 1px solid #ffffff;
+        border: 1px solid $color_light;
     }
     80%{
         transform: translate3D(0, 0, 0) rotateY(0deg) scale(0.8, 0.8) translateX(-15vw);
-        background-color: #e0e0e0;
+        background-color: $color_bglight;
         box-shadow: 0px 0px 20px 0px rgba(136, 136, 136, 0.253);
-        border: 1px solid #ffffff;
+        border: 1px solid $color_light;
     }
     100%{
         transform: scale(1, 1) translateX(0);
@@ -66,52 +66,39 @@ $cube_distance : 50vh;
 
 
 
-.test-sence{
-
-    height: $cube_height;
-    width: $cube_width;
-    perspective: $cube_height * 2;
-    position: fixed;
-    top:200px;
-    left: 200px;
+@keyframes animation_zoomin {
+    0% {
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+        z-index: 600;
+        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2);
+        opacity: 0;
+    }
+    40% {
+        transform: translateZ($cube_height * -1);
+        animation-timing-function: linear;
+        opacity: 1;
+        border: 1px solid $color_bgtransparent;
+    }
+    70%{
+        animation-timing-function: linear;
+        transform: translateZ(0px);
+        opacity: 1;
+        border: none;
+    }
+    100%{
+        animation-timing-function: linear;
+        transform: translateZ(0px);
+        opacity: 1;
+        border: none;
+    }
 }
-
-.test-rotate1{
-    
-    height:$cube_height;
-    width:$cube_width;
-
-    display: block;
-    background-color: rgb(0, 203, 218);
-    position: fixed;
-    z-index: 600;
-    
-
-    animation: animation_cube_show 5s infinite;
-    animation-timing-function: ease-out;
-    // transform: translate3D(0vw, -35vh, -90vh) rotateX(45deg) rotateZ(-45deg);
-}
-.test-rotate2{
-    width:100%;
-    height:100%;
-    display: block;
-    background-color: rgb(90, 110, 0);
-    position: fixed;
-    z-index: 700;
-
-    // translateY = distance - size
-
-
-    animation: animation_cube_hide 5s infinite;
-    animation-timing-function: ease-out;
-    // transform: rotateX( -90deg) translateZ(50vh);
-    // transform: translate3D(0vw, 35vh, -90vh) rotateX(-45deg) rotateZ(-45deg);
-}
-
 
 //
 @keyframes animation_cube_hide {
     0% {
+        -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(0%);
         z-index: 700;
         transform: rotateX( 0deg) translateZ(0px) translateY(0px);
         opacity: 1;
@@ -123,42 +110,60 @@ $cube_distance : 50vh;
     } 
     30% {
         transform: rotateX( 0deg) translateZ( $cube_distance * -1) translateY(0px);
+        animation-timing-function: linear;
         z-index: 700;
         opacity: 0.3;
     } 
-    90%{
+    60%{
         transform: rotateX( 90deg) translateZ($cube_height/2)  translateY( ($cube_height / 2 + $cube_distance) * -1 );
+        animation-timing-function: ease-out;
         z-index: 600;
         opacity: 0;
     }
     100%{
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
         transform: rotateX( 90deg) translateZ($cube_height/2)  translateY($cube_height/ -2);
+        animation-timing-function: ease-out;
         opacity: 0;
     }
 }
 @keyframes animation_cube_show {
     0% {
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
         z-index: 600;
         transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2);
         opacity: 0;
     }
     20% {
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
         transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height/2 +  $cube_distance);
         z-index: 600;
-        opacity: 0.5;
+        opacity: 0.3;
     }
     30% {
         transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height/2 +  $cube_distance);
+        animation-timing-function: linear;
+        border: 1px solid $color_bgtransparent;
         z-index: 600;
         opacity: 0.5;
     }
-    90%{
+    60%{
+
         transform: rotateY(  0deg) translateZ($cube_distance * -1);
+        animation-timing-function: ease-out;
+        border: 1px solid $color_bgtransparent;
         z-index: 700;
         opacity: 0.5;
     }
     100%{
-        transform: rotateY(  0deg) translateZ(0px);
+        -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(0%);
+        transform: rotateY(  0deg) translateZ(-10px);
+        animation-timing-function: ease-out;
+        border: none;
         opacity: 1;
     }
 }

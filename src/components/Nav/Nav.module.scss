@@ -1,5 +1,8 @@
-$animation_time_page: 500ms;
-//先设置各种停留状态
+@import '../../assets/styles/colors.scss';
+
+$animation_time_page: 800ms;
+
+
 /*
 nav_entrance / nav_side / nav_mobileside (control movement between entrance and inner pages)
     desktop:background (put the background of inner pages)
@@ -51,13 +54,15 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
   &.avatar{
     @extend %avatar;
     top: calc(50% - 14rem);
-    right: calc(50% - 7rem);
+    right: calc(50% + 5rem);
     height: 14rem;
     width: 14rem;
     border-radius: 7rem;
   }
   &.container{
     @extend %container;
+    top: calc(50% - 14rem);
+    right: calc(50% - 15rem);
   }
 }
 
@@ -161,6 +166,13 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
       .navitems{
         @extend %navitems-hide;
       }
+    }
+
+    &.avatar {
+      top: calc(50% - 10rem);
+      right: calc(50% - 4rem);
+      height: 8rem;
+      width: 8rem;
     }
   }
 }

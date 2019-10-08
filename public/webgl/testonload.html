@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+
+  </head>
+  <body>
+<img src="http://192.168.0.10:3000/webgl/imgs/me.png" id="testimg"/>
+<button>test</button>
+  </body>
+
+  <script>
+  
+  image = document.getElementById("testimg");
+
+  image.onload = ()=>{
+    alert("test on load");
+  };
+  </script>
+
+</html>
+
+
+

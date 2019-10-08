@@ -18,21 +18,21 @@ export default withRouter((props) => {
     const classOfDevice = isMobileOnly ? styles.nav_mobileside : null;
 
 
-    // mobile only: toggle menu
+    // toggle menu
     const handleToggleMenu = (e) => {
         if (location.pathname !== '/') {
             setNavDisplayItems(!navDisplayItems);
             e.preventDefault();
         }
         else {
-            // on mobile, set the default nav display: true
             // setNavDisplayItems(false);
         }
     }
 
+    // set animation stages
     useEffect(() => {
         let stageClass = '';
-        // set animation stages
+        
         switch (location.pathname) {
             case '/':
                 stageClass = avatarClasses[0];
@@ -74,7 +74,6 @@ const NavItems = withRouter((props) => {
     const { navLocks, navLinks } = props;
 
     return (
-
         <ul>
             {navLinks.map((item, key) => {
                 return (

@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Philosopher&display=swap');
+@import './assets/styles/colors.scss';
 body {
   margin: 0;
   font-family: 'Philosopher', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // height: 100vh;
-  background-color: rgb(56, 57, 68);
+  background-color: $color_bgdark;
 }
 ul, li{
   list-style: none;
