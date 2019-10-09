@@ -1,7 +1,6 @@
-@import '../../assets/styles/colors.scss';
+@import "../../assets/styles/colors.scss";
 
 $animation_time_page: 800ms;
-
 
 /*
 nav_entrance / nav_side / nav_mobileside (control movement between entrance and inner pages)
@@ -11,128 +10,226 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
             navitems (width and styles of nav menu)
 */
 
-
-%avatar {
-  background-color: rgba(218, 218, 218, 0.548);
+/*==============================================================================*/
+@mixin avatar {
   display: block;
   position: fixed;
 }
-%container {
+@mixin container {
   position: fixed;
-  top: 1rem;
-  right: 0rem;
-}
-%navitems {
-  @extend %navitems-show;
-}
-%navitems-show {
-  display: block;
-  height: 50vh;
-  width: 15rem;
-  overflow: hidden;
-}
-%navitems-hide {
-  height: 0px;
-  width: 15rem;
-  overflow: hidden;
-  
 }
 
-.avatar{
-  a{
+.avatar {
+  a {
     display: block;
     height: 100%;
     width: 100%;
   }
 }
-.navitems{
-  @extend %navitems-show;
+
+/*==============================================================================*/
+// stage 0: entrance
+@mixin stage-avatar-entrance {
+  top: calc(50% - 14rem);
+  left: calc(50% - 24rem);
+  height: 24rem;
+  width: 24rem;
+  border-radius: 7rem;
+}
+@mixin stage-container-entrance {
+  // menu
+  top: calc(50% - 14rem);
+  right: calc(50% - 16rem);
+}
+@mixin stage-board-entrance {
+  display: hidden;
 }
 
-// stage 0: entrance
-.stage_entrance{
-  &.avatar{
-    @extend %avatar;
-    top: calc(50% - 14rem);
-    right: calc(50% + 5rem);
-    height: 14rem;
-    width: 14rem;
-    border-radius: 7rem;
+// stage 1: nav
+@mixin stage-avatar-nav {
+  top: 1rem;
+  right: 1.8rem;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 3em;
+}
+@mixin stage-container-nav {
+  top: 10rem;
+  right: 0rem;
+}
+
+// stage for board
+@mixin stage-board-nav {
+  display: block;
+  position: absolute;
+  background-color: $color_bgdark;
+  border-left: 1px solid $color_transparent;
+  right: 0rem;
+  top: 0rem;
+  width: 12rem;
+  height: 100vh;
+}
+@mixin stage-board-nav-parentplay {
+  width: 0rem;
+}
+@mixin stage-board-nav-parentstop {
+  width: 12rem;
+}
+
+// stage for navitems
+@mixin stage-navitems-show {
+  display: block;
+  width: 13rem;
+  overflow: hidden;
+  box-sizing: content-box;
+  white-space: nowrap;
+}
+@mixin stage-navitems-hide {
+  width: 1.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@mixin stage-navitems-parentplay {
+    transform: scale(0.95,0.95);
+}
+@mixin stage-navitems-parentstop {
+
+}
+
+
+// stage for links
+
+@mixin links{
+  border-left: 5px solid rgba(255,255,255,.5);
+  border-bottom: 1px solid $color_bgdeepdark;
+  background-color: $color_bgmiddle;
+  margin-bottom: .5rem;
+  padding: 5pt 0pt;
+  a{
+    display: block;
+    height: 100%;
+    padding-left: 1.5rem;
   }
-  &.container{
-    @extend %container;
-    top: calc(50% - 14rem);
-    right: calc(50% - 15rem);
+  &li:hover{
+    width:30rem;
+  }
+}
+@mixin stage_linkselected {
+  a{
+    text-decoration: underline;
+    font-size: 2.5rem;
+    color: rgb(137, 197, 177);
+    transition: all $animation_time_page ease-in-out;
+    //   animation-name: animation_tv_fade;
+    //   animation-duration: 4s;
+  }
+}
+
+@mixin stage_linkregular {
+  a{
+    text-decoration: none;
+    font-size: 2rem;
+    color: $color_secondary;
+    transition: all $animation_time_page ease-in-out;
+  }
+  a:hover{
+    color: $color_warning;
+  }
+}
+
+
+
+/*==============================================================================*/
+.stage_entrance {
+  &.avatar {
+    @include avatar;
+    @include stage-avatar-entrance;
+  }
+  &.container {
+    @include container;
+    @include stage-container-entrance;
+  }
+  &.board {
+    @include stage-board-entrance;
   }
 }
 
 // stage 1: pages
-.stage_nav{
-  &.avatar{
-    @extend %avatar;
-    top: 0rem;
-    right: 0rem;
-    height: 6rem;
-    width: 6rem;
-    border-radius: 3em;
+.stage_nav {
+  &.avatar {
+    @include avatar;
+    @include stage-avatar-nav;
   }
-  &.container{
-    @extend %container;
+  &.container {
+    @include container;
+    @include stage-container-nav;
+  }
+  &.board {
+    @include stage-board-nav;
+  }
+  .navitems {
+    .stage_linkselected {
+      @include links;
+      @include stage_linkselected;
+    }
+    .stage_linkregular {
+      @include links;
+      @include stage_linkregular;
+    }
+  }
+
+  &.parentAnimationPlay{
+    &.board {
+      @include stage-board-nav-parentplay;
+    }
+    .navitems {
+      @include stage-navitems-parentplay;
+    }
+  }
+  &.parentAnimationStop{
+    &.board {
+      @include stage-board-nav-parentstop;
+    }
+    .navitems {
+      @include stage-navitems-parentstop;
+    }
   }
 }
 
 .navitems_show {
-  @extend %navitems-show;
+  @include stage-navitems-show;
   transition: all $animation_time_page ease-out;
 }
 .navitems_hide {
-  @extend %navitems-hide;
+  @include stage-navitems-hide;
   transition: all $animation_time_page ease-out;
 }
 
-// navigation bar
-.container {
-
-    // link
-    .navitems {
-
-      ul,
-      li {
-        .linkselected {
-          text-decoration: underline;
-          font-size: 2.5rem;
-          color: aquamarine;
-          display: block;
-          transition: all $animation_time_page ease-in-out;
-          //   animation-name: animation_tv_fade;
-          //   animation-duration: 4s;
-        }
-        .linkregular {
-          text-decoration: none;
-          font-size: 2rem;
-          color: black;
-          transition: all $animation_time_page ease-in-out;
-        }
-      }
-    }
-}
 
 // ============animation of nav
 
-// animation nav hide(go to entrance)---desktop
+// animation bind: nav hide(go to entrance)---desktop
 .stage_entrance {
-
-  transition: all $animation_time_page * 1.5;
-  .avatar {
-    transition: all $animation_time_page/2 ease-out;
+  &.avatar {
+    animation-name: animation_avatar_Menu_to_Entrance;
+    animation-duration: $animation_time_page;
+    animation-fill-mode: forwards;
   }
 }
-
-// animation nav showup--desktop
+// animation bind: nav showup--desktop
 .stage_nav {
-  transition: all $animation_time_page * 2;
-  .avatar {
-    transition: all $animation_time_page ease-out;
+  &.avatar {
+    animation-name: animation_avatar_Entrance_to_Menu;
+    animation-duration: $animation_time_page;
+    animation-fill-mode: forwards;
+  }
+  &.parentAnimationPlay, &.parentAnimationStop{
+    &.board {
+      transition: all $animation_time_page/4 ease-out;
+    }
+    .navitems {
+      transition: all $animation_time_page/4 ease-out;
+    }
   }
 }
 
@@ -141,9 +238,8 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
 
 // animation nav showup--mobile
 .nav_mobileside {
-
-  &.stage_nav{
-    &.container{
+  &.stage_nav {
+    &.container {
       @extend .container;
       text-align: right;
       background-color: transparent;
@@ -159,20 +255,46 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
       margin-bottom: -1.6rem;
     }
   }
-  &.stage_entrance{
-    &.container{
+  &.stage_entrance {
+    &.container {
       @extend .container;
 
-      .navitems{
-        @extend %navitems-hide;
+      .navitems {
+        @include stage-navitems-hide;
       }
     }
 
     &.avatar {
-      top: calc(50% - 10rem);
-      right: calc(50% - 4rem);
-      height: 8rem;
-      width: 8rem;
+      top: calc(50% - 10rem) !important;
+      right: calc(50% - 4rem) !important;
+      height: 3rem;
+      width: 3rem;
     }
+  }
+}
+/*==============================================================================*/
+:global {
+  @keyframes animation_avatar_Entrance_to_Menu {
+    // 20% {
+    //   @include stage-avatar-entrance;
+    // }
+    // 40% {
+
+    // }
+    // 100% {
+    //   @include stage-avatar-nav;
+    // }
+  }
+
+  @keyframes animation_avatar_Menu_to_Entrance {
+    // 20% {
+    //   @include stage-avatar-nav;
+    // }
+    // 40% {
+
+    // }
+    // 100% {
+    //   @include stage-avatar-entrance;
+    // }
   }
 }

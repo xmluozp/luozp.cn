@@ -239,7 +239,11 @@ var cn = 0;
 function animate() {
 
     id = requestAnimationFrame(animate);
-    drawScene();
+    if(id%2 ===0)
+    {
+        drawScene();
+    }
+    
 }
 
 

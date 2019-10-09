@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import styles from './App.module.scss';
 import './App.scss';
 import { BrowserView, MobileView } from 'react-device-detect';
@@ -16,30 +16,28 @@ import Nav from '../components/Nav/Nav';
 function App(props) {
 
   // only run once. hide the loader for the website
-  // if(document.getElementById('global_loader')){
-    document.getElementById('global_loader').classList.add('global_loader_hide');
-  //   setTimeout(() => {
-  //     document.getElementById('global_loader')&& document.getElementById('global_loader').remove();
-  //   }, 2000);
-  // }
+  if(document.getElementById('global_loader')){
+  document.getElementById('global_loader').classList.add('global_loader_hide');
+    setTimeout(() => {
+      document.getElementById('global_loader')&& document.getElementById('global_loader').remove();
+    }, 2000);
+  }
 
-  
-  
-
-  const [routeAnimationFinished, setRouteAnimationFinished] = useState(true);
+  const [animationRotating, setAnimationRotating] = useState(false);
   const [navLocks, setNavLocks] = useState([]);
+
   const navLinks = [
     { title: "Home", to: "/" },
     { title: "Personal", to: "/aboutme" },
     { title: "Skill Sets", to: "/techstack" },
-
     { title: "Blog", to: "/blog" },
     { title: "About", to: "/aboutwebsite" },
   ];
 
+  // ==============================handlers
   // have a lock list. in order to prevent messing up page animations when hitting nav items too quick
   const handleLockNav = (e) => {
-    setRouteAnimationFinished(false);
+    setAnimationRotating(true);
     // handle async of set state
     setNavLocks(prevState => {
       const currentLocks = prevState.slice();
@@ -47,10 +45,11 @@ function App(props) {
       return currentLocks;
     });
   }
+ 
+  // check and unloack navs when animation over (from any pages)
   const handleUnlockNav = (e) => {
 
     const path = e.getAttribute('data-path');
-
     // handle async of set state
     setNavLocks(prevState => {
       return new Array(...prevState.filter((value) => {
@@ -58,11 +57,20 @@ function App(props) {
       }))
     });
   }
+
+  // ==============================effects
   useEffect(() => {
-    if (navLocks.length === 0 && routeAnimationFinished === false) {
-      setRouteAnimationFinished(true);
+
+    
+  }, [])
+  useEffect(() => {
+
+    // control lock of navs
+    if (navLocks.length === 0 && animationRotating === true) {
+      setAnimationRotating(false);
     }
   }, [navLocks])
+
 
 
 
@@ -70,9 +78,10 @@ function App(props) {
   // Main JSX
   return (
     <>
-      <Nav navLocks={navLocks} navLinks={navLinks} />
+      <Nav navLocks={navLocks} navLinks={navLinks} animationRotating={animationRotating}/>
       {/* section */}
-      <section className={`z_main ${styles.main} ${routeAnimationFinished ? styles.main_unlock : styles.main_lock}`}>
+      
+      <section className={`z_main ${styles.main} ${animationRotating ? styles.main_lock : styles.main_unlock}`}>
         <AnimationRoute path="/" exact component={Home} onLock={handleLockNav} onUnlock={handleUnlockNav} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handleLockNav} onUnlock={handleUnlockNav} />
         <AnimationRoute path="/blog" exact component={Blog} onLock={handleLockNav} onUnlock={handleUnlockNav} />
@@ -91,7 +100,6 @@ export default withRouter(App);
 const AnimationRouteTest = withRouter((props) => {
 
   const timeout = 2000;
-
   const clearup = () => {
     props.onCleanUp(timeout / 2);
   }

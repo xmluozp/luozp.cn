@@ -1,5 +1,4 @@
-
-export {load, unload, imgSwitch, flashIconOnLoad};
+export { load, unload, imgSwitch, callBack, resizeStart, resizeEnd, resize };
 
 window.cancelRequestAnimFrame = (function () {
     return window.cancelAnimationFrame ||
@@ -12,38 +11,47 @@ window.cancelRequestAnimFrame = (function () {
 
 var canvas, gl,
     ratio,
-    cw,
-    ch,
+    // cw,
+    // ch,
+    original_width,
+    original_height,
     colorLoc,
     drawType,
     imgLoadedCount,
+    g_density,
     numLines;
 var target;
 var id;
 var isScroll;
+var SHOW_UP_SPEED = 0.2;
 
 var imageURLArr = [];
 var snsNameArr = [];
 
 var perspectiveMatrix;
-var randomTargetXArr = [], randomTargetYArr = [];
-var drawType = 0;
+var g_RandomTargetXArr = [], g_RandomTargetYArr = [];
+var drawType;
 var onLoad;
+var loaded;
+var isResizing = false;
 var canvasId;
+var animate_z_deviation = {};
 
-function flashIconOnLoad(callback){
-    if(typeof(callback) === "function") {
-        onLoad = callback;
+function callBack(i_callback) {
+    if (typeof (i_callback) === "function") {
+        onLoad = i_callback;
     }
 }
 
 function initVaribles() {
-    numLines = 100000;
+    loaded = false;
+    g_density = 1;
+    numLines = 0;
     imgLoadedCount = 0;
     target = [];
     isScroll = false;
     imageURLArr = [
-        "webgl/imgs/facebook.png",
+        "webgl/imgs/me.png",
         "webgl/imgs/google.png",
         "webgl/imgs/instgram.png",
         "webgl/imgs/pinterest.png",
@@ -51,19 +59,31 @@ function initVaribles() {
         "webgl/imgs/github.png",
     ]
     snsNameArr = ["Facebook", "Google+", "Instagram", "Pinterest", "Twitter", "GitHub"];
-    randomTargetXArr = [];
-    randomTargetYArr = [];
-    drawType = 0;
-    canvas = document.getElementById(canvasId);
+    g_RandomTargetXArr = [];
+    g_RandomTargetYArr = [];
+    // drawType = 0;
+
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    // ...then set the internal size to match
+
     gl = canvas.getContext("experimental-webgl");
-    cw = window.innerWidth;
-    ch = window.innerHeight;
+
+    // gl = canvas.getContext("experimental-webgl", {alpha: false});
+
+    // Make it visually fill the positioned parent
+
+    // cw = window.innerWidth;
+    // ch = window.innerHeight;
 }
 
 
 
-const load = function(i_canvasId) {
+const load = function (i_canvasId, defaultPicture) {
     canvasId = i_canvasId;
+    drawType = defaultPicture;
+    console.log(drawType);
+    canvas = document.getElementById(canvasId);
     // 初始化变量
     initVaribles();
     var tempCanvas = document.createElement("canvas");
@@ -82,8 +102,7 @@ const load = function(i_canvasId) {
 const unload = function () {
 
     window.cancelRequestAnimFrame(id);
-    console.log(canvas);
-    console.log(gl);
+
     // gl.viewport(0, 0, canvas.width, canvas.height);
     // gl.clearRect(0, 0, canvas.width, canvas.height);    
 }
@@ -94,6 +113,9 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
     var size = image.width;
     tempCanvas.width = size;
     tempCanvas.height = size;
+
+    original_width = size * 10;
+    original_height = size * 10;
 
     ctx.drawImage(image, 0, 0)
     var imageData = ctx.getImageData(0, 0, size, size);
@@ -119,13 +141,17 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
             }
         }
     }
-    imgLoadedCount ++;
+    imgLoadedCount++;
 
 
     if (imgLoadedCount == imageURLArr.length) {
-
         loadScene();
     }
+}
+
+const getNumLines = (w, h) => {
+    // return canvas.width * canvas.height * g_density;
+    return 50000;
 }
 
 /**
@@ -138,9 +164,12 @@ function loadScene() {
         alert("There's no WebGL context available.");
         return;
     }
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
 
-    canvas.width = cw;
-    canvas.height = ch;
+    numLines = getNumLines(canvas.width, canvas.height);
+    // canvas.width = cw;
+    // canvas.height = ch;
     gl.viewport(0, 0, canvas.width, canvas.height);
 
     var vertexShaderScript = document.getElementById("shader-vs");
@@ -189,40 +218,57 @@ function loadScene() {
 
     // ------------------
 
-    setup();
+    initilizeVertices();
 
-    // vertices = new Float32Array(vertices);
+    // g_Vertices = new Float32Array(vertices);
     // randomTargetXArr = new Float32Array(randomTargetXArr);
     // randomTargetYArr = new Float32Array(randomTargetYArr);
 
     // ------------------
+    // 下面animate里面已经有了不知道为何还要buff一次
+    // gl.bufferData(gl.ARRAY_BUFFER, g_Vertices, gl.DYNAMIC_DRAW);
+    // gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.DYNAMIC_DRAW);
 
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-
-    resetSize();
+    resetSize(canvas.width, canvas.height);
     window.cancelRequestAnimFrame(id);
     animate();
 
-    if(typeof(onLoad) === "function") {
+    loaded = true;
+    if (typeof (onLoad) === "function") {
+
         onLoad();
     }
 
     // window.addEventListener("mousewheel", onScrollEventHandler);
     // window.addEventListener("DOMMouseScroll", onScrollEventHandler);
 
-    window.addEventListener("resize", onResizeHandler);
+    // window.addEventListener("resize", resize);
+
+    // canvas.addEventListener("resize", resize);
+
+    // var observer = new MutationObserver(resize);
+    // observer.observe(canvas, {attributes: true});
+
     // window.addEventListener("click", onClickHandler);
+
+    // document.body.clientHeight;
+
+
+    window.addEventListener("mousemove", (e) => {
+        // var [bw, bh] = [document.body.clientWidth / 2, document.body.clientHeight / 2];
+        // animate_z_deviation = [((e.clientX - bw) / bw).toFixed(1), ((e.clientY - bh) / bw).toFixed(1)];
+    });
 }
 // var count = 0;
 // var cn = 0;
 
-function resetSize() {
+function resetSize(w, h) {
+
+    numLines = getNumLines(w, h);
 
     var fieldOfView = 30.0;
-    var aspectRatio = canvas.width / canvas.height;
+    var aspectRatio = w / h;
     var nearPlane = 1.0;
     var farPlane = 10000.0;
     var top = nearPlane * Math.tan(fieldOfView * Math.PI / 360.0);
@@ -263,24 +309,118 @@ function resetSize() {
 // js trigger animate
 function animate() {
     id = requestAnimationFrame(animate);
-    drawScene();
+    if (id % 2 === 0) {
+        drawScene();
+    }
 }
 
 function drawScene() {
+    if (isResizing) { resize(); }
     draw();
-
-    gl.lineWidth(1);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.DYNAMIC_DRAW);
+    // gl.lineWidth(1);
+    gl.bufferData(gl.ARRAY_BUFFER, g_Vertices, gl.DYNAMIC_DRAW);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.drawArrays(gl.LINES, 0, numLines);
     gl.flush();
 }
-
-// ===================================
+// -------------------------------
 var coefficient = .4;
 var targetCoefficient = .01;
 
-var vertices,
+function draw() {
+    // cn += .1;
+
+    var i, bp, px, py, num, tempdensity, blur;
+
+    // coefficient 跳荡，无限趋近于targetCoefficient. 幅度取决于：初始值多大
+    coefficient += (targetCoefficient - coefficient) * .1;
+
+    // prepare for density
+    if (g_density > 1 || g_density < 0) tempdensity = 1;
+    else tempdensity = g_density;
+
+    // mouse deviation
+    animate_z_deviation = animate_z_deviation[1] ? animate_z_deviation : [0, 0];
+    var dx = - 1 * animate_z_deviation[0] / 100;
+    var dy = animate_z_deviation[1] / 100;
+
+    blur = coefficient * 0.6;
+
+    // draw pixels
+    for (i = 0; i < numLines * 2; i += 2) {
+
+        num = parseInt(i / 2);
+        bp = i * 3;
+
+        if (num % 5 < parseInt(5 * tempdensity)) {
+            // copy old positions
+            g_Vertices[bp + 2] = 1.23;
+            g_Vertices[bp + 5] = 1.23;
+        }
+        else // 不绘制的部分隐藏到画面外
+        {
+            g_Vertices[bp + 2] = 0;
+            g_Vertices[bp + 5] = 0;
+        }
+
+        g_Vertices[bp] = g_Vertices[bp + 3] + dx;
+        g_Vertices[bp + 1] = g_Vertices[bp + 4] + dy;
+
+        //var pos = target[parseInt(target.length * Math.random())];
+
+        // 备份用，在此基础上随机。不记录随机状态，所以每一帧都会重新随机
+        var targetPosX = g_RandomTargetXArr[num] - dx;
+        var targetPosY = g_RandomTargetYArr[num] - dy;
+
+        px = g_Vertices[bp + 3];
+
+        // 前者是速度，后者是散布
+        // cof等于tcof之前，都加速，等于的时候就不加速。所以加速度取决于这两个差
+        px += (targetPosX - px) * coefficient + (Math.random() - .5) * blur;
+        g_Vertices[bp + 3] = px;
+
+
+        py = g_Vertices[bp + 4];
+        py += (targetPosY - py) * coefficient + (Math.random() - .5) * blur;
+        g_Vertices[bp + 4] = py;
+
+
+    }
+
+}
+
+
+const resizeStart = () => {
+    isResizing = true;
+}
+
+const resizeEnd = () => {
+    isResizing = false;
+    g_density = (parseInt((canvas.height / original_width) * 10) / 10);
+}
+// -------------------------------
+const resize = (w, h) => {
+
+    if (loaded) {
+
+        if (!(w || h)) {
+            w = canvas.offsetWidth;
+            h = canvas.offsetHeight;
+        }
+
+        canvas.width = w;
+        canvas.height = h;
+
+        // initilizeVertices();
+        // resetVertices();
+        // resetSize(w, h);
+        gl.viewport(0, 0, w, h);
+    }
+}
+// ===================================
+
+
+var g_Vertices,
     velocities,
     freqArr,
     thetaArr,
@@ -290,87 +430,50 @@ var vertices,
 
 // -------------------------------
 
-function setup() {
+function initilizeVertices() {
 
-    vertices = [];
-    randomTargetXArr = [];
-    randomTargetYArr = [];
+    var vertices = [];
+    var randomTargetXArr = [];
+    var randomTargetYArr = [];
     // -------------------------------
 
 
     for (var ii = 0; ii < numLines; ii++) {
-        vertices.push(0, 0, 1.83);
-        vertices.push(0, 0, 1.83);
-
-
+        vertices.push(0, 0, 1.23, 0, 0, 1.23);
         var randomPos = target[drawType][parseInt(target[drawType].length * Math.random())];
         randomTargetXArr.push(randomPos.x);
         randomTargetYArr.push(randomPos.y);
     }
 
 
-    vertices = new Float32Array(vertices);
-    randomTargetXArr = new Float32Array(randomTargetXArr);
-    randomTargetYArr = new Float32Array(randomTargetYArr);
-
+    g_Vertices = new Float32Array(vertices);
+    g_RandomTargetXArr = new Float32Array(randomTargetXArr);
+    g_RandomTargetYArr = new Float32Array(randomTargetYArr);
 }
 
-// -------------------------------
+function resetVertices() {
 
-// -------------------------------
+    // coefficient = .3;
+    var randomTargetXArr = [];
+    var randomTargetYArr = [];
 
-function draw() {
-    // cn += .1;
+    // -------------------------------
 
-    var i, n = vertices.length, p, bp;
-    var px, py;
-    // var pTheta;
-    // var rad;
-    var num;
-
-    coefficient += (targetCoefficient - coefficient) * .1;
-
-
-    for (i = 0; i < numLines * 2; i += 2) {
-        // count += .3;
-        bp = i * 3;
-        // copy old positions
-
-        vertices[bp] = vertices[bp + 3];
-        vertices[bp + 1] = vertices[bp + 4];
-
-        num = parseInt(i / 2);
-        //pTheta = thetaArr[num];
-
-        //rad = velRadArr[num];// + Math.cos(pTheta + i * freqArr[i]) *  boldRateArr[num];
-
-        //pTheta = pTheta + velThetaArr[num];
-        //thetaArr[num] = pTheta;
-        //var pos = target[parseInt(target.length * Math.random())];
-        var targetPosX = randomTargetXArr[num];
-        var targetPosY = randomTargetYArr[num];
-        //va
-        px = vertices[bp + 3];
-        px += (targetPosX - px) * coefficient + (Math.random() - .5) * coefficient;
-        vertices[bp + 3] = px;
-
-
-        py = vertices[bp + 4];
-        py += (targetPosY - py) * coefficient + (Math.random() - .5) * coefficient;
-        vertices[bp + 4] = py;
+    for (var ii = 0; ii < numLines; ii++) {
+        var randomPos = target[drawType][parseInt(target[drawType].length * Math.random())];
+        randomTargetXArr.push(randomPos.x);
+        randomTargetYArr.push(randomPos.y);
     }
+
+    // vertices = new Float32Array(vertices);
+    g_RandomTargetXArr = new Float32Array(randomTargetXArr);
+    g_RandomTargetYArr = new Float32Array(randomTargetYArr);
 }
+
 
 // -------------------------------
-function onResizeHandler(event) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    gl.viewport(0, 0, canvas.width, canvas.height);
-    resetSize();
 
-    // imgSwitch(drawType);
-    
-}
+
 
 // window.addEventListener("keypress", function (event) {
 //     if (event.charCode == 99) {
@@ -408,29 +511,29 @@ function onClickHandler() {
 
     imgSwitch(drawType);
 
-
-
     setTimeout(function () {
         isScroll = false;
     }, 600);
 }
 
-const imgSwitch = function(picNumber) {
+const imgSwitch = function (picNumber) {
 
-    coefficient = .3;
-    randomTargetXArr = [];
-    randomTargetYArr = [];
+    if (loaded) {
 
-    // -------------------------------
+        coefficient = .3;
+        var randomTargetXArr = [];
+        var randomTargetYArr = [];
 
-    for (var ii = 0; ii < numLines; ii++) {
-        var randomPos = target[picNumber][parseInt(target[picNumber].length * Math.random())];
-        randomTargetXArr.push(randomPos.x);
-        randomTargetYArr.push(randomPos.y);
+        // -------------------------------
+
+        for (var ii = 0; ii < numLines; ii++) {
+            var randomPos = target[picNumber][parseInt(target[picNumber].length * Math.random())];
+            randomTargetXArr.push(randomPos.x);
+            randomTargetYArr.push(randomPos.y);
+        }
+
+        // vertices = new Float32Array(vertices);
+        g_RandomTargetXArr = new Float32Array(randomTargetXArr);
+        g_RandomTargetYArr = new Float32Array(randomTargetYArr);
     }
-
-    vertices = new Float32Array(vertices);
-    randomTargetXArr = new Float32Array(randomTargetXArr);
-    randomTargetYArr = new Float32Array(randomTargetYArr);
-
 }

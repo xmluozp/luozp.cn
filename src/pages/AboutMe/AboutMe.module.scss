@@ -1,5 +1,6 @@
+@import '../../assets/styles/colors.scss';
 .testColor {
-  background-color: red;
+  background-color: $color_bgdefault;
 }
 
 :global {

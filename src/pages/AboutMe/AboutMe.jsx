@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './AboutMe.module.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import {load, unload, imgSwitch} from '../../utils/flashicons';
-
 
 export default (props) => {
 
@@ -10,7 +8,6 @@ export default (props) => {
 
     const handleDisplay = () => {
 
-        setDisplay(!display);
     }
 
     useEffect(() => {
@@ -40,12 +37,9 @@ export default (props) => {
 
                 {/* </CSSTransition> */}
                 {/* <button onClick={()=>{load();}}>re-render</button> */}
-                <button onClick={()=>{load("c");}}>remove</button>
-                <button onClick={()=>{unload("c");}}>remove</button>
-                <button onClick={()=>{imgSwitch(2);}}>select</button>
 
 
-                <canvas id="c"></canvas>
+
         </div>
     );
 }

@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserView, MobileView, isMobileOnly } from 'react-device-detect';
 import { Link, withRouter } from 'react-router-dom';
-
 import styles from './Nav.module.scss';
+import './NavAnimation.scss';
+
+import { load as flashIconLoad, imgSwitch, resize, resizeStart as flashIconResizeStart, resizeEnd as flashIconResizeEnd, callBack as flashIconCallBack } from '../../utils/flashicons';
+
 
 
 export default withRouter((props) => {
 
     const avatarClasses = [
         styles.stage_entrance,
+        styles.stage_nav,
+        styles.stage_nav,
+        styles.stage_nav,
         styles.stage_nav
     ];
 
-    const { location, navLocks, navLinks } = props;
+    const { location, navLocks, navLinks, animationRotating } = props;
     const [navDisplayItems, setNavDisplayItems] = useState(true);
-    const [cssAvatarStage, setCssAvatarStage] = useState(avatarClasses[0]);
-    const classOfDevice = isMobileOnly ? styles.nav_mobileside : null;
+    const [cssAvatarStage, setCssAvatarStage] = useState();
 
+    const cssOfDevice = isMobileOnly ? styles.nav_mobileside : styles.nav_desktopside;
+    const cssParentAnimationPlay = animationRotating? styles.parentAnimationPlay : styles.parentAnimationStop;
+    const avatarObserverRef = useRef(null)
 
     // toggle menu
     const handleToggleMenu = (e) => {
@@ -29,41 +37,70 @@ export default withRouter((props) => {
         }
     }
 
+    useEffect(() => {
+        // 3rd parties
+        const stageNumber = getStageNumber()
+        setCssAvatarStage(getStageNumber());
+        flashIconLoad("c", stageNumber);
+
+        avatarObserverRef.current.addEventListener('animationstart', () => {
+            // start resizing
+            flashIconResizeStart();
+        });
+
+        avatarObserverRef.current.addEventListener('animationend', () => {
+            // end resizing
+            flashIconResizeEnd();
+        });
+
+        return () => {
+        }
+    }, [])
+
     // set animation stages
     useEffect(() => {
-        let stageClass = '';
-        
-        switch (location.pathname) {
-            case '/':
-                stageClass = avatarClasses[0];
-                break;
+        setCssAvatarStage(getStageNumber());
+    }, [location])
 
-            default:
-                stageClass = avatarClasses[1];
-                break;
+    useEffect(() => {
+        imgSwitch(cssAvatarStage);
+        return () => {
         }
 
-        setCssAvatarStage(stageClass);
-    }, [location])
+    }, [cssAvatarStage])
+
+
+    const getStageNumber = () => {
+        let stageNumber = '';
+        stageNumber = navLinks.findIndex((v) => {
+            return v.to === location.pathname;
+        });
+        return stageNumber;        
+    }
+
 
     return (
         <>
             {/* avatar */}
-            <div className={["z_avatar", styles.avatar, classOfDevice, cssAvatarStage].join(' ')}>
+            <div className={["z_avatar", styles.avatar, cssOfDevice, cssParentAnimationPlay ,avatarClasses[cssAvatarStage]].join(' ')} ref={avatarObserverRef}>
                 <Link to="/aboutme" onClick={handleToggleMenu}>
-
+                    <canvas id="c">
+                    </canvas>
                 </Link>
             </div>
 
             {/* nav bar */}
             {/* check if display icon as the avatar(entrance) or a nav(inner pages) */}
-            <header className={["z_nav", styles.container, classOfDevice, cssAvatarStage].join(' ')}>
+            <header className={["z_nav", styles.container, cssOfDevice, cssParentAnimationPlay ,avatarClasses[cssAvatarStage]].join(' ')}>
 
                 <div className={`${styles.navitems} ${navDisplayItems ? styles.navitems_show : styles.navitems_hide}`}>
                     <NavItems navLocks={navLocks} navLinks={navLinks} />
                 </div>
 
             </header>
+
+            {/* background of nav bar */}
+            <div className={["z_board", styles.board, cssOfDevice, cssParentAnimationPlay, avatarClasses[cssAvatarStage]].join(' ')} />
         </>
     )
 })
@@ -97,8 +134,8 @@ const AnimationLink = withRouter((props) => {
     }
 
     return (
-        <li>
-            <Link to={to} onClick={handleClick} className={lock && lock.includes(to) || props.location.pathname === to ? styles.linkselected : styles.linkregular}>
+        <li className={lock && lock.includes(to) || props.location.pathname === to ? styles.stage_linkselected : styles.stage_linkregular}>
+            <Link to={to} onClick={handleClick}>
                 {props.children}
             </Link>
         </li>

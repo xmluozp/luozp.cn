@@ -19,7 +19,7 @@ ul, li{
   width: 100%;
   overflow-x:hidden;
 }
-
+a{-webkit-tap-highlight-color:transparent;}
 
 /* ============ z-index */
 .z_avatar {
@@ -28,7 +28,11 @@ ul, li{
 .z_nav {
   z-index: 1000;
 }
-
+.z_board{
+  z-index: 900;
+}
 .z_main {
   z-index: 100;
 }
+
+

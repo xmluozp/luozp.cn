@@ -1,3 +1,4 @@
+@import '../../assets/styles/colors.scss';
 .testColor{
-    background-color: rgb(5, 255, 130);
+    background-color: $color_bgdefault;
 }
