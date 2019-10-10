@@ -24,22 +24,21 @@ export default (props) => {
             <div className="animation_title">This is about me title</div>
             about me
             <br />
+            <img src={require('../../assets/images/testpictureForSize.jpg')}/>
 
-            {/* <button onClick={handleDisplay}>set display </button> */}
-                {/* <CSSTransition
+            
+               <CSSTransition
                     classNames="testanimation"
                     in = {display}
                     timeout={300}
                     appear={true}
  
-                > */}
-                {/* <div className="test3d"> display {display?"true":"false"} </div> */}
-
-                {/* </CSSTransition> */}
-                {/* <button onClick={()=>{load();}}>re-render</button> */}
-
-
-
+                >
+                <div className="test3d"> display {display?"true":"false"} </div>
+            
+                </CSSTransition>
+         
+                <button onClick={handleDisplay}>set display </button> 
         </div>
     );
 }
