@@ -1,5 +1,3 @@
-export { load, unload, imgSwitch, callBack, resize, fadeOut, fadeIn };
-
 window.cancelRequestAnimFrame = (function () {
     return window.cancelAnimationFrame ||
         window.webkitCancelRequestAnimationFrame ||
@@ -10,10 +8,8 @@ window.cancelRequestAnimFrame = (function () {
 })();
 
 var canvas, gl,
-    ratio,
     standard_width,
     standard_height,
-    colorLoc,
     drawType,
     imgLoadedCount,
     g_density,
@@ -28,7 +24,6 @@ var imageInfoArr = [];
 
 var perspectiveMatrix;
 var g_RandomTargetXArr = [], g_RandomTargetYArr = [];
-var drawType;
 var onLoad;
 var loaded;
 // var isResizing = false;
@@ -86,7 +81,7 @@ function initVaribles() {
  */
 const load = function (i_canvasId, defaultPicture, init_w, init_h) {
     canvasId = i_canvasId;
-    drawType = defaultPicture;
+    drawType = defaultPicture || 0;
 
     canvas = document.getElementById(canvasId);
 
@@ -127,7 +122,7 @@ const unload = function () {
  * @param {*} number 
  */
 function onLoadImageHandler(image, tempCanvas, ctx, number) {
-    //console.log(image);
+
     var size = image.width;
     tempCanvas.width = size;
     tempCanvas.height = size;
@@ -148,12 +143,12 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
     // 这是个Mask，搜索图片里所有的黑点，后面只打印黑点
     for (let index = 0; index < data.length; index += 4) {
 
-        if (data[index] == 0) {
+        if (data[index] === 0) {
             var currentI = index / 4
             var currentX = currentI % size;
             var currentY = parseInt(currentI / size);
 
-            if (data[index] == 0 && (currentX % density === 0 || currentY % density === 0)) {
+            if (data[index] === 0 && (currentX % density === 0 || currentY % density === 0)) {
                 var pos = { x: currentX / size - .5, y: -currentY / size + 0.5 }
                 target[number].push(pos);
             }
@@ -162,7 +157,7 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
     imgLoadedCount++;
 
 
-    if (imgLoadedCount == imageURLArr.length) {
+    if (imgLoadedCount === imageURLArr.length) {
         loadScene();
     }
 }
@@ -172,7 +167,7 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
  * @param {} w 
  * @param {*} h 
  */
-const getNumLines = (picNumber) => {
+const getNumLines = () => {
 
     var returnValue = standard_height * standard_width * 0.3; // standard number
 
@@ -181,7 +176,6 @@ const getNumLines = (picNumber) => {
     // returnValue = returnValue * imageInfoArr[picNumber].width/ standard_height * g_density;
 
     // 根据指定的宽高决定精度
-    console.log("width " + canvas.width);
     returnValue = parseInt(returnValue * canvas.width / standard_width * g_density);
     // }
 
@@ -257,13 +251,13 @@ function loadScene() {
 
     setSize(canvas.width, canvas.height);
     window.cancelRequestAnimFrame(id);
-    animate();
+
 
     loaded = true;
     if (typeof (onLoad) === "function") {
         onLoad();
     }
-
+    fadeIn();
     // window.addEventListener("mousemove", (e) => {
     //     var [bw, bh] = [document.body.clientWidth / 2, document.body.clientHeight / 2];
     //     animate_z_deviation = [((e.clientX - bw) / bw).toFixed(1), ((e.clientY - bh) / bw).toFixed(1)];
@@ -319,7 +313,7 @@ function animate() {
     }
 }
 
-let numLinesFade;
+let numLinesFade = 0;
 /**
  * fade out
  */
@@ -342,9 +336,9 @@ function fadeOut_play() {
  */
 const fadeIn = function () {
     if (loaded) {
-        coefficient = .3;
+        // coefficient = .3;
         window.cancelRequestAnimFrame(id);
-        numLinesFade = 0;
+        // numLinesFade = 0;
         fadeIn_play();
     }
 }
@@ -456,7 +450,7 @@ function draw() {
 
 // -------------------------------
 const resize = (w, h) => {
-    console.log("triggering resize")
+
     if (loaded) {
 
         if (!(w || h)) {
@@ -476,13 +470,13 @@ const resize = (w, h) => {
 // ===================================
 
 
-var g_Vertices,
-    velocities,
-    freqArr,
-    thetaArr,
-    velThetaArr,
-    velRadArr,
-    boldRateArr;
+var g_Vertices;
+    // velocities,
+    // freqArr,
+    // thetaArr,
+    // velThetaArr,
+    // velRadArr,
+    // boldRateArr;
 
 // -------------------------------
 
@@ -573,14 +567,16 @@ function resetVertices() {
 // -------------------------------
 
 const imgSwitch = function (picNumber, w, h) {
-
+    console.log("switch icon to ", picNumber);
     if (loaded) {
 
         // call it simple way to prevent cpu calculation
-        if (w && h && (w != canvas.width || h != canvas.height)) {
+        if (w && h && (w !== canvas.width || h !== canvas.height)) {
             resize(w, h);
         }
         drawType = picNumber;
         resetVertices();
     }
 }
+
+export { load, unload, imgSwitch, callBack, resize, fadeOut, fadeIn };

@@ -3,6 +3,9 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import { Link, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+import "core-js/stable";
+import _ from 'lodash';
+
 // css
 import styles from './App.module.scss';
 import './App.scss';
@@ -18,16 +21,17 @@ import TechStack from './TechStack/TechStack';
 import Nav from '../components/Nav/Nav';
 
 // context
-import { PageStage } from '../context/stageContext';
+import { PageStage } from '../context/store';
 
 
 function App(props) {
 
   // only run once. hide the loader for the website
-  if (document.getElementById('global_loader')) {
-    document.getElementById('global_loader').classList.add('global_loader_hide');
+  const websiteLoading = document.getElementById('global_loader');
+  if (websiteLoading) {
+    websiteLoading.classList.add('global_loader_hide');
     setTimeout(() => {
-      document.getElementById('global_loader') && document.getElementById('global_loader').remove();
+      websiteLoading && websiteLoading.parentNode && websiteLoading.parentNode.removeChild(websiteLoading);
     }, 2000);
   }
 
@@ -35,21 +39,8 @@ function App(props) {
 
 
   //**************************************************************************/
-  const navLinks = [
-    { title: "Home", to: "/" },
-    { title: "Personal", to: "/aboutme" },
-    { title: "Skill Sets", to: "/techstack" },
-    { title: "Blog", to: "/blog" },
-    { title: "About", to: "/aboutwebsite" },
-  ];
-
-  const [navLocks, setNavLocks] = useState([]);
+  const [navLocks, setNavLocks] = useState(new Array(props.location.pathname));
   const contextPageStage = useContext(PageStage);
-  contextPageStage.fromIndex = navLinks.findIndex((v) => {
-    return v.to === props.location.pathname;
-  });
-  contextPageStage.fromPath = props.location.pathname;
-
 
   // ==============================handlers
   /**
@@ -58,13 +49,16 @@ function App(props) {
    */
   const handlePageChangeStart = (e) => {
 
-    console.log("move start");
-    if(!contextPageStage.loading) contextPageStage.loading = true;
+    // switching page
+    contextPageStage.loading = true;
 
     // handle async of set state
     setNavLocks(prevState => {
       const currentLocks = prevState.slice();
-      if (!currentLocks.includes(e.getAttribute('data-path'))) currentLocks.push(e.getAttribute('data-path'));
+
+      const path = e.getAttribute('data-path');
+      
+      if (!_.includes(currentLocks, path)) currentLocks.push(path);
       return currentLocks;
     });
   }
@@ -89,8 +83,6 @@ function App(props) {
    * initialize
    */
   useEffect(() => {
-
-
   }, [])
 
   /**
@@ -98,16 +90,16 @@ function App(props) {
    */
   useEffect(() => {
     // control lock of navs
-    if (navLocks.length === 0 && contextPageStage.loading) {
+    if (navLocks.length === 0) {
       contextPageStage.loading = false;
     }
-    console.log("stop");
   }, [navLocks])
+
 
 
   return (
     <>
-      <Nav navLocks={navLocks} navLinks={navLinks} />
+      <Nav navLocks={navLocks}/>
       {/* section */}
       <section className={`z_main ${styles.main} ${contextPageStage.loading ? styles.main_lock : styles.main_unlock}`}>
         <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
@@ -127,9 +119,7 @@ export default withRouter(App);
  */
 const AnimationRoute = withRouter((props) => {
 
-  const timeout = 80000;
-
-  console.log("location" + props.location.pathname +  " path" + props.path)
+  const timeout = 800;
 
   /**
    * use "Transition group" because we want to temporary keep the page while its exiting.
@@ -145,7 +135,7 @@ const AnimationRoute = withRouter((props) => {
         onExited={props.onUnlock}
         onEnter={props.onLock}
         onEntered={props.onUnlock}
-        appear={props.location.pathname === props.path}
+        appear={true}
       >
         <div className={props.path} data-path={props.path}>
           <Route {...props} />

@@ -304,7 +304,6 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
     }   
     30% {
       @include stage0-avatar;
-      // transform: scale(0.8, 0.8);
       opacity: 0;
     }
     80% {
