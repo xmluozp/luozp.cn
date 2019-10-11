@@ -1,7 +1,8 @@
 @import '../assets/styles/colors.scss';
 $cube_height : 100vh;
 $cube_width : 100vw;
-$cube_distance : 50vh;
+$cube_distance : 60vh;
+$left_deviate: - $cube_distance * 0.25;
 
 @keyframes animation_tv_show {
     10% {
@@ -101,21 +102,23 @@ $cube_distance : 50vh;
         filter: grayscale(0%);
         z-index: 700;
         transform: rotateX( 0deg) translateZ(0px) translateY(0px);
+        border: 1px solid rgba(255, 255, 255, 0);
         opacity: 1;
     }
     20% {
-        transform: rotateX( 0deg) translateZ($cube_distance * -1) translateY(0px);
+        transform: rotateX( 0deg) translateZ($cube_distance * -1) translateY(0px) translateX($left_deviate);
+        border: 1px solid $color_bgtransparent;
         z-index: 700;
         opacity: 0.5;
     } 
     30% {
-        transform: rotateX( 0deg) translateZ( $cube_distance * -1) translateY(0px);
+        transform: rotateX( 0deg) translateZ( $cube_distance * -1) translateY(0px) translateX($left_deviate);
         animation-timing-function: linear;
         z-index: 700;
         opacity: 0.3;
     } 
     60%{
-        transform: rotateX( 90deg) translateZ($cube_height/2)  translateY( ($cube_height / 2 + $cube_distance) * -1 );
+        transform: rotateX( 90deg) translateZ($cube_height/2)  translateY( ($cube_height / 2 + $cube_distance) * -1 ) translateX($left_deviate);
         animation-timing-function: ease-out;
         z-index: 600;
         opacity: 0;
@@ -133,18 +136,18 @@ $cube_distance : 50vh;
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
         z-index: 600;
-        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2);
+        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2)  translateX($left_deviate);
         opacity: 0;
     }
     20% {
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
-        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height/2 +  $cube_distance);
+        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height/2 +  $cube_distance) translateX($left_deviate);
         z-index: 600;
         opacity: 0.3;
     }
     30% {
-        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height/2 +  $cube_distance);
+        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height/2 +  $cube_distance) translateX($left_deviate);
         animation-timing-function: linear;
         border: 1px solid $color_bgtransparent;
         z-index: 600;
@@ -152,9 +155,9 @@ $cube_distance : 50vh;
     }
     60%{
 
-        transform: rotateY(  0deg) translateZ($cube_distance * -1);
+        transform: rotateY(  0deg) translateZ($cube_distance * -1) translateX($left_deviate);
         animation-timing-function: ease-out;
-        border: 1px solid $color_bgtransparent;
+        border: 1px solid rgba(255, 255, 255, 0);
         z-index: 700;
         opacity: 0.5;
     }

@@ -16,8 +16,8 @@ var canvas, gl,
     numLines;
 var target;
 var id;
-const SHOW_UP_SPEED = 1;
-const Z_DIMENSION = 1.23;
+const SHOW_UP_SPEED = 2;
+const Z_DIMENSION = 1.3;
 
 var imageURLArr = [];
 var imageInfoArr = [];
@@ -41,16 +41,16 @@ function initVaribles() {
 
     //-------blow are to calculate new pixcel number when switching
     g_density = 1;
-    standard_width = 512;
-    standard_height = 512;
+    standard_width = 1024;
+    standard_height = 1024;
     numLines = getNumLines(0);
 
     imgLoadedCount = 0;
     target = [];
     // isScroll = false;
     imageURLArr = [
-        "webgl/imgs/me.png",
-        "webgl/imgs/google.png",
+        "images/icons/me.png",
+        "images/icons/me.png",
         "webgl/imgs/instgram.png",
         "webgl/imgs/pinterest.png",
         "webgl/imgs/twitter.png",
@@ -95,7 +95,7 @@ const load = function (i_canvasId, defaultPicture, init_w, init_h) {
     // 初始化变量
     initVaribles();
     var tempCanvas = document.createElement("canvas");
-    var ctx = tempCanvas.getContext('2d');
+    var ctx = tempCanvas.getContext('2d', { alpha: false });
 
     for (var ii = 0; ii < imageURLArr.length; ii++) {
         var image = new Image();
@@ -148,7 +148,7 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
             var currentX = currentI % size;
             var currentY = parseInt(currentI / size);
 
-            if (data[index] === 0 && (currentX % density === 0 || currentY % density === 0)) {
+            if (currentX % density === 0 || currentY % density === 0) {
                 var pos = { x: currentX / size - .5, y: -currentY / size + 0.5 }
                 target[number].push(pos);
             }
@@ -415,7 +415,9 @@ function draw() {
     // var dx = - 1 * animate_z_deviation[0] / 100;
     // var dy = animate_z_deviation[1] / 100;
 
-    blur = coefficient;
+    const blur = coefficient * 0.7;
+    const movingSpeed = coefficient * 1.2;
+    // blur = 0.001;
 
     const t_numOfLines = numLines * 2;
 
@@ -438,12 +440,12 @@ function draw() {
         px = g_Vertices[bp + 3];
         // 前者是速度，后者是散布
         // cof等于tcof之前，都加速，等于的时候就不加速。所以加速度取决于这两个差
-        px += (targetPosX - px) * coefficient + (Math.random() - .5) * blur;
+        px += (targetPosX - px) * movingSpeed + (Math.random() - .5) * blur;
         g_Vertices[bp + 3] = px;
 
 
         py = g_Vertices[bp + 4];
-        py += (targetPosY - py) * coefficient + (Math.random() - .5) * blur;
+        py += (targetPosY - py) * movingSpeed + (Math.random() - .5) * blur;
         g_Vertices[bp + 4] = py;
     }
 }
@@ -510,7 +512,7 @@ function initilizeVertices() {
  */
 function resetVertices() {
 
-    coefficient = .3;
+ 
     var randomTargetXArr = [];
     var randomTargetYArr = [];
 
@@ -567,7 +569,8 @@ function resetVertices() {
 // -------------------------------
 
 const imgSwitch = function (picNumber, w, h) {
-    console.log("switch icon to ", picNumber);
+    // console.log("switch icon to ", picNumber);
+    coefficient = .3;
     if (loaded) {
 
         // call it simple way to prevent cpu calculation

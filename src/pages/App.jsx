@@ -43,6 +43,7 @@ function App(props) {
   const [navLocks, setNavLocks] = useState(new Array(props.location.pathname));
   const contextPageStage = useContext(PageStage);
 
+
   // ==============================handlers
   /**
    * have a lock list. in order to prevent messing up page animations when hitting nav items too quick
@@ -84,7 +85,8 @@ function App(props) {
    * initialize
    */
   useEffect(() => {
-  }, [])
+    console.log("loading change");
+  }, [contextPageStage.loading])
 
   /**
    * ending of animation, release loading state
@@ -99,16 +101,16 @@ function App(props) {
 
   return (
     <>
-      <Title/>
+      <Title />
       <Nav navLocks={navLocks} />
       {/* section */}
 
       <section className={[
-                "z_main",
-                styles.main,
-                contextPageStage.loading ? styles.main_lock : styles.main_unlock,
-                ].join(' ')}>
-                
+        "z_main",
+        styles.main,
+        contextPageStage.loading ? styles.main_lock : styles.main_unlock,
+      ].join(' ')}>
+
         <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/blog" exact component={Blog} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
@@ -122,16 +124,15 @@ function App(props) {
 export default withRouter(App);
 
 /**
- * ---------------------------------Wrapper for animation
+ * use "Transition group" because we want to temporary keep the page while its exiting.
+ * here is "key" attribute to trigger animation, if you want to use CSSTransition, there is an "in" attribute
  */
 const AnimationRoute = withRouter((props) => {
 
-  const timeout = 800;
+  const timeout = 1000;
+  const contextPageStage = useContext(PageStage);
+  const className = props.path + '' + contextPageStage.toIndex * contextPageStage.fromIndex !== 0 ? "inner_change" : null;
 
-  /**
-   * use "Transition group" because we want to temporary keep the page while its exiting.
-   * here is "key" attribute to trigger animation, if you want to use CSSTransition, there is an "in" attribute
-   */
   return (
     <TransitionGroup>
       <CSSTransition
@@ -144,7 +145,7 @@ const AnimationRoute = withRouter((props) => {
         onEntered={props.onUnlock}
         appear={true}
       >
-        <div className={props.path} data-path={props.path}>
+        <div className={className} data-path={props.path}>
           <Route {...props} />
         </div>
 

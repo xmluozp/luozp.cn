@@ -1,6 +1,6 @@
 @import "../../assets/styles/colors.scss";
 
-$animation_time_page: 800ms;
+$animation_time_page: 1000ms;
 
 /*
 nav_entrance / nav_side / nav_mobileside (control movement between entrance and inner pages)
@@ -20,6 +20,7 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
 }
 @mixin board {
   position: fixed;
+  // background-image: url( "/images/ep_naturalblack.png");
 }
 
 .avatar {
@@ -73,8 +74,8 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
   height: 100vh;
 }
 @mixin stage1-board-parentplay {
-  box-shadow: 0px 0px 0px 0px rgba(0,0,0,.5);
-  width: 0rem;
+  // box-shadow: 0px 0px 0px 0px rgba(0,0,0,.5);
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0);
 }
 @mixin stage1-board-parentstop {
   width: 12rem;

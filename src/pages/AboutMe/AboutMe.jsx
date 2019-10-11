@@ -4,30 +4,40 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 export default (props) => {
 
-    const [display, setDisplay] = useState(false);
+  const [display, setDisplay] = useState(false);
 
-    const handleDisplay = () => {
+  const handleDisplay = () => {
 
+  }
+
+  useEffect(() => {
+
+    return () => {
+      // if (canvas) canvas.destroy()
     }
-
-    useEffect(() => {
-       
-      return () => {
-        // if (canvas) canvas.destroy()
-      }
-    },[])
+  }, [])
 
 
-    return (
+  return (
+    <div
+      className={[
+        "page_container",
+        styles.conatiner
+      ].join(' ')}>
+      <div className={styles.content}>
 
-        <div className={`${styles.testColor} page_container`}>
-            <div className="animation_title">This is about me title</div>
-            about me
-            <br />
-            <img src={require('../../assets/images/testpictureForSize.jpg')}/>
 
-            
-               <CSSTransition
+
+      </div>
+
+      <button onClick={handleDisplay}>set display </button>
+
+
+      {/* 
+            <img src={require('../../assets/images/testpictureForSize.jpg')}/> */}
+
+
+      {/* <CSSTransition
                     classNames="testanimation"
                     in = {display}
                     timeout={300}
@@ -36,10 +46,10 @@ export default (props) => {
                 >
                 <div className="test3d"> display {display?"true":"false"} </div>
             
-                </CSSTransition>
-         
-                <button onClick={handleDisplay}>set display </button> 
-        </div>
-    );
+                </CSSTransition> */}
+
+
+    </div>
+  );
 }
 
