@@ -23,16 +23,24 @@ a{-webkit-tap-highlight-color:transparent;}
 
 /* ============ z-index */
 .z_avatar {
-  z-index: 1001;
+  z-index: 1020;
 }
 .z_nav {
-  z-index: 1000;
+  z-index: 1010;
 }
 .z_board{
+  z-index: 1000;
+}
+.z_title{
+  z-index: 910;
+}
+.z_title_board{
   z-index: 900;
 }
+
 .z_main {
   z-index: 100;
 }
+
 
 

@@ -19,6 +19,7 @@ import TechStack from './TechStack/TechStack';
 
 // components
 import Nav from '../components/Nav/Nav';
+import Title from '../components/Title/Title';
 
 // context
 import { PageStage } from '../context/store';
@@ -57,7 +58,7 @@ function App(props) {
       const currentLocks = prevState.slice();
 
       const path = e.getAttribute('data-path');
-      
+
       if (!_.includes(currentLocks, path)) currentLocks.push(path);
       return currentLocks;
     });
@@ -96,12 +97,18 @@ function App(props) {
   }, [navLocks])
 
 
-
   return (
     <>
-      <Nav navLocks={navLocks}/>
+      <Title/>
+      <Nav navLocks={navLocks} />
       {/* section */}
-      <section className={`z_main ${styles.main} ${contextPageStage.loading ? styles.main_lock : styles.main_unlock}`}>
+
+      <section className={[
+                "z_main",
+                styles.main,
+                contextPageStage.loading ? styles.main_lock : styles.main_unlock,
+                ].join(' ')}>
+                
         <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/blog" exact component={Blog} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />

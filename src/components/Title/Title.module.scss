@@ -1,0 +1,41 @@
+@import "../../assets/styles/colors.scss";
+
+$bord_height: 10pt;
+
+.title{
+    display: block;
+    font-size: 5rem;
+    left: 5vw;
+    top: 10px;
+    color: $color_title;
+    position: fixed;
+    padding: 0px;
+    margin:0px;
+    width: 40vw;
+}
+
+.board {
+    position: fixed;
+    left: 0px;
+    top: 90px;
+    display: block;
+    height: $bord_height;
+    width: calc(100vw - 250pt);
+    min-width: 300pt;
+    background-color: $color_bgtitle;
+    border-bottom: 1px solid $color_bgdark;
+}
+.board::after{
+    position: absolute;
+    right: $bord_height * -1;
+    border:$bord_height/2 solid transparent;
+    border-left: $bord_height/2 solid $color_bgtitle;
+    border-top: $bord_height/2 solid $color_bgtitle;
+    
+    display:inline-block;
+    content:"";
+}
+
+
+
+

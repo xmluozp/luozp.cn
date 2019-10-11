@@ -21,5 +21,12 @@ $color_bggrey: #494c55;
 $color_bglight: #9ca0b1;
 $color_bgtransparent: rgba(191, 191, 191, 0.6);
 $color_bgreverse:#FFFFFF;
+
+
+//======================================= colors as name
+$color_blue: #50839b;
+
+//======================================= colors of pages
 $color_bgdefault:$color_bgmiddle; 
-//=======================================
+$color_title: $color_blue; // big title
+$color_bgtitle: #393c42;
