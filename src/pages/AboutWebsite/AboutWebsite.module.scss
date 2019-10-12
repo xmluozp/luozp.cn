@@ -1,5 +1,11 @@
 @import '../../assets/styles/colors.scss';
 @import '../../assets/styles/common.scss';
-.testColor{
+.page_container{
     background-color:$color_bgdefault;
+}
+
+.popup {
+    @include popup;
+    left: 5rem;
+    width: 40rem;
 }

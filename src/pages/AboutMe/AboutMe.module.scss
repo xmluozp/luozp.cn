@@ -2,7 +2,11 @@
 @import '../../assets/styles/common.scss';
 
 
-
+.popup {
+  @include popup;
+  left: 5rem;
+  width: 40rem;
+}
 
 
 :global {

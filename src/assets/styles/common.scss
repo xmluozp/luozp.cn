@@ -9,26 +9,24 @@
   color: #8c9497;
 }
 
-.popup {
+@mixin popup {
   display: block;
   padding: 2rem;
-  width: calc(100vw - 30rem);
-  min-width: 40rem;
   position: relative;
-  left: 5rem;
   background-color: rgba(217, 227, 236, 0.842);
   border-radius: 0px 30px 0px 0px;
   color: #323638;
+  .popup::after {
+    background-color: transparent;
+    position: absolute;
+    right: -48px;
+    top: 25px;
+    display: block;
+    width: 10px;
+    height: calc(100% - 85px);
+    content: "";
+    border: 30px solid transparent;
+    border-left: 5px solid #666975;
+  }
 }
-.popup::after {
-  background-color: transparent;
-  position: absolute;
-  right: -48px;
-  top: 25px;
-  display: block;
-  width: 10px;
-  height: calc(100% - 85px);
-  content: "";
-  border: 30px solid transparent;
-  border-left: 5px solid #666975;
-}
+

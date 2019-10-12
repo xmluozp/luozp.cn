@@ -20,9 +20,10 @@ export default (props) => {
         styles.conatiner
       ].join(' ')}>
       <div className={styles.popup}>
-        <LoremIpsum p={5} />
+        <LoremIpsum p={2} />
       </div>
 
+<div className={styles.content}> hi hi hi</div>
       {/* <button onClick={handleDisplay}>test button</button> */}
 
 
