@@ -16,6 +16,7 @@ import AboutMe from './AboutMe/AboutMe';
 import AboutWebsite from './AboutWebsite/AboutWebsite';
 import Blog from './Blog/Blog';
 import TechStack from './TechStack/TechStack';
+import History from './History/History';
 
 // components
 import Nav from '../components/Nav/Nav';
@@ -130,9 +131,10 @@ function App(props) {
 
         <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-        <AnimationRoute path="/blog" exact component={Blog} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/techstack" exact component={TechStack} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+        <AnimationRoute path="/history" exact component={History} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutwebsite" exact component={AboutWebsite} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+        <AnimationRoute path="/blog" exact component={Blog} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
       </section>
     </>
   );

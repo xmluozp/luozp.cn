@@ -132,7 +132,7 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
 @mixin state-linkselected {
   a {
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #d4d1dd;
     transition: all $animation_time_page/2 ease-in-out;
     text-shadow: 3px 1px 5px rgba(0, 0, 0, 0.5);
@@ -145,7 +145,7 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
 @mixin state-linkregular {
   a {
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: $color_secondary;
     transition: all $animation_time_page/2 ease-in-out;
   }

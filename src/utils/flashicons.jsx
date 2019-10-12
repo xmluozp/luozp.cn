@@ -54,6 +54,7 @@ function initVaribles() {
         "webgl/imgs/pinterest.png",
         "webgl/imgs/twitter.png",
         "webgl/imgs/github.png",
+        "webgl/imgs/github.png",
         "images/icons/nav.png",
     ]
     imageInfoArr = [];

@@ -32,3 +32,7 @@ $color_title: $color_blue; // big title
 $color_bgtitle: #393c42;
 $color_bgtitle_lineup: #27292e;
 $color_bgtitle_linedown: #44484e;
+
+@mixin testClass{
+    color: #76daff;
+}

@@ -7,10 +7,11 @@ export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading
 
 export const NavLinks = [
   { title: "Home", to: "/" },
-  { title: "Personal", to: "/aboutme" },
+  { title: "About Me", to: "/aboutme" },
   { title: "Skill Sets", to: "/techstack" },
-  { title: "Blog", to: "/blog" },
-  { title: "About", to: "/aboutwebsite" },
+  { title: "Experience", to: "/history" },
+  { title: "Contact me", to: "/blog" },
+  { title: "About Site", to: "/aboutwebsite" },
 ];
 
 export default withRouter(({ children, location }) => {

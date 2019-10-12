@@ -13,7 +13,8 @@ const CSS_ARRAY_STAGES = [
     styles.stage1,
     styles.stage1,
     styles.stage1,
-    styles.stage1
+    styles.stage1,
+    styles.stage1,
 ];
 
 export default withRouter((props) => {
@@ -37,7 +38,7 @@ export default withRouter((props) => {
         if (location.pathname !== '/') {
 
             if (navDisplayItems) { // or I can set it in useEffect
-                imgSwitch(5);
+                imgSwitch(navLinks.length); // after all page icons, I set the last icon as the menu icon
             } else {
                 imgSwitch(toIndex);
             }
