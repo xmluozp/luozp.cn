@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './AboutMe.module.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 
 export default (props) => {
-
-  const [display, setDisplay] = useState(false);
-
-  const handleDisplay = () => {
-
-  }
 
   useEffect(() => {
 
@@ -24,13 +19,11 @@ export default (props) => {
         "page_container",
         styles.conatiner
       ].join(' ')}>
-      <div className={styles.content}>
-
-
-
+      <div className={styles.popup}>
+        <LoremIpsum p={5} />
       </div>
 
-      <button onClick={handleDisplay}>set display </button>
+      {/* <button onClick={handleDisplay}>test button</button> */}
 
 
       {/* 

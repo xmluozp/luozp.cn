@@ -16,7 +16,7 @@ var canvas, gl,
     numLines;
 var target;
 var id;
-const SHOW_UP_SPEED = 2;
+const SHOW_UP_SPEED = 1;
 const Z_DIMENSION = 1.3;
 
 var imageURLArr = [];
@@ -40,9 +40,9 @@ function initVaribles() {
     loaded = false;
 
     //-------blow are to calculate new pixcel number when switching
-    g_density = 1;
-    standard_width = 1024;
-    standard_height = 1024;
+    g_density = 0.7;
+    standard_width = 512;
+    standard_height = 512;
     numLines = getNumLines(0);
 
     imgLoadedCount = 0;
@@ -51,10 +51,10 @@ function initVaribles() {
     imageURLArr = [
         "images/icons/me.png",
         "images/icons/me.png",
-        "webgl/imgs/instgram.png",
         "webgl/imgs/pinterest.png",
         "webgl/imgs/twitter.png",
         "webgl/imgs/github.png",
+        "images/icons/nav.png",
     ]
     imageInfoArr = [];
     g_RandomTargetXArr = [];
@@ -338,7 +338,7 @@ const fadeIn = function () {
     if (loaded) {
         // coefficient = .3;
         window.cancelRequestAnimFrame(id);
-        // numLinesFade = 0;
+        numLinesFade = 0;
         fadeIn_play();
     }
 }
@@ -399,13 +399,13 @@ function drawScene() {
 // =================================================================================
 // =================================================================================
 
-var coefficient = .4;
+var coefficient = .6;
 var targetCoefficient = .01;
 
 function draw() {
     // cn += .1;
 
-    var bp, px, py, num, blur, targetPosX, targetPosY;
+    var bp, px, py, num, targetPosX, targetPosY;
 
     // coefficient 跳荡，无限趋近于targetCoefficient. 幅度取决于：初始值多大
     coefficient += (targetCoefficient - coefficient) * .1;
@@ -415,8 +415,8 @@ function draw() {
     // var dx = - 1 * animate_z_deviation[0] / 100;
     // var dy = animate_z_deviation[1] / 100;
 
-    const blur = coefficient * 0.7;
-    const movingSpeed = coefficient * 1.2;
+    const blur = coefficient;
+    const movingSpeed = coefficient * 2;
     // blur = 0.001;
 
     const t_numOfLines = numLines * 2;

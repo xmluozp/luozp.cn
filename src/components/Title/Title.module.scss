@@ -2,40 +2,103 @@
 
 $bord_height: 10pt;
 
-.title{
+//=========================================
+/*
+    stages: entrance, no title
+    innerpage: title on top
+    scroll down: title gone
+    scroll up: title show
+
+*/
+
+// -------------title
+@mixin title {
     display: block;
     font-size: 5rem;
     left: 5vw;
-    top: 10px;
+    top: 22pt;
     color: $color_title;
+    // text-shadow: -1px -1px 0px rgb(73, 83, 90);
+
     position: fixed;
     padding: 0px;
     margin:0px;
-    width: 40vw;
+    // width: 40vw;
+    span{
+        // text-shadow: -1px -1px 0px rgb(73, 83, 90);
+        // background-image: url( "/images/light-grey-terrazzo.png");
+        display: block;
+        background: linear-gradient(to bottom, #878c94, #ffffff93, #4b5f79);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+
+    }
+}
+@mixin title_hide {
+    display:none;
 }
 
-.board {
+@mixin board{
     position: fixed;
     left: 0px;
-    top: 90px;
+    top: 75pt;
     display: block;
     height: $bord_height;
     width: calc(100vw - 250pt);
     min-width: 300pt;
     background-color: $color_bgtitle;
-    border-bottom: 1px solid $color_bgdark;
+    border-top: 1px solid $color_bgtitle_linedown;
+    border-bottom: 1px solid $color_bgtitle_lineup;
+
+    &::after{
+        position: absolute;
+        right: $bord_height * -1;
+        border:$bord_height/2 solid transparent;
+        border-left: $bord_height/2 solid $color_bgtitle;
+        // border-top: $bord_height/2 solid $color_bgtitle;
+        display:inline-block;
+        content:"";
+    }
+
+    &::before{
+        position: absolute;
+        bottom: 2pt;
+        width: 100%;
+        border-top: 1px solid $color_bgtitle_lineup;
+        border-bottom: 1px solid $color_bgtitle_linedown;
+        display:block;
+        content:"";   
+    }
 }
-.board::after{
-    position: absolute;
-    right: $bord_height * -1;
-    border:$bord_height/2 solid transparent;
-    border-left: $bord_height/2 solid $color_bgtitle;
-    border-top: $bord_height/2 solid $color_bgtitle;
-    
-    display:inline-block;
-    content:"";
+@mixin board_hide{
+    display:none;
+}
+
+
+
+//======================== css structure ======================== 
+
+
+.title{
+    @include title;
+}
+.board {
+    @include board;
 }
 
 
 
 
+
+//======================== animation stages ======================== 
+.title{
+    &.stage0 {
+        @include title_hide;
+    }
+}
+.board{
+    &.stage0{
+        @include board_hide;
+    }
+}

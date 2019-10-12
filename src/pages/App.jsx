@@ -85,6 +85,23 @@ function App(props) {
    * initialize
    */
   useEffect(() => {
+    window.addEventListener('scroll', (e)=>{
+      // console.log(e);
+    }, false);
+
+    window.addEventListener('resize', (e)=>{
+      // console.log("client width", window.clientWidth);
+    }, false);
+
+
+    return () => {
+      //
+    };
+  },[])
+
+
+
+  useEffect(() => {
     console.log("loading change");
   }, [contextPageStage.loading])
 
@@ -109,7 +126,7 @@ function App(props) {
         "z_main",
         styles.main,
         contextPageStage.loading ? styles.main_lock : styles.main_unlock,
-      ].join(' ')}>
+      ].join(' ')} onScroll={(e)=>{ console.log(e); }}>
 
         <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
@@ -130,8 +147,9 @@ export default withRouter(App);
 const AnimationRoute = withRouter((props) => {
 
   const timeout = 1000;
-  const contextPageStage = useContext(PageStage);
-  const className = props.path + '' + contextPageStage.toIndex * contextPageStage.fromIndex !== 0 ? "inner_change" : null;
+  // const contextPageStage = useContext(PageStage);
+  // const className = props.path + ' ' + (contextPageStage.toIndex * contextPageStage.fromIndex === 0 ? "animation_entrance" : "animation_inners");
+  // console.log(className);
 
   return (
     <TransitionGroup>
@@ -145,7 +163,7 @@ const AnimationRoute = withRouter((props) => {
         onEntered={props.onUnlock}
         appear={true}
       >
-        <div className={className} data-path={props.path}>
+        <div className={props.path} data-path={props.path}>
           <Route {...props} />
         </div>
 

@@ -14,13 +14,20 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
 @mixin avatar {
   display: block;
   position: fixed;
+  overflow: hidden;
 }
 @mixin navContainer {
   position: fixed;
 }
 @mixin board {
   position: fixed;
-  // background-image: url( "/images/ep_naturalblack.png");
+  display: block;
+  background-color: $color_bgdark;
+  border-left: 1px solid $color_facinglight;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
+  top: 0rem;
+  height: 100vh;
+  // background-image: url( "/images/congruent_outline.png");
 }
 
 .avatar {
@@ -31,130 +38,143 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
   }
 }
 
-/*==============================================================================*/
-// stage 0: entrance
+/*================================ stages =======================================*/
+// stages of avatar
 @mixin stage0-avatar {
-  top: calc(50% - 16rem);
-  right: calc(50% - 16rem);
-  height: 32rem;
-  width: 32rem;
+  top: calc(50% - 256px);
+  left: calc(50% - 256px);
+  height: 512px;
+  width: 512px;
 }
+@mixin stage1-avatar {
+  top: 0px;
+  left: calc(100vw - 148px);
+  height: 128px;
+  width: 128px;
+}
+@mixin avatar-hide {
+  width: 0px;
+}
+
+
+// stages of navigation
 @mixin stage0-navContainer {
   // menu
   top: 10rem;
-  right: 0rem;
-}
-@mixin stage0-board {
-  display: hidden;
-}
-
-// stage 1: nav
-@mixin stage1-avatar {
-  top: 1rem;
-  right: 1.8rem;
-  height: 8rem;
-  width: 8rem;
+  left: 100vw;
 }
 @mixin stage1-navContainer {
   top: 10rem;
-  right: 0rem;
+  left: 100vw;
 }
 
-
-// stage for board
-@mixin stage1-board {
-  display: block;
-  position: absolute;
-  background-color: $color_bgdark;
-  border-left: 1px solid $color_facinglight;
-  box-shadow: 0px 0px 30px 0px rgba(0,0,0,.5);
-  right: 0rem;
-  top: 0rem;
-  width: 12rem;
-  height: 100vh;
+// stages for board
+@mixin board-show {
+  width: 148px;
+  left: calc(100vw - 148px);
 }
+@mixin board-hide {
+  width: 0rem;
+  left: 100vw;
+}
+
+// when parent component playing
 @mixin stage1-board-parentplay {
-  // box-shadow: 0px 0px 0px 0px rgba(0,0,0,.5);
-  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0);
 }
 @mixin stage1-board-parentstop {
-  width: 12rem;
+
 }
 
 // stage for navitems
-@mixin state-navitems-show {
+@mixin navitems {
   display: block;
-  width: 13rem;
-  // overflow: hidden;
   box-sizing: content-box;
   white-space: nowrap;
+  right:0px;
+  position: absolute;
+
+}
+@mixin state-navitems-show {
+  @include navitems;
+  width: 14rem;
+    
 }
 @mixin state-navitems-hide {
-  width: 0rem;
+  @include navitems;
   overflow: hidden;
-  white-space: nowrap;
+  width: 0rem;
 }
+
+// when parent component playing
 @mixin stage1-navitems-parentplay {
-    transform: scale(0.95,0.95);
+  // transform: scale(1.1, 1.1);
 }
 @mixin stage1-navitems-parentstop {
-
 }
 
-
 // stage for links
-@mixin links{
-  a{
-    border-left: 4px solid rgba(255,255,255,.2);
+@mixin links {
+  a {
+    border-left: 4px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid $color_bgdeepdark;
     background-color: $color_bgmiddle;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     padding: 5pt 0pt;
     display: block;
     height: 100%;
     padding-left: 1.5rem;
   }
-  a:hover{ 
+  a:hover {
     margin-left: -1rem;
   }
 }
 @mixin state-linkselected {
-  a{
+  a {
     text-decoration: none;
     font-size: 2.5rem;
-    color: rgb(221, 219, 209);
+    color: #d4d1dd;
     transition: all $animation_time_page/2 ease-in-out;
-    text-shadow: 3px 1px 5px rgba(0,0,0,.5);
-    //   animation-name: animation_tv_fade;
-    //   animation-duration: 4s;
-  }
-  a span{
+    text-shadow: 3px 1px 5px rgba(0, 0, 0, 0.5);
 
-   }
+  }
+  a span {
+  }
 }
 
 @mixin state-linkregular {
-  a{
+  a {
     text-decoration: none;
     font-size: 2rem;
     color: $color_secondary;
     transition: all $animation_time_page/2 ease-in-out;
   }
-  a:hover{
+  a:hover {
     color: $color_warning;
     transition-duration: 300ms;
   }
 }
 
-
-
-/*==============================================================================*/
-.stage0 {
-  &.avatar {
+/*==================================== actual css structures==========================================*/
+//------------ avatar
+.avatar {
+  &.stage0 {
     @include avatar;
     @include stage0-avatar;
   }
-  &.navContainer {
+  &.stage1 {
+    @include avatar;
+    @include stage1-avatar;
+
+    &.hide {
+      @include avatar-hide;
+    }
+  }
+}
+
+//------------ nav items with stage
+.navContainer {
+  &.stage0 {
     @include navContainer;
     @include stage0-navContainer;
 
@@ -162,47 +182,24 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
       @include state-navitems-hide;
     }
   }
-  &.board {
-    @include board;
-    @include stage0-board;
-  }
-}
-
-// stage 1: pages
-.stage1 {
-  &.avatar {
-    @include avatar;
-    @include stage1-avatar;
-  }
-  &.navContainer {
+  &.stage1 {
     @include navContainer;
     @include stage1-navContainer;
   }
-  &.board {
-    @include board;
-    @include stage1-board;
-  }
-  &.parentAnimationPlay{
-    &.board {
-      @include board;
-      @include stage1-board-parentplay;
-    }
+
+  &.parentAnimationPlay.stage1 {
     .navitems {
       @include stage1-navitems-parentplay;
     }
   }
-  &.parentAnimationStop{
-    &.board {
-      @include board;
-      @include stage1-board-parentstop;
-    }
+  &.parentAnimationStop.stage1 {
     .navitems {
       @include stage1-navitems-parentstop;
     }
   }
 }
 
-// always
+// ------------ nav items always do
 .navitems {
   .state_linkselected {
     @include links;
@@ -212,27 +209,50 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
     @include links;
     @include state-linkregular;
   }
+  &.show {
+    @include state-navitems-show;
+  }
+  &.hide {
+    @include state-navitems-hide;
+  }
 }
 
+// ------------ boards
+.board {
+  @include board;
+  &.stage0 {
+    @include board-hide;
+  }
+  &.stage1 {   
+    &.parentAnimationPlay.stage1 {
+      @include stage1-board-parentplay;
+    }
+    &.parentAnimationStop.stage1 {
+      @include stage1-board-parentstop;
+    }
+    &.show {
+      @include board-show;
+    }
+    &.hide {
+      @include board-hide;
+    }
+  }
+}
 
-.navitems_show {
-  @include state-navitems-show;
+/*==================================== animation structures==========================================*/
+
+.show {
   transition: all $animation_time_page ease-out;
 }
-.navitems_hide {
-  @include state-navitems-hide;
+.hide {
   transition: all $animation_time_page ease-out;
 }
-
-
-// ============animation of nav
-
 // animation bind: nav hide(go to entrance)---desktop
 .stage0 {
   &.avatar {
     // transition: all $animation_time_page ease-out;
     animation-name: animation_avatar_Menu_to_Entrance;
-    animation-duration: $animation_time_page;
+    animation-duration: $animation_time_page * 2;
     animation-fill-mode: forwards;
   }
   .navitems {
@@ -247,7 +267,8 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
     animation-duration: $animation_time_page;
     animation-fill-mode: forwards;
   }
-  &.parentAnimationPlay, &.parentAnimationStop{
+  &.parentAnimationPlay,
+  &.parentAnimationStop {
     &.board {
       transition: all $animation_time_page/4 ease-out;
     }
@@ -302,34 +323,37 @@ nav_entrance / nav_side / nav_mobileside (control movement between entrance and 
     0% {
       @include stage0-avatar;
       opacity: 1;
-    }   
+    }
     30% {
       @include stage0-avatar;
       opacity: 0;
     }
     80% {
       @include stage1-avatar;
-      opacity:0
+      opacity: 0;
     }
     100% {
       @include stage1-avatar;
-      opacity:1
+      opacity: 1;
     }
   }
 
   @keyframes animation_avatar_Menu_to_Entrance {
     0% {
       @include stage1-avatar;
+      opacity: 1;
+    }
+    30% {
+      @include stage1-avatar;
       opacity: 0;
     }
-    80% {
+    50% {
       @include stage0-avatar;
-      opacity:0;
+      opacity: 0;
     }
     100% {
-      opacity:1;
+      opacity: 1;
       @include stage0-avatar;
-
     }
   }
 }

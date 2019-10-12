@@ -25,14 +25,16 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>React App</title>
-
+  <!-- #ifdef GL_ES
+  precision highp float;
+#endif -->
   <script id="shader-fs" type="x-shader/x-fragment">
-     #ifdef GL_ES
-        precision highp float;
-     #endif
-     void main(void) {
-        gl_FragColor = vec4(0.2, 0.3, 0.4, 1.0);
-     }
+
+    precision highp float;
+
+    void main(void) {
+      gl_FragColor = vec4(0.2, 0.3, 0.4, 1.0);
+    }
    
    </script>
 

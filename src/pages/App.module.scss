@@ -5,7 +5,6 @@ $cube_height: 100vh;
 $cube_width: 100vw;
 // $cube_distance: 50vh;
 // dont forget to set App.scss
-
 .onLoad{
 
 }
@@ -46,19 +45,20 @@ $cube_width: 100vw;
     width: $cube_width;
     height: $cube_height;
     overflow: hidden;
-    border: 1px solid $color_bglight;
+    border: 1px solid #FFFFFF;
     border-bottom: 2px solid $color_bgreverse;
   }
 
   %page-enter-endpoint {
     display: block;
+    border: 1px solid #FFFFFF;
   }
   %page-enter-done {
     position: unset;
     z-index: unset;
     width: unset;
     height: unset;
-    overflow: unset;
+    overflow: auto;
     border:none;
   }
 
@@ -79,6 +79,11 @@ $cube_width: 100vw;
     opacity: 0;
     // transform: scale(1,1) translateY(0vh);
   }
+
+
+
+
+
 
   /* slide animation */
   .slide-in-appear {
@@ -118,8 +123,6 @@ $cube_width: 100vw;
 
     // transform-style: preserve-3d;
     // transform: translate3D(0, 0, 0) rotateX(0deg);
-    .page_container {
-    }
   }
   .slide-in-exit-active {
     @extend %page-exit-endpoint;
@@ -129,4 +132,19 @@ $cube_width: 100vw;
     animation-fill-mode: forwards;
     //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
   }
-}
+
+  .slide-in-exit.animation_entrance {
+
+  }
+  .animation_entrance.slide-in-exit-active {
+
+    animation-name: animation_zoom_hide;
+    animation-duration: $animation_time_page;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
+  }
+
+
+
+} // global

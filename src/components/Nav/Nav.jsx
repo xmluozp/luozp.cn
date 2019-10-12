@@ -35,7 +35,15 @@ export default withRouter((props) => {
      */
     const handleToggleMenu = (e) => {
         if (location.pathname !== '/') {
+
+            if (navDisplayItems) { // or I can set it in useEffect
+                imgSwitch(5);
+            } else {
+                imgSwitch(toIndex);
+            }
+
             setNavDisplayItems(!navDisplayItems);
+
             e.preventDefault();
         }
     }
@@ -87,6 +95,9 @@ export default withRouter((props) => {
     }, [loading, toIndex]);
 
 
+
+    const cssHideItems = navDisplayItems ? styles.show : styles.hide;
+
     return (
         <>
             {/* avatar */}
@@ -94,9 +105,10 @@ export default withRouter((props) => {
                 "z_avatar",
                 styles.avatar,
                 CSS_OF_DEVICE,
+                cssHideItems,
                 cssParentAnimationPlay,
                 CSS_ARRAY_STAGES[toIndex]
-                ].join(' ')} ref={avatarObserverRef}>
+            ].join(' ')} ref={avatarObserverRef}>
                 <Link to="/aboutme" onClick={handleToggleMenu}>
                     <canvas id="c">
                     </canvas>
@@ -107,14 +119,14 @@ export default withRouter((props) => {
             {/* check if display icon as the avatar(entrance) or a nav(inner pages) */}
             <header className={["z_nav", styles.navContainer, CSS_OF_DEVICE, cssParentAnimationPlay, CSS_ARRAY_STAGES[toIndex]].join(' ')}>
 
-                <div className={`${styles.navitems} ${navDisplayItems ? styles.navitems_show : styles.navitems_hide}`}>
+                <div className={[styles.navitems, cssHideItems].join(' ')}>
                     <NavItems navLocks={navLocks} navLinks={navLinks} />
                 </div>
 
             </header>
 
             {/* background of nav bar */}
-            <div className={["z_board", styles.board, CSS_OF_DEVICE, cssParentAnimationPlay, CSS_ARRAY_STAGES[toIndex]].join(' ')} />
+            <div className={["z_board", styles.board, cssHideItems, CSS_OF_DEVICE, cssParentAnimationPlay, CSS_ARRAY_STAGES[toIndex]].join(' ')} />
         </>
     )
 })
