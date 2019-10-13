@@ -1,0 +1,199 @@
+@import "../../assets/styles/colors.scss";
+$animation_time_page: 1000ms;
+
+@mixin keyframes_despatch($str) {
+  animation-name: #{$str};
+  animation-duration: $animation_time_page * 2;
+  animation-fill-mode: forwards;
+}
+
+.avatar {
+  a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+/*================================ stages =======================================*/
+@mixin avatar($stages: "s0") {
+  display: block;
+  position: fixed;
+  overflow: hidden;
+
+  @if ($stages == "s0") {
+    top: calc(50% - 256px);
+    left: calc(50% - 256px);
+    height: 512px;
+    width: 512px;
+  }
+  @if ($stages == "s1") {
+    top: 0px;
+    left: calc(100vw - 148px);
+    height: 128px;
+    width: 128px;
+  }
+  @if ($stages == "s0_mobile") {
+    top: calc(50% - 192px);
+    left: calc(50% - 192px);
+    height: 384px;
+    width: 384px;
+  }
+  @if ($stages == "s1_mobile") {
+    top: 5px;
+    left: calc(100vw - 70px);
+    height: 64px;
+    width: 64px;
+  }
+  @if ($stages == "hide") {
+    width: 0px;
+  }
+}
+
+
+// @mixin stage0-avatar {
+//   top: calc(50% - 256px);
+//   left: calc(50% - 256px);
+//   height: 512px;
+//   width: 512px;
+// }
+// @mixin stage1-avatar {
+//   top: 0px;
+//   left: calc(100vw - 148px);
+//   height: 128px;
+//   width: 128px;
+// }
+// Avatar --- mobile
+// @mixin stage0-avatar-mobile {
+//   height: 384px;
+//   width: 384px;
+//   top: calc(50vw - 152px);
+//   right: 0px;
+// }
+// @mixin stage1-avatar-mobile {
+//   top: 0px;
+//   height: 96px;
+//   width: 96px;
+//   right: 0px;
+// }
+
+/*==================================== actual css structures==========================================*/
+
+:global(.isDesktop) {
+  :local {
+    .avatar {
+      &.stage0 {
+        @include avatar("s0");
+        @include keyframes_despatch("menu_to_entrance");
+      }
+      &.stage1 {
+        @include avatar("s1");
+        @include keyframes_despatch("entrance_to_menu");
+
+        &.hide {
+          @include avatar("hide");
+        }
+      }
+    }
+  }
+}
+
+:global(.isMobile) {
+  :local {
+    .avatar {
+      &.stage0 {
+        @include avatar("s0_mobile");
+        @include keyframes_despatch("menu_to_entrance_mobile");
+
+      }
+      &.stage1 {
+        @include avatar("s1_mobile");
+        @include keyframes_despatch("entrance_to_menu_mobile");
+
+        &.hide {
+          @include avatar("hide");
+        }
+      }
+    }
+  }
+}
+
+@mixin keyframes_wrap($animation-name) {
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@include keyframes_wrap(menu_to_entrance) {
+  0% {
+    @include avatar("s1");
+    opacity: 1;
+  }
+  30% {
+    @include avatar("s1");
+    opacity: 0;
+  }
+  50% {
+    @include avatar("s0");
+    opacity: 0;
+  }
+  100% {
+    @include avatar("s0");
+    opacity: 1;
+  }
+}
+@include keyframes_wrap(entrance_to_menu) {
+  0% {
+    @include avatar("s0");
+    opacity: 1;
+  }
+  30% {
+    @include avatar("s0");
+    opacity: 0;
+  }
+  80% {
+    @include avatar("s1");
+    opacity: 0;
+  }
+  100% {
+    @include avatar("s1");
+    opacity: 1;
+  }
+}
+
+@include keyframes_wrap(menu_to_entrance_mobile) {
+  0% {
+    @include avatar("s1_mobile");
+    opacity: 1;
+  }
+  30% {
+    @include avatar("s1_mobile");
+    opacity: 0;
+  }
+  50% {
+    @include avatar("s0_mobile");
+    opacity: 0;
+  }
+  100% {
+    @include avatar("s0_mobile");
+    opacity: 1;
+  }
+}
+@include keyframes_wrap(entrance_to_menu_mobile) {
+  0% {
+    @include avatar("s0_mobile");
+    opacity: 1;
+  }
+  30% {
+    @include avatar("s0_mobile");
+    opacity: 0;
+  }
+  80% {
+    @include avatar("s1_mobile");
+    opacity: 0;
+  }
+  100% {
+    @include avatar("s1_mobile");
+    opacity: 1;
+  }
+}

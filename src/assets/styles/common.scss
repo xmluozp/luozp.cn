@@ -1,22 +1,27 @@
 .conatiner {
   background-color: $color_bgdefault;
+  
   // no using it, because there are not enough transition colors for web to fill the screen
   // background: linear-gradient(to bottom, #001421, #4c515f45, #4b5f79);
-  padding-top: 10rem;
 }
 
 .content {
   color: #8c9497;
 }
 
-@mixin popup {
+@mixin popup($isMobile: false) {
+  line-height: 1.8rem;
+  font-size: 1rem;
+
   display: block;
   padding: 2rem;
   position: relative;
-  background-color: rgba(217, 227, 236, 0.842);
-  border-radius: 0px 30px 0px 0px;
-  color: #323638;
-  .popup::after {
+  background-color: rgba(244, 246, 248, 0.9);
+  border-radius: 0px 30px 0px 30px;
+  border-left: 1px solid #fafafa;
+  border-top: 1px solid #fafafa;
+  color: #151616;
+  &:after {
     background-color: transparent;
     position: absolute;
     right: -48px;
@@ -28,5 +33,11 @@
     border: 30px solid transparent;
     border-left: 5px solid #666975;
   }
-}
 
+  @if ($isMobile) {
+    padding: 1rem;
+    font-size: .8rem;
+    line-height: 1.4rem;
+  }
+
+}

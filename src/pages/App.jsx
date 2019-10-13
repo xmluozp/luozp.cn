@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BrowserView, MobileView } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 import { Link, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -25,6 +25,7 @@ import Title from '../components/Title/Title';
 // context
 import { PageStage } from '../context/store';
 
+const CSS_OF_DEVICE = isMobileOnly ? styles.mobileside : styles.desktopside;
 
 function App(props) {
 
@@ -37,9 +38,7 @@ function App(props) {
     }, 2000);
   }
 
-
-
-
+  
   //**************************************************************************/
   const [navLocks, setNavLocks] = useState(new Array(props.location.pathname));
   const contextPageStage = useContext(PageStage);
@@ -94,17 +93,10 @@ function App(props) {
       // console.log("client width", window.clientWidth);
     }, false);
 
-
     return () => {
       //
     };
   },[])
-
-
-
-  useEffect(() => {
-    console.log("loading change");
-  }, [contextPageStage.loading])
 
   /**
    * ending of animation, release loading state
@@ -115,7 +107,6 @@ function App(props) {
       contextPageStage.loading = false;
     }
   }, [navLocks])
-
 
   return (
     <>

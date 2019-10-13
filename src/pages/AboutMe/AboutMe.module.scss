@@ -1,43 +1,68 @@
-@import '../../assets/styles/colors.scss';
-@import '../../assets/styles/common.scss';
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
 
+.pageInnerContainer {
 
-.popup {
-  @include popup;
-  left: 5rem;
-  width: 40rem;
 }
 
 
-:global {
-  .test3d {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    top: 30px;
-    left: 50px;
-    box-shadow: 0px 0px 10px 0px #000000;
-    background-color: coral;
-    display: block;
-    animation-name: bounce;
-    animation-duration: 4s;
+:global(.isMobile) {
+  :local {
+    .pageInnerContainer {
+      padding-top: 7rem;
+    }
+    .popup {
+      @include popup(true);
+      left: 2rem;
+      width: calc(100vw - 6rem);
+    }
   }
-
-  .testanimation-enter {
-    // animation-name: animation_tv_fade;
-    // animation-duration: 4s;
-  }
-
-  .testanimation-enter-active {
-    // animation-name: animation_tv_fade;
-    // animation-duration: 4s;
-  }
-
-  .testanimation-enter-done {
-    transition: all 1s ease-in-out;
-    // animation-name: animation_tv_fade;
-    // animation-duration: 4s;
-    box-shadow: 0px 0px 50px 0px #000000;
+}
+:global(.isDesktop) {
+  :local {
+    .pageInnerContainer {
+      padding-top: 10rem;
+    }
+    .popup {
+      @include popup;
+      left: 5rem;
+      width: 32rem;
+    }
   }
 }
 
+
+
+
+
+// :global {
+//   .test3d {
+//     position: absolute;
+//     width: 200px;
+//     height: 200px;
+//     top: 30px;
+//     left: 50px;
+//     box-shadow: 0px 0px 10px 0px #000000;
+//     background-color: coral;
+//     display: block;
+//     animation-name: bounce;
+//     animation-duration: 4s;
+//   }
+
+//   .testanimation-enter {
+//     // animation-name: animation_tv_fade;
+//     // animation-duration: 4s;
+//   }
+
+//   .testanimation-enter-active {
+//     // animation-name: animation_tv_fade;
+//     // animation-duration: 4s;
+//   }
+
+//   .testanimation-enter-done {
+//     transition: all 1s ease-in-out;
+//     // animation-name: animation_tv_fade;
+//     // animation-duration: 4s;
+//     box-shadow: 0px 0px 50px 0px #000000;
+//   }
+// }

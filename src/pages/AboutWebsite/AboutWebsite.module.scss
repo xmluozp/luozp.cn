@@ -3,9 +3,12 @@
 .page_container{
     background-color:$color_bgdefault;
 }
+.pageInnerContainer{
+    padding: 10rem;
+}
 
 .popup {
     @include popup;
     left: 5rem;
-    width: 40rem;
+    width: 35rem;
 }

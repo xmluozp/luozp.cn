@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Philosopher&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+
+
+
 @import './assets/styles/colors.scss';
 body {
   margin: 0;
-  font-family: 'Philosopher', sans-serif;
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Quicksand', sans-serif;
   // height: 100vh;
   // background-color: $color_bgdark;
   background-image: url( "/images/stardust.png");
@@ -36,6 +42,9 @@ a{-webkit-tap-highlight-color:transparent;}
 }
 .z_board{
   z-index: 1000;
+}
+.z_overlay {
+  z-index: 990;
 }
 .z_title{
   z-index: 910;

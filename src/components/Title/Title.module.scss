@@ -12,93 +12,105 @@ $bord_height: 10pt;
 */
 
 // -------------title
-@mixin title {
-    display: block;
-    font-size: 5rem;
-    left: 5vw;
-    top: 22pt;
-    color: $color_title;
+@mixin title($isMobile: false) {
+  font-family: "Philosopher", sans-serif;
+  display: block;
+  font-size: 5rem;
+  left: 5vw;
+  top: 22pt;
+  color: $color_title;
+  // text-shadow: -1px -1px 0px rgb(73, 83, 90);
+
+  position: fixed;
+  padding: 0px;
+  margin: 0px;
+  // width: 40vw;
+  span {
     // text-shadow: -1px -1px 0px rgb(73, 83, 90);
+    // background-image: url( "/images/light-grey-terrazzo.png");
+    display: block;
+    background: linear-gradient(to bottom, #878c94, #ffffff93, #4b5f79);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 
-    position: fixed;
-    padding: 0px;
-    margin:0px;
-    // width: 40vw;
-    span{
-        // text-shadow: -1px -1px 0px rgb(73, 83, 90);
-        // background-image: url( "/images/light-grey-terrazzo.png");
-        display: block;
-        background: linear-gradient(to bottom, #878c94, #ffffff93, #4b5f79);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-
-    }
+  @if $isMobile {
+    top: 10pt;
+    font-size: 3rem;
+  }
 }
 @mixin title_hide {
-    display:none;
+  display: none;
 }
 
-@mixin board{
-    position: fixed;
-    left: 0px;
-    top: 75pt;
+@mixin board($isMobile: false) {
+  position: fixed;
+  left: 0px;
+  top: 75pt;
+  display: block;
+  height: $bord_height;
+  width: calc(100vw - 250pt);
+  min-width: 300pt;
+  background-color: $color_bgtitle;
+  border-top: 1px solid $color_bgtitle_linedown;
+  border-bottom: 1px solid $color_bgtitle_lineup;
+
+  &::after {
+    position: absolute;
+    right: $bord_height * -1;
+    border: $bord_height/2 solid transparent;
+    border-left: $bord_height/2 solid $color_bgtitle;
+    // border-top: $bord_height/2 solid $color_bgtitle;
+    display: inline-block;
+    content: "";
+  }
+
+  &::before {
+    position: absolute;
+    bottom: 2pt;
+    width: 100%;
+    border-top: 1px solid $color_bgtitle_lineup;
+    border-bottom: 1px solid $color_bgtitle_linedown;
     display: block;
-    height: $bord_height;
-    width: calc(100vw - 250pt);
-    min-width: 300pt;
-    background-color: $color_bgtitle;
-    border-top: 1px solid $color_bgtitle_linedown;
-    border-bottom: 1px solid $color_bgtitle_lineup;
+    content: "";
+  }
 
-    &::after{
-        position: absolute;
-        right: $bord_height * -1;
-        border:$bord_height/2 solid transparent;
-        border-left: $bord_height/2 solid $color_bgtitle;
-        // border-top: $bord_height/2 solid $color_bgtitle;
-        display:inline-block;
-        content:"";
-    }
-
-    &::before{
-        position: absolute;
-        bottom: 2pt;
-        width: 100%;
-        border-top: 1px solid $color_bgtitle_lineup;
-        border-bottom: 1px solid $color_bgtitle_linedown;
-        display:block;
-        content:"";   
-    }
+  @if $isMobile{
+    top: 55pt;
+  }
 }
-@mixin board_hide{
-    display:none;
+@mixin board_hide {
+  display: none;
 }
 
+//======================== css structure ========================
 
-
-//======================== css structure ======================== 
-
-
-.title{
-    @include title;
+.title {
+  @include title;
 }
 .board {
-    @include board;
+  @include board;
+}
+:global(.isMobile) {
+  :local {
+    .title {
+      @include title(true);
+    }
+    .board{
+      @include board(true);
+    }
+  }
 }
 
-
-
-
-
-//======================== animation stages ======================== 
-.title{
-    &.stage0 {
-        @include title_hide;
-    }
+//======================== animation stages ========================
+.title {
+  &.stage0 {
+    @include title_hide;
+  }
 }
-.board{
-    &.stage0{
-        @include board_hide;
-    }
+.board {
+  &.stage0 {
+    @include board_hide;
+  }
 }

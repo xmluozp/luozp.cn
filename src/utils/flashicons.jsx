@@ -71,7 +71,6 @@ function initVaribles() {
     // gl = canvas.getContext("experimental-webgl", {alpha: false});
 
     // Make it visually fill the positioned parent
-
 }
 
 

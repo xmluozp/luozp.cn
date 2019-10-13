@@ -14,16 +14,24 @@ export default (props) => {
 
 
   return (
+    // don't set padding or margin here. this is a styleing box
     <div
       className={[
         "page_container",
         styles.conatiner
-      ].join(' ')}>
+      ].join(' ')}>  
+
+
+      <div className = {styles.pageInnerContainer}>
       <div className={styles.popup}>
-        <LoremIpsum p={2} />
+        <p>"Catching new tech is painful." Years ago, I used to believe.</p>
+        <p>Whenever a new tech came out, I thought: "Wat? My stuff is becoming garbage again?". </p>
+        <p>Now I've changed my mind.</p>
+        <p>New programming tech is usually an elegant and better version of old ones. That's why people want to replace what they've already mastered.</p>
+        <p>Now I enjoy it.</p>
       </div>
 
-<div className={styles.content}> hi hi hi</div>
+   
       {/* <button onClick={handleDisplay}>test button</button> */}
 
 
@@ -42,7 +50,7 @@ export default (props) => {
             
                 </CSSTransition> */}
 
-
+                </div>
     </div>
   );
 }
