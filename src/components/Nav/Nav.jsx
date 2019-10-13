@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { isMobileOnly } from 'react-device-detect';
 import useCancelableTimeout from "use-cancelable-timeout";
 import _ from 'lodash';
 import { PageStage, NavLinks } from '../../context/store';
@@ -58,7 +59,6 @@ export default withRouter((props) => {
      */
     const handleToggleMenu = (e) => {
         if (location.pathname !== '/') {
-
             toggleNav(!navShow);
             e.preventDefault();
         }
@@ -124,7 +124,10 @@ export default withRouter((props) => {
         if (loading && (toIndex !== 0)) {       // if: finished animation + not in root
             setIsNavDelayHide(true);
             onDelayCancel();
-            onDelayStart();
+            if(!isMobileOnly){
+               onDelayStart();
+            }
+           
         }
         if (toIndex === 0) {                    // if: its root, dont trigger the Nav hiding timer
             onDelayCancel();

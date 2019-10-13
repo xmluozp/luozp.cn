@@ -40,7 +40,7 @@ function initVaribles() {
     loaded = false;
 
     //-------blow are to calculate new pixcel number when switching
-    g_density = 0.7;
+    g_density = 0.3;
     standard_width = 512;
     standard_height = 512;
     numLines = getNumLines(0);
@@ -176,7 +176,7 @@ const getNumLines = () => {
     // returnValue = returnValue * imageInfoArr[picNumber].width/ standard_height * g_density;
 
     // 根据指定的宽高决定精度
-    returnValue = parseInt(returnValue * canvas.width / standard_width * g_density);
+    returnValue = parseInt(returnValue * (canvas.width / standard_width) * g_density);
     // }
 
     return 100000 > returnValue ? returnValue : 100000;

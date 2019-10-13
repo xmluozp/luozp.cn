@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { isMobileOnly } from 'react-device-detect';
+// import { isMobileOnly } from 'react-device-detect';
 import { Link, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -25,7 +25,7 @@ import Title from '../components/Title/Title';
 // context
 import { PageStage } from '../context/store';
 
-const CSS_OF_DEVICE = isMobileOnly ? styles.mobileside : styles.desktopside;
+// const CSS_OF_DEVICE = isMobileOnly ? styles.mobileside : styles.desktopside;
 
 function App(props) {
 
@@ -35,7 +35,7 @@ function App(props) {
     websiteLoading.classList.add('global_loader_hide');
     setTimeout(() => {
       websiteLoading && websiteLoading.parentNode && websiteLoading.parentNode.removeChild(websiteLoading);
-    }, 2000);
+    }, 500);
   }
 
   
