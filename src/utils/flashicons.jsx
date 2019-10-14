@@ -16,7 +16,7 @@ var canvas, gl,
     numLines;
 var target;
 var id;
-const SHOW_UP_SPEED = .5;
+const SHOW_UP_SPEED = .3;
 const Z_DIMENSION = 1.3;
 
 var imageURLArr = [];

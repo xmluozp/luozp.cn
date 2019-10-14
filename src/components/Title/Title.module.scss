@@ -13,14 +13,14 @@ $animation_time: 200ms;
 */
 
 // -------------title
-@mixin title($isMobile: false) {
+@mixin title($isMobile: false, $stage: 'show') {
   font-family: "Philosopher", sans-serif;
   display: block;
   font-size: 4rem;
   height: 8rem;
   overflow: hidden;
   width:100%;
-  left: 5vw;
+  
   top: 22pt;
   color: $color_title;
   // text-shadow: -1px -1px 0px rgb(73, 83, 90);
@@ -31,10 +31,20 @@ $animation_time: 200ms;
   margin: 0px;
   // width: 40vw;
 
+
+  @if ($stage == 'show') {
+    left: 5vw;
+  }
+  @else if ($stage == 'hide') {    
+    left: -100vw;
+  }
+
   @if $isMobile {
     top: 10pt;
     font-size: 3rem;
   }
+
+  transition: all $animation_time ease-out;
 }
 @mixin titleSpan($stage: 'show') {
 
@@ -108,59 +118,60 @@ $animation_time: 200ms;
 
 }
 
-
-@mixin title_hide {
-  transition: all $animation_time ease-out;
-  left: -100vw;
-}
-
-@mixin board($isMobile: false) {
+@mixin board($isMobile: false, $stage: 'show') {
   position: fixed;
   left: 0px;
   top: 75pt;
   display: block;
   height: $bord_height;
-  width: calc(100vw - 250pt);
-  min-width: 300pt;
+
   background-color: $color_bgtitle;
   border-top: 1px solid $color_bgtitle_linedown;
   border-bottom: 1px solid $color_bgtitle_lineup;
 
   &::after {
-    position: absolute;
-    right: $bord_height * -1;
     border: $bord_height/2 solid transparent;
     border-left: $bord_height/2 solid $color_bgtitle;
     // border-top: $bord_height/2 solid $color_bgtitle;
+    position: absolute;
+    right: $bord_height * -1;
     display: inline-block;
     content: "";
   }
 
   &::before {
+    border-top: 1px solid $color_bgtitle_lineup;
+    border-bottom: 1px solid $color_bgtitle_linedown;
     position: absolute;
     bottom: 2pt;
     width: 100%;
-    border-top: 1px solid $color_bgtitle_lineup;
-    border-bottom: 1px solid $color_bgtitle_linedown;
     display: block;
     content: "";
   }
+
+  @if ($stage == 'show') {
+    width: calc(100vw - 250pt);
+    min-width: 300pt;
+  }
+  @else if ($stage == 'hide') {    
+    width: 0px;
+    min-width: 0px;
+  
+    &::after {
+      border: none;
+    }
+    &::before {
+      border: none;
+    }
+  }
+
+
 
   @if $isMobile {
     top: 55pt;
   }
 }
-@mixin board_hide {
-  width: 0px;
-  min-width: 0px;
 
-  &::after {
-    border: none;
-  }
-  &::before {
-    border: none;
-  }
-}
 
 //======================== css structure ========================
 
@@ -168,7 +179,16 @@ $animation_time: 200ms;
 
 // both mobile and desktop
 .title {
-  @include title;
+
+  &.stage0 {
+    @include title($stage: 'hide');
+  }
+  &.stage1 {
+    @include title($stage:'show');
+    &.hide {
+      @include title($stage:'hide');
+    }
+  }
 
   .hide{
     &.loading{@include titleSpan('hiding')}
@@ -180,7 +200,19 @@ $animation_time: 200ms;
   }
 }
 .board {
-  @include board;
+
+
+  &.stage0 {
+    @include board($stage:'hide');
+  }
+  &.stage1 {
+    @include board($stage:'show');
+    &.hide {
+      @include board($stage:'hide');
+    }
+  }
+
+
   transition: all $animation_time ease-out;
 }
 
@@ -195,22 +227,5 @@ $animation_time: 200ms;
     }
   }
 }
-.animation {
-}
-//======================== animation stages ========================
 
-.title {
-  &.stage0 {
-    @include title_hide;
-  }
-  &.stage1 {
-  }
-}
-
-
-.board {
-  &.stage0 {
-    @include board_hide;
-  }
-}
 //======================== animation stages ========================

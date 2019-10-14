@@ -78,7 +78,7 @@ export default withRouter((props) => {
             setIsEntering(true);
 
             // play animation
-            imgSwitch(toIndex);
+            imgSwitch(toIndex, false, false, 0.05);
 
             fadeOut();
 

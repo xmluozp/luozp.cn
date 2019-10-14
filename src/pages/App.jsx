@@ -38,7 +38,7 @@ function App(props) {
     }, 500);
   }
 
-  
+
   //**************************************************************************/
   const [navLocks, setNavLocks] = useState(new Array(props.location.pathname));
   const contextPageStage = useContext(PageStage);
@@ -85,18 +85,25 @@ function App(props) {
    * initialize
    */
   useEffect(() => {
-    window.addEventListener('scroll', (e)=>{
-      // console.log(e);
+
+    //================= scroll listener
+    window.addEventListener('scroll', (e) => {
+      let anchor;
+      let y = window.pageYOffset || document.documentElement.scrollTop;
+      if (y == 0) { anchor = 'top' }
+      else if (window.innerHeight + y >= document.body.offsetHeight) { anchor = 'bottom' }
+      else { anchor = 'center' }
+      contextPageStage.scroll = { anchor, y, direction: 0 };
     }, false);
 
-    window.addEventListener('resize', (e)=>{
+    window.addEventListener('resize', (e) => {
       // console.log("client width", window.clientWidth);
     }, false);
 
     return () => {
       //
     };
-  },[])
+  }, [])
 
   /**
    * ending of animation, release loading state
@@ -108,6 +115,13 @@ function App(props) {
     }
   }, [navLocks])
 
+  useEffect(() => {
+    // control lock of navs
+    console.log(contextPageStage.scroll);
+  }, [contextPageStage.scroll])
+
+
+
   return (
     <>
       <Title />
@@ -118,7 +132,7 @@ function App(props) {
         "z_main",
         styles.main,
         contextPageStage.loading ? styles.main_lock : styles.main_unlock,
-      ].join(' ')} onScroll={(e)=>{ console.log(e); }}>
+      ].join(' ')} onScroll={(e) => { console.log(e); }}>
 
         <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />

@@ -23,9 +23,12 @@ export default withRouter(({ children, location }) => {
 
   const [fromIndex, setFromIndex] = React.useState(getCurrentIndex);
   const [toIndex, setToIndex] = React.useState(getCurrentIndex);
-  const [c_loading, dispatch] = React.useReducer(reducer, true);
   const [toPath, setToPath] = React.useState(location.pathname);
   const [fromPath, setTromPath] = React.useState(location.pathname);
+
+  const [c_loading, dispatchLoading] = React.useReducer(reducer, true);
+  const [c_scroll, dispatchScroll] = React.useReducer(reducer, { anchor: 'top', y: 0, direction: 0 });
+
 
   // const store = {
   //   fromIndex: { value: fromIndex},
@@ -43,8 +46,10 @@ export default withRouter(({ children, location }) => {
     loading: c_loading,
     toPath: toPath,
     fromPath: fromPath,
-    set loading(value){ dispatch({payload: value})},
-    get loading() {return c_loading}
+    set loading(value) { dispatchLoading({ type: 'loading', payload: value }) },
+    get loading() { return c_loading },
+    set scroll(value) { dispatchScroll({ type: 'scroll', payload: value }) },
+    get scroll() { return c_scroll },
   };
 
   React.useEffect(() => {
@@ -61,9 +66,25 @@ export default withRouter(({ children, location }) => {
 });
 
 const reducer = (state, action) => {
-  if (action.payload !== state){
-    return action.payload;
-  } else {
-    return state;
+
+  switch (action.type) {
+
+    //==============================================
+    case 'loading':
+      return action.payload !== state ? action.payload : state;
+      break;
+    //==============================================
+    case 'scroll':
+      const {anchor, y, direction} = action.payload;
+      if (y ==  state.y) return state;
+      if (y > state.y) return {anchor, y, direction: 1};
+      if (y < state.y) return {anchor, y, direction: -1};
+
+      break;
+    //==============================================
+    default:
+        return state;
+      break;
   }
+
 }
