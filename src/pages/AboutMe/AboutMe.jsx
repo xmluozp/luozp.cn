@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './AboutMe.module.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { LoremIpsum, Avatar } from 'react-lorem-ipsum';

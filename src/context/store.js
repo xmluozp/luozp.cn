@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Link, Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 
 export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading: true, toPath: "", fromPath: "" });
@@ -23,7 +23,7 @@ export default withRouter(({ children, location }) => {
 
   const [fromIndex, setFromIndex] = React.useState(getCurrentIndex);
   const [toIndex, setToIndex] = React.useState(getCurrentIndex);
-  const [loading, dispatch] = React.useReducer(reducer, true);
+  const [c_loading, dispatch] = React.useReducer(reducer, true);
   const [toPath, setToPath] = React.useState(location.pathname);
   const [fromPath, setTromPath] = React.useState(location.pathname);
 
@@ -40,11 +40,11 @@ export default withRouter(({ children, location }) => {
   const store = {
     fromIndex: fromIndex,
     toIndex: toIndex,
-    loading: loading,
+    loading: c_loading,
     toPath: toPath,
     fromPath: fromPath,
     set loading(value){ dispatch({payload: value})},
-    get loading() {return loading}
+    get loading() {return c_loading}
   };
 
   React.useEffect(() => {

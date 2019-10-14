@@ -37,17 +37,28 @@ export default withRouter((props) => {
     const { toIndex, fromIndex, loading } = contextPageStage;
     const { location, navLocks } = props;
     const [navShow, setNavShow] = useState(true);                   // if display nav
-    const [isNavDelayHide, setIsNavDelayHide] = useState(true);     // when entered, hide nav bar after a few seconds
+    const [isEntering, setIsEntering] = useState(false);             // if playing enter animation
+
+    // const [isNavDelayHide, setIsNavDelayHide] = useState(true);     // when entered, hide nav bar after a few seconds
 
     // hide nav bar after delay
-    const [onDelayStart, onDelayCancel] = useCancelableTimeout(
+    // const [onDelayStart, onDelayCancel] = useCancelableTimeout(
+    //     () => {
+    //         if (isNavDelayHide) {
+    //             toggleNav(false);
+    //         }
+    //     },
+    //     NAV_CLOSE_DELAY,
+    // );
+
+    const [onDelayEnter, onDelayEnterCancel] = useCancelableTimeout(
         () => {
-            if (isNavDelayHide) {
-                toggleNav(false);
-            }
+            props.history.push('/aboutme');
+            setIsEntering(false); // release enter delay
         },
-        NAV_CLOSE_DELAY,
+        3000,
     );
+
 
     const avatarObserverRef = useRef(null)
     const navLinks = NavLinks;
@@ -55,26 +66,42 @@ export default withRouter((props) => {
 
     /**
      * toggle menu. default true
+     * The reason I reuse the big face to be both menu and entrance button: the performance of WebGl
      * @param {*} e 
      */
     const handleToggleMenu = (e) => {
         if (location.pathname !== '/') {
             toggleNav(!navShow);
-            e.preventDefault();
+
+        } else if(!isEntering){
+            // lock the enter button
+            setIsEntering(true);
+
+            // play animation
+            imgSwitch(toIndex);
+
+            fadeOut();
+
+            // enter after animation
+            onDelayEnter();
         }
+
+        e.preventDefault();
     }
 
     const toggleNav = (isShow) => {
+
         if (!isShow) { // or I can set it in useEffect
             imgSwitch(navLinks.length); // after all page icons, I set the last icon as the menu icon
         } else {
             imgSwitch(toIndex);
         }
         setNavShow(isShow);
+       
 
         // any action from user, cancel timeout.
-        setIsNavDelayHide(false);
-        onDelayCancel();
+        // setIsNavDelayHide(false);
+        // onDelayCancel();
     }
     //==================================================================== effects
     /**
@@ -86,7 +113,7 @@ export default withRouter((props) => {
         const w = toIndex === 0 ? INIT_AVATAR_SIZE : 128;
         const h = toIndex === 0 ? INIT_AVATAR_SIZE : 128;
         flashIconLoad("c", toIndex, w, h);
-
+        
         return () => {
             flashIconUnload();
         }
@@ -109,29 +136,30 @@ export default withRouter((props) => {
                 imgSwitch(toIndex, w, h);
             }
             if (fromIndex === 0 && !loading) {  // entrance moved to inner, resize  
+                fadeIn();
             }
             if (toIndex === 0 && loading) {     // inner moving to entrance, switch
-                imgSwitch(toIndex, w, h);
+                
+                fadeOut();
             }
             if (toIndex === 0 && !loading) {    // entrance moved to inner, resize
+                imgSwitch(toIndex, w, h);
+                fadeIn();
             }
-
-            if (loading) fadeOut();
-            else fadeIn();
         }
 
-        // delay and hide the nav bar      
-        if (loading && (toIndex !== 0)) {       // if: finished animation + not in root
-            setIsNavDelayHide(true);
-            onDelayCancel();
-            if(!isMobileOnly){
-               onDelayStart();
-            }
+        // // delay and hide the nav bar      
+        // if (loading && (toIndex !== 0)) {       // if: finished animation + not in root
+        //     setIsNavDelayHide(true);
+        //     onDelayCancel();
+        //     if(!isMobileOnly){
+        //        onDelayStart();
+        //     }
            
-        }
-        if (toIndex === 0) {                    // if: its root, dont trigger the Nav hiding timer
-            onDelayCancel();
-        }
+        // }
+        // if (toIndex === 0) {                    // if: its root, dont trigger the Nav hiding timer
+        //     // onDelayCancel();
+        // }
 
     }, [loading, toIndex]);
 

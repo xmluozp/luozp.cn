@@ -1,7 +1,9 @@
 @import '../../assets/styles/colors.scss';
 @import '../../assets/styles/common.scss';
 
-
+.popup{
+  @include popup;
+}
 
 
 

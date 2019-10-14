@@ -139,10 +139,9 @@ export default withRouter(App);
  */
 const AnimationRoute = withRouter((props) => {
 
-  const timeout = 1000;
+  const timeout = 1500;
   // const contextPageStage = useContext(PageStage);
   // const className = props.path + ' ' + (contextPageStage.toIndex * contextPageStage.fromIndex === 0 ? "animation_entrance" : "animation_inners");
-  // console.log(className);
 
   return (
     <TransitionGroup>

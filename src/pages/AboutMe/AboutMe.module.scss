@@ -1,9 +1,12 @@
 @import "../../assets/styles/colors.scss";
 @import "../../assets/styles/common.scss";
-
-.pageInnerContainer {
-
+.conatiner{
+  // background-image: url('/images/aboutme_guy.png');
+  // background-size: auto;
+  // background-position: center bottom;
+  // background-repeat: no-repeat;
 }
+.pageInnerContainer {}
 
 
 :global(.isMobile) {

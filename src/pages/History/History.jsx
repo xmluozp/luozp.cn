@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './History.module.scss';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 
 export default (props) => {
 

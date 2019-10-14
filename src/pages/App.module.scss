@@ -1,9 +1,13 @@
 @import '../assets/styles/colors.scss';
 
 $animation_time_page: 1000ms;
+$animation_delay: 500ms;
 $cube_height: 100vh;
 $cube_width: 100vw;
-// $cube_distance: 50vh;
+$cube_distance : 60vh;
+$left_deviate: - $cube_distance * 0.25;
+
+
 // dont forget to set App.scss
 .onLoad{
 
@@ -47,6 +51,13 @@ $cube_width: 100vw;
     overflow: hidden;
     border: 1px solid #FFFFFF;
     border-bottom: 2px solid $color_bgreverse;
+
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    z-index: 600;
+    transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2);
+    border: 1px solid rgba(255, 255, 255, 1);
+    opacity: 0;
   }
 
   %page-enter-endpoint {
@@ -71,7 +82,7 @@ $cube_width: 100vw;
     height: $cube_height;
     overflow: hidden;
 
-    border: 1px solid $color_bgreverse;
+    border: 0px solid $color_bgreverse;
   }
   %page-exit-endpoint {
     @extend %page-exit-prepare;
@@ -106,11 +117,12 @@ $cube_width: 100vw;
     @extend %page-enter-prepare;
   }
   .slide-in-enter-active {
-    @extend %page-enter-endpoint;
+    // @extend %page-enter-endpoint;
     animation-name: animation_cube_show;
     animation-duration: $animation_time_page;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    animation-delay: $animation_delay;
   }
 
   .slide-in-enter-done {
@@ -124,23 +136,26 @@ $cube_width: 100vw;
     // transform: translate3D(0, 0, 0) rotateX(0deg);
   }
   .slide-in-exit-active {
-    @extend %page-exit-endpoint;
+    // @extend %page-exit-endpoint;
     animation-name: animation_cube_hide;
     animation-duration: $animation_time_page;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-    //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
-  }
-
-  .slide-in-exit.animation_entrance {
+    animation-delay: $animation_delay;
 
   }
+
+  .animation_entrance.slide-in-exit {
+
+  }
+
+  
   .animation_entrance.slide-in-exit-active {
-
     animation-name: animation_zoom_hide;
     animation-duration: $animation_time_page;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    animation-delay: $animation_delay;
     //   transform: translate3D(100vh, 150vh, 0vh) rotateX(-90deg);
   }
 

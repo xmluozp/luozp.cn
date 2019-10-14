@@ -1,6 +1,7 @@
 @import "../../assets/styles/colors.scss";
 
 $bord_height: 10pt;
+$animation_time: 200ms;
 
 //=========================================
 /*
@@ -15,33 +16,102 @@ $bord_height: 10pt;
 @mixin title($isMobile: false) {
   font-family: "Philosopher", sans-serif;
   display: block;
-  font-size: 5rem;
+  font-size: 4rem;
+  height: 8rem;
+  overflow: hidden;
+  width:100%;
   left: 5vw;
   top: 22pt;
   color: $color_title;
   // text-shadow: -1px -1px 0px rgb(73, 83, 90);
 
+
   position: fixed;
   padding: 0px;
   margin: 0px;
   // width: 40vw;
-  span {
-    // text-shadow: -1px -1px 0px rgb(73, 83, 90);
-    // background-image: url( "/images/light-grey-terrazzo.png");
-    display: block;
-    background: linear-gradient(to bottom, #878c94, #ffffff93, #4b5f79);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
 
   @if $isMobile {
     top: 10pt;
     font-size: 3rem;
   }
 }
+@mixin titleSpan($stage: 'show') {
+
+  // text-shadow: -1px -1px 0px rgb(73, 83, 90);
+  // background-image: url( "/images/light-grey-terrazzo.png");
+  position: absolute;
+  background: linear-gradient(to bottom, #878c94, #ffffff93, #4b5f79);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  left:0px;
+
+  @if($stage== 'show') { // done
+    transform-origin: center;
+    transform: rotateX(0deg) scaleY(1);
+    opacity: 1;
+  }
+  @if($stage== 'hide') { // done
+    transform-origin: center;
+    transform: rotateX(180deg) scaleY(5);
+    opacity: 0;
+  }
+  @if($stage== 'showing') { // doing
+    transform-origin: center;
+    transition: all $animation_time linear ;
+    transform: rotateX(360deg);
+    opacity: 1;
+  }
+  @if($stage== 'hiding') { // done
+    transform-origin: center;
+    transition: all $animation_time linear ;
+    transform: rotateX(270deg);
+    opacity: 0;
+  }
+}
+
+
+
+
+@mixin title_trans($transition: 'enter-active') {
+  @if $transition == 'back_start' {
+    transform: rotateX(-180deg);
+    opacity: 0;
+  }
+  @if $transition == 'down' {
+    transform: rotateX(-90deg);
+    transition: all $animation_time linear;
+    opacity: 0.5;
+  }
+  @if $transition == 'front' {  
+    transition: all $animation_time linear;
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+
+  @if $transition == 'front_start' {  
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  @if $transition == 'up' {
+    transform: rotateX(90deg);
+    transition: all $animation_time linear;
+    opacity: 0.5;
+  }
+  @if $transition == 'back' {
+    transition: all $animation_time linear;
+    transform: rotateX(180deg);
+    opacity: 0;
+  }
+
+
+}
+
+
 @mixin title_hide {
-  display: none;
+  transition: all $animation_time ease-out;
+  left: -100vw;
 }
 
 @mixin board($isMobile: false) {
@@ -76,41 +146,71 @@ $bord_height: 10pt;
     content: "";
   }
 
-  @if $isMobile{
+  @if $isMobile {
     top: 55pt;
   }
 }
 @mixin board_hide {
-  display: none;
+  width: 0px;
+  min-width: 0px;
+
+  &::after {
+    border: none;
+  }
+  &::before {
+    border: none;
+  }
 }
 
 //======================== css structure ========================
 
+
+
+// both mobile and desktop
 .title {
   @include title;
+
+  .hide{
+    &.loading{@include titleSpan('hiding')}
+    &.done{@include titleSpan('hide')}
+  }
+  .show{
+    &.loading{@include titleSpan('showing')}
+    &.done{@include titleSpan('show')}
+  }
 }
 .board {
   @include board;
+  transition: all $animation_time ease-out;
 }
+
+// mobile only
 :global(.isMobile) {
   :local {
     .title {
       @include title(true);
     }
-    .board{
+    .board {
       @include board(true);
     }
   }
 }
-
+.animation {
+}
 //======================== animation stages ========================
+
 .title {
   &.stage0 {
     @include title_hide;
   }
+  &.stage1 {
+  }
 }
+
+
 .board {
   &.stage0 {
     @include board_hide;
   }
 }
+//======================== animation stages ========================

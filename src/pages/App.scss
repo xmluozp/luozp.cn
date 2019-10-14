@@ -106,7 +106,7 @@ $left_deviate: - $cube_distance * 0.25;
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
         z-index: 600;
-        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2)  translateX($left_deviate);
+        transform: rotateX(  -90deg) translateZ($cube_height / 2) translateY($cube_height / 2);
         border: 1px solid rgba(255, 255, 255, 1);
         opacity: 0;
     }

@@ -16,7 +16,7 @@ var canvas, gl,
     numLines;
 var target;
 var id;
-const SHOW_UP_SPEED = 1;
+const SHOW_UP_SPEED = .5;
 const Z_DIMENSION = 1.3;
 
 var imageURLArr = [];
@@ -49,10 +49,10 @@ function initVaribles() {
     target = [];
     // isScroll = false;
     imageURLArr = [
-        "images/icons/me.png",
-        "images/icons/me.png",
-        "webgl/imgs/pinterest.png",
-        "webgl/imgs/twitter.png",
+        "images/icons/icons8-anonymous-mask-250.png",
+        "images/icons/icons8-scream-120.png",
+        "images/icons/hammer.png",
+        "images/icons/light-bulb.png",
         "webgl/imgs/github.png",
         "webgl/imgs/github.png",
         "images/icons/nav.png",
@@ -80,11 +80,13 @@ function initVaribles() {
  * @param {*} defaultPicture 
  */
 const load = function (i_canvasId, defaultPicture, init_w, init_h) {
+
     canvasId = i_canvasId;
-    drawType = defaultPicture || 0;
+    drawType = (defaultPicture && defaultPicture >= 0)? defaultPicture : 0;
 
     canvas = document.getElementById(canvasId);
 
+    console.log(drawType);
     // prevent cpu calculation
     canvas.width = init_w;
     canvas.height = init_h;
@@ -109,7 +111,7 @@ const load = function (i_canvasId, defaultPicture, init_w, init_h) {
  * 需要研究一下怎么清空
  */
 const unload = function () {
-    window.cancelRequestAnimFrame(id);
+    // window.cancelRequestAnimFrame(id);
     // gl.viewport(0, 0, canvas.width, canvas.height);
     // gl.clearRect(0, 0, canvas.width, canvas.height);    
 }
@@ -319,7 +321,7 @@ let numLinesFade = 0;
  */
 const fadeOut = function () {
     if (loaded) {
-        coefficient = .3;
+        coefficient = .1;
         window.cancelRequestAnimFrame(id);
         numLinesFade = numLines;
         fadeOut_play();
@@ -399,7 +401,7 @@ function drawScene() {
 // =================================================================================
 // =================================================================================
 
-var coefficient = .6;
+var coefficient = .1;
 var targetCoefficient = .01;
 
 function draw() {
@@ -415,7 +417,7 @@ function draw() {
     // var dx = - 1 * animate_z_deviation[0] / 100;
     // var dy = animate_z_deviation[1] / 100;
 
-    const blur = coefficient;
+    const blur = coefficient /2 ;
     const movingSpeed = coefficient * 2;
     // blur = 0.001;
 
@@ -512,65 +514,68 @@ function initilizeVertices() {
  */
 function resetVertices() {
 
- 
-    var randomTargetXArr = [];
-    var randomTargetYArr = [];
+    try {
+        var randomTargetXArr = [];
+        var randomTargetYArr = [];
 
-    // -------------------------------
-    const newNumLines = getNumLines(drawType);
-    const image = target[drawType];
-    const imageLength = image.length;
+        // -------------------------------
+        const newNumLines = getNumLines(drawType);
+        const image = target[drawType];
+        const imageLength = image.length;
 
-    const gvLength = g_Vertices.length;
-    const newVLength = newNumLines * 6;
-
-
-    for (var ii = 0; ii < newNumLines; ii++) {
-        var randomPos = image[parseInt(imageLength * Math.random())];
-        randomTargetXArr.push(randomPos.x);
-        randomTargetYArr.push(randomPos.y);
-    }
-
-    // vertices = new Float32Array(vertices);
-    g_RandomTargetXArr = new Float32Array(randomTargetXArr);
-    g_RandomTargetYArr = new Float32Array(randomTargetYArr);
+        const gvLength = g_Vertices.length;
+        const newVLength = newNumLines * 6;
 
 
-    // 增加或者删除顶点数量。超过了就删掉多余的
+        for (var ii = 0; ii < newNumLines; ii++) {
+            var randomPos = image[parseInt(imageLength * Math.random())];
+            randomTargetXArr.push(randomPos.x);
+            randomTargetYArr.push(randomPos.y);
+        }
 
-    if (newVLength < gvLength) {
-        g_Vertices = g_Vertices.subarray(0, newVLength);
+        // vertices = new Float32Array(vertices);
+        g_RandomTargetXArr = new Float32Array(randomTargetXArr);
+        g_RandomTargetYArr = new Float32Array(randomTargetYArr);
+
+
+        // 增加或者删除顶点数量。超过了就删掉多余的
+
+        if (newVLength < gvLength) {
+            g_Vertices = g_Vertices.subarray(0, newVLength);
+            numLines = newNumLines;
+        }
+
+        if (newVLength > gvLength) {
+            var tempVArray = new Float32Array(newNumLines * 6);
+
+            for (let index = 0; index < gvLength; index++) {
+                tempVArray[index] = g_Vertices[index];
+            }
+            for (let index = 0; index < newVLength; index += 6) {
+
+                const targetIndex = index / 6;
+                tempVArray[index] = g_RandomTargetXArr[targetIndex];
+                tempVArray[index + 1] = g_RandomTargetYArr[targetIndex];
+                tempVArray[index + 2] = Z_DIMENSION;
+                tempVArray[index + 3] = g_RandomTargetXArr[targetIndex];
+                tempVArray[index + 4] = g_RandomTargetYArr[targetIndex];
+                tempVArray[index + 5] = Z_DIMENSION;
+            }
+            g_Vertices = tempVArray;
+        }
+
         numLines = newNumLines;
+    } catch (error) {
+        console.error(error);
     }
-
-    if (newVLength > gvLength) {
-        var tempVArray = new Float32Array(newNumLines * 6);
-
-        for (let index = 0; index < gvLength; index++) {
-            tempVArray[index] = g_Vertices[index];
-        }
-        for (let index = 0; index < newVLength; index += 6) {
-
-            const targetIndex = index / 6;
-            tempVArray[index] = g_RandomTargetXArr[targetIndex];
-            tempVArray[index + 1] = g_RandomTargetYArr[targetIndex];
-            tempVArray[index + 2] = Z_DIMENSION;
-            tempVArray[index + 3] = g_RandomTargetXArr[targetIndex];
-            tempVArray[index + 4] = g_RandomTargetYArr[targetIndex];
-            tempVArray[index + 5] = Z_DIMENSION;
-        }
-        g_Vertices = tempVArray;
-    }
-
-    numLines = newNumLines;
 }
 
 
 // -------------------------------
 
-const imgSwitch = function (picNumber, w, h) {
+const imgSwitch = function (picNumber, w, h, newCoefficient) {
     // console.log("switch icon to ", picNumber);
-    coefficient = .3;
+    coefficient = newCoefficient ? newCoefficient : .2;
     if (loaded) {
 
         // call it simple way to prevent cpu calculation
