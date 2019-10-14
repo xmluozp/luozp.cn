@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import styles from './TechStack.module.scss';
-import Parallax from 'parallax-js';
+// import Parallax from 'parallax-js';
 
 export default (props) => {
 
