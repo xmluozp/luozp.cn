@@ -86,7 +86,6 @@ const load = function (i_canvasId, defaultPicture, init_w, init_h) {
 
     canvas = document.getElementById(canvasId);
 
-    console.log(drawType);
     // prevent cpu calculation
     canvas.width = init_w;
     canvas.height = init_h;

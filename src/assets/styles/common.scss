@@ -18,14 +18,20 @@
   $border: #fafafa,
   // $background: rgba(244, 246, 248, 0.9),
   $background:#e0e3e6,
-  $color: #151616,
-  $tailheight: 15px
+  $color: #151616  
 ) {
   
   // -------------------------general settings
   $thick: 5px;
   $angle: 30px;
   $radius: 30px;
+  $tailheight: 10px;
+  @if ($isMobile) {
+    $radius: 10px;
+    $tailheight: 5px;
+  }
+
+  
 
   line-height: 1.8rem;
   font-size: 1rem;
@@ -78,7 +84,26 @@
     }
     &:after {
       top: $radius - $thick;
-      height: calc(100% - #{2 * $radius + $angle - $thick}); // need to check how many radius
+      height: calc(100% - #{2 * $radius + $angle - $thick + $tailheight * 2}); // need to check how many radius
+    }
+  }
+
+  // ------------------------- bottom left
+  @if ($direction == "bll") {
+    border-right: 1px solid $border;
+    border-top: 1px solid $border;
+    border-radius: $radius $radius $radius 0px;
+
+    &:before {
+      border-bottom: $tailheight solid $background;
+      border-right: $tailheight solid $background;
+      content: "";
+      left: $tailheight * -2;
+      bottom: 0px;
+    }
+    &:after {
+      top: $radius - $thick;
+      height: calc(100% - #{2 * $radius + $angle - $thick + $tailheight * 2}); // need to check how many radius
     }
   }
 
@@ -102,8 +127,13 @@
   }
 
   @if ($isMobile) {
-    padding: 1rem;
+    padding: .7rem;
     font-size: 0.8rem;
     line-height: 1.4rem;
+
+    &:before {
+    }
+    &:after {
+      content: none;}
   }
 }

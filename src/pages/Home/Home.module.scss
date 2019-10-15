@@ -3,9 +3,92 @@
 .testColor{
     // background-color: aqua;    
 }
-.link{
-    position: absolute;
-    z-index: 100}
+
+
+:global(.isDesktop) {
+    :local{
+        .popup{
+            @include popup($direction: "bll");
+            position: fixed;
+            left: 30px;
+            bottom: 3rem;
+            min-height: 4rem;
+        }
+        .respondPopup{
+            color: #d8d3cb;
+            position:fixed;
+            left: calc(50vw - 250px);
+            top: calc(25vh - 128px);
+            width: 500px;
+            font-size: 5rem;
+            text-align: center;
+            
+            .small{
+                font-size: 1rem;
+                display:block;
+                color:rgb(255, 137, 0);  
+ 
+            }
+            &::after{
+                position: absolute;
+                border: 6px solid transparent;
+                border-top: 10px solid rgb(255, 137, 0);
+                content: "";
+                bottom:-25px;
+                left: calc(50% - 6px);
+                width:0px;    
+                animation: jumpingArroW 500ms infinite;
+            }
+
+            animation-name: candoAnimation;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;       
+        }
+    }
+}
+:global(.isMobile) {
+    :local{
+        .popup{
+            @include popup($isMobile:true, $direction: "bll");
+            position: fixed;
+            left: 30px;
+            top: calc(50% + 128px);
+            width: calc(100vw - 50pt);
+        }
+        .respondPopup{
+            color: #d8d3cb;
+            position:fixed;
+            left: 10vw;
+            top: calc(25% - 128px);
+            width: 80vw;
+            font-size: 2rem;
+            text-align: center;
+            
+            .small{
+                font-size: 1rem;
+                display:block;
+                color:rgb(255, 137, 0);  
+ 
+            }
+            &::after{
+                position: absolute;
+                border: 6px solid transparent;
+                border-top: 10px solid rgb(255, 137, 0);
+                content: "";
+                bottom:-25px;
+                left: calc(50% - 6px);
+                width:0px;    
+                animation: jumpingArroW 500ms infinite;
+            }
+ 
+            animation-name: candoAnimation;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;            
+        }
+    }
+}
+
+
 .background{
     position: fixed;
     top: 0px;
@@ -15,4 +98,50 @@
     z-index: 0;
     height: 100vh;
     background:transparent;
+    opacity: 1;
+    transition: all 500ms ease-out;
+
+    &.hide{
+        opacity: 0;
+        transition: all 500ms ease-out;
+    }
+    &.show{
+        opacity: 1;
+    }
 }
+
+.copyright{
+    position: fixed;
+    bottom: 5px;
+    border-top: 1px solid #474d4f;
+    color: #aaa6a2;
+    font-size: .8rem;
+    line-height: 1rem;
+    height: 1rem;
+    padding-top:3px;
+    width: 100%;
+    text-align: center;
+    // left: calc(50vw - 135px);
+}
+
+
+
+@keyframes :local(candoAnimation) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
+@keyframes :local(jumpingArroW) {
+    0% {
+        bottom:-30px;
+    }
+    50% {
+        bottom:-25px;
+    }
+}
+
+

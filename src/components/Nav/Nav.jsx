@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { isMobileOnly } from 'react-device-detect';
 import useCancelableTimeout from "use-cancelable-timeout";
 import _ from 'lodash';
 import { PageStage, NavLinks } from '../../context/store';
@@ -35,7 +34,8 @@ export default withRouter((props) => {
 
     const contextPageStage = useContext(PageStage);
     const { toIndex, fromIndex, loading } = contextPageStage;
-    const { location, navLocks } = props;
+
+    const { location, navLocks, onRouteIn } = props;
     const [navShow, setNavShow] = useState(true);                   // if display nav
     const [isEntering, setIsEntering] = useState(false);             // if playing enter animation
 
@@ -81,7 +81,7 @@ export default withRouter((props) => {
             imgSwitch(toIndex, false, false, 0.05);
 
             fadeOut();
-
+            contextPageStage.globalStage = "ENTRANCE_LEAVING";
             // enter after animation
             onDelayEnter();
         }

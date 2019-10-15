@@ -13,29 +13,26 @@ $animation_time: 200ms;
 */
 
 // -------------title
-@mixin title($isMobile: false, $stage: 'show') {
+@mixin title($isMobile: false, $stage: "show") {
   font-family: "Philosopher", sans-serif;
   display: block;
   font-size: 4rem;
   height: 8rem;
   overflow: hidden;
-  width:100%;
-  
+  width: 100%;
+
   top: 22pt;
   color: $color_title;
   // text-shadow: -1px -1px 0px rgb(73, 83, 90);
-
 
   position: fixed;
   padding: 0px;
   margin: 0px;
   // width: 40vw;
 
-
-  @if ($stage == 'show') {
+  @if ($stage == "show") {
     left: 5vw;
-  }
-  @else if ($stage == 'hide') {    
+  } @else if ($stage == "hide") {
     left: -100vw;
   }
 
@@ -46,8 +43,7 @@ $animation_time: 200ms;
 
   transition: all $animation_time ease-out;
 }
-@mixin titleSpan($stage: 'show') {
-
+@mixin titleSpan($stage: "show") {
   // text-shadow: -1px -1px 0px rgb(73, 83, 90);
   // background-image: url( "/images/light-grey-terrazzo.png");
   position: absolute;
@@ -55,70 +51,69 @@ $animation_time: 200ms;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  left:0px;
+  left: 0px;
 
-  @if($stage== 'show') { // done
+  @if ($stage== "show") {
+    // done
     transform-origin: center;
     transform: rotateX(0deg) scaleY(1);
     opacity: 1;
   }
-  @if($stage== 'hide') { // done
+  @if ($stage== "hide") {
+    // done
     transform-origin: center;
     transform: rotateX(180deg) scaleY(5);
     opacity: 0;
   }
-  @if($stage== 'showing') { // doing
+  @if ($stage== "showing") {
+    // doing
     transform-origin: center;
-    transition: all $animation_time linear ;
+    transition: all $animation_time linear;
     transform: rotateX(360deg);
     opacity: 1;
   }
-  @if($stage== 'hiding') { // done
+  @if ($stage== "hiding") {
+    // done
     transform-origin: center;
-    transition: all $animation_time linear ;
+    transition: all $animation_time linear;
     transform: rotateX(270deg);
     opacity: 0;
   }
 }
 
-
-
-
-@mixin title_trans($transition: 'enter-active') {
-  @if $transition == 'back_start' {
+@mixin title_trans($transition: "enter-active") {
+  @if $transition == "back_start" {
     transform: rotateX(-180deg);
     opacity: 0;
   }
-  @if $transition == 'down' {
+  @if $transition == "down" {
     transform: rotateX(-90deg);
     transition: all $animation_time linear;
     opacity: 0.5;
   }
-  @if $transition == 'front' {  
+  @if $transition == "front" {
     transition: all $animation_time linear;
     transform: rotateX(0deg);
     opacity: 1;
   }
 
-  @if $transition == 'front_start' {  
+  @if $transition == "front_start" {
     transform: rotateX(0deg);
     opacity: 1;
   }
-  @if $transition == 'up' {
+  @if $transition == "up" {
     transform: rotateX(90deg);
     transition: all $animation_time linear;
     opacity: 0.5;
   }
-  @if $transition == 'back' {
+  @if $transition == "back" {
     transition: all $animation_time linear;
     transform: rotateX(180deg);
     opacity: 0;
   }
-
-
 }
 
-@mixin board($isMobile: false, $stage: 'show') {
+@mixin board($isMobile: false, $stage: "show") {
   position: fixed;
   left: 0px;
   top: 75pt;
@@ -149,14 +144,13 @@ $animation_time: 200ms;
     content: "";
   }
 
-  @if ($stage == 'show') {
+  @if ($stage == "show") {
     width: calc(100vw - 250pt);
     min-width: 300pt;
-  }
-  @else if ($stage == 'hide') {    
+  } @else if ($stage == "hide") {
     width: 0px;
     min-width: 0px;
-  
+
     &::after {
       border: none;
     }
@@ -165,67 +159,82 @@ $animation_time: 200ms;
     }
   }
 
-
-
   @if $isMobile {
     top: 55pt;
   }
-}
-
-
-//======================== css structure ========================
-
-
-
-// both mobile and desktop
-.title {
-
-  &.stage0 {
-    @include title($stage: 'hide');
-  }
-  &.stage1 {
-    @include title($stage:'show');
-    &.hide {
-      @include title($stage:'hide');
-    }
-  }
-
-  .hide{
-    &.loading{@include titleSpan('hiding')}
-    &.done{@include titleSpan('hide')}
-  }
-  .show{
-    &.loading{@include titleSpan('showing')}
-    &.done{@include titleSpan('show')}
-  }
-}
-.board {
-
-
-  &.stage0 {
-    @include board($stage:'hide');
-  }
-  &.stage1 {
-    @include board($stage:'show');
-    &.hide {
-      @include board($stage:'hide');
-    }
-  }
-
 
   transition: all $animation_time ease-out;
 }
 
-// mobile only
-:global(.isMobile) {
-  :local {
-    .title {
-      @include title(true);
+//======================== css structure ========================
+
+// both mobile and desktop
+.title {
+  &.stage0 {
+    @include title($stage: "hide");
+  }
+  &.stage1 {
+    @include title($stage: "show");
+    &.hide {
+      @include title($stage: "hide");
     }
-    .board {
-      @include board(true);
+  }
+
+  .hide {
+    &.loading {
+      @include titleSpan("hiding");
+    }
+    &.done {
+      @include titleSpan("hide");
+    }
+  }
+  .show {
+    &.loading {
+      @include titleSpan("showing");
+    }
+    &.done {
+      @include titleSpan("show");
+    }
+  }
+}
+.board {
+  &.stage0 {
+    @include board($stage: "hide");
+  }
+  &.stage1 {
+    @include board($stage: "show");
+    &.hide {
+      @include board($stage: "hide");
     }
   }
 }
 
-//======================== animation stages ========================
+//======================== mobile ========================
+
+// mobile only (copied from above)
+:global(.isMobile) {
+  :local {
+    .title {
+      &.stage0 {
+        @include title(true, $stage: "hide");
+      }
+      &.stage1 {
+        @include title(true, $stage: "show");
+        &.hide {
+          @include title(true, $stage: "hide");
+        }
+      }
+    }
+    .board {
+      &.stage0 {
+        @include board(true, $stage: "hide");
+      }
+      &.stage1 {
+        @include board(true, $stage: "show");
+        &.hide {
+          @include board(true, $stage: "hide");
+        }
+      }
+    }
+  }
+}

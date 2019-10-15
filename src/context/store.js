@@ -1,9 +1,10 @@
 
 import React from 'react'
 import { withRouter } from 'react-router-dom';
+import { isMobileOnly } from 'react-device-detect';
 import _ from 'lodash';
 
-export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading: true, toPath: "", fromPath: "" });
+export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading: true, toPath: "", fromPath: "", scroll:{ anchor: 'top', y: 0, direction: 0 }, globalStage:'NONE'});
 
 export const NavLinks = [
   { title: "Home", to: "/" },
@@ -13,6 +14,10 @@ export const NavLinks = [
   { title: "Contact me", to: "/blog" },
   { title: "About Site", to: "/aboutwebsite" },
 ];
+export const isMobile = isMobileOnly;
+
+
+
 
 export default withRouter(({ children, location }) => {
 
@@ -28,17 +33,8 @@ export default withRouter(({ children, location }) => {
 
   const [c_loading, dispatchLoading] = React.useReducer(reducer, true);
   const [c_scroll, dispatchScroll] = React.useReducer(reducer, { anchor: 'top', y: 0, direction: 0 });
+  const [c_globalStage, dispatchGlobalStage] = React.useReducer(reducer, 'NONE');
 
-
-  // const store = {
-  //   fromIndex: { value: fromIndex},
-  //   toIndex: { value: toIndex },
-  //   loading: { value: loading, setValue: (value) => {
-  //     dispatch({payload: value})
-  //   } },
-  //   toPath: { value: toPath },
-  //   fromPath: { value: fromPath },
-  // }
 
   const store = {
     fromIndex: fromIndex,
@@ -50,6 +46,8 @@ export default withRouter(({ children, location }) => {
     get loading() { return c_loading },
     set scroll(value) { dispatchScroll({ type: 'scroll', payload: value }) },
     get scroll() { return c_scroll },
+    set globalStage(value) { dispatchGlobalStage({ type: 'globalStage', payload: value }) },
+    get globalStage() { return c_globalStage },
   };
 
   React.useEffect(() => {
@@ -80,6 +78,11 @@ const reducer = (state, action) => {
       if (y > state.y) return {anchor, y, direction: 1};
       if (y < state.y) return {anchor, y, direction: -1};
 
+      break;
+    //==============================================
+    case 'globalStage':
+      console.log("changing global stage");
+      return action.payload !== state ? action.payload : state;
       break;
     //==============================================
     default:

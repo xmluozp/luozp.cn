@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 // import { isMobileOnly } from 'react-device-detect';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import "core-js/stable";
@@ -57,9 +57,7 @@ function App(props) {
     // handle async of set state
     setNavLocks(prevState => {
       const currentLocks = prevState.slice();
-
       const path = e.getAttribute('data-path');
-
       if (!_.includes(currentLocks, path)) currentLocks.push(path);
       return currentLocks;
     });
@@ -96,10 +94,6 @@ function App(props) {
       contextPageStage.scroll = { anchor, y, direction: 0 };
     }, false);
 
-    window.addEventListener('resize', (e) => {
-      // console.log("client width", window.clientWidth);
-    }, false);
-
     return () => {
       //
     };
@@ -115,26 +109,20 @@ function App(props) {
     }
   }, [navLocks])
 
-  useEffect(() => {
-    // control lock of navs
-    console.log(contextPageStage.scroll);
-  }, [contextPageStage.scroll])
-
-
 
   return (
     <>
       <Title />
-      <Nav navLocks={navLocks} />
+      <Nav navLocks={navLocks}/>
       {/* section */}
 
       <section className={[
         "z_main",
         styles.main,
         contextPageStage.loading ? styles.main_lock : styles.main_unlock,
-      ].join(' ')} onScroll={(e) => { console.log(e); }}>
+      ].join(' ')}>
 
-        <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+        <AnimationRouteEntrance path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop}/>
         <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/techstack" exact component={TechStack} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/history" exact component={History} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
@@ -152,10 +140,7 @@ export default withRouter(App);
  * here is "key" attribute to trigger animation, if you want to use CSSTransition, there is an "in" attribute
  */
 const AnimationRoute = withRouter((props) => {
-
   const timeout = 1500;
-  // const contextPageStage = useContext(PageStage);
-  // const className = props.path + ' ' + (contextPageStage.toIndex * contextPageStage.fromIndex === 0 ? "animation_entrance" : "animation_inners");
 
   return (
     <TransitionGroup>
@@ -171,6 +156,31 @@ const AnimationRoute = withRouter((props) => {
       >
         <div className={props.path} data-path={props.path}>
           <Route {...props} />
+        </div>
+
+      </CSSTransition>
+    </TransitionGroup>
+  );
+})
+
+const AnimationRouteEntrance = withRouter((props) => {
+  const timeout = 1500;
+
+  console.log();
+  return (
+    <TransitionGroup>
+      <CSSTransition
+        classNames="slide-in"
+        timeout={timeout}
+        key={props.location.pathname === props.path}
+        onExit={props.onLock}
+        onExited={props.onUnlock}
+        onEnter={props.onLock}
+        onEntered={props.onUnlock}
+        appear={true}
+      >
+        <div className={props.path} data-path={props.path}>
+          <Route {...props} stage = 'show'/>
         </div>
 
       </CSSTransition>
