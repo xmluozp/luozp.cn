@@ -9,7 +9,7 @@ import stylesAvatar from './Avatar.module.scss';
 
 
 const INIT_AVATAR_SIZE = 512; // square picture
-const NAV_CLOSE_DELAY = 3000;
+// const NAV_CLOSE_DELAY = 3000;
 
 
 const CSS_ARRAY_STAGES = [    // currently has only 2 stages, but still prepare for all.
@@ -35,7 +35,7 @@ export default withRouter((props) => {
     const contextPageStage = useContext(PageStage);
     const { toIndex, fromIndex, loading } = contextPageStage;
 
-    const { location, navLocks, onRouteIn } = props;
+    const { location, navLocks } = props;
     const [navShow, setNavShow] = useState(true);                   // if display nav
     const [isEntering, setIsEntering] = useState(false);             // if playing enter animation
 
@@ -51,7 +51,7 @@ export default withRouter((props) => {
     //     NAV_CLOSE_DELAY,
     // );
 
-    const [onDelayEnter, onDelayEnterCancel] = useCancelableTimeout(
+    const [onDelayEnter] = useCancelableTimeout(
         () => {
             props.history.push('/aboutme');
             setIsEntering(false); // release enter delay

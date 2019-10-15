@@ -55,7 +55,7 @@ const TitleItem = (props) => {
     const { fromIndex, toIndex, loading } = contextPageStage;
 
     // if switch between these two, plus its loading
-    const isLoading = (fromIndex == index || toIndex == index) && loading ? styles.loading : styles.done;
+    const isLoading = (fromIndex === index || toIndex === index) && loading ? styles.loading : styles.done;
     const spanClassNames = (show ? styles.show : styles.hide) + " " + isLoading;
 
     return (<span className={spanClassNames}>{title}</span>)

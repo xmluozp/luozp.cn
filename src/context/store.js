@@ -2,9 +2,11 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
+// import useCancelableTimeout from "use-cancelable-timeout";
 import _ from 'lodash';
 
-export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading: true, toPath: "", fromPath: "", scroll:{ anchor: 'top', y: 0, direction: 0 }, globalStage:'NONE'});
+// export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading: true, toPath: "", fromPath: "", scroll:{ anchor: 'top', y: 0, direction: 0 }, globalStage:'NONE'});
+export const PageStage = React.createContext();
 
 export const NavLinks = [
   { title: "Home", to: "/" },
@@ -39,7 +41,6 @@ export default withRouter(({ children, location }) => {
   const store = {
     fromIndex: fromIndex,
     toIndex: toIndex,
-    loading: c_loading,
     toPath: toPath,
     fromPath: fromPath,
     set loading(value) { dispatchLoading({ type: 'loading', payload: value }) },
@@ -70,24 +71,23 @@ const reducer = (state, action) => {
     //==============================================
     case 'loading':
       return action.payload !== state ? action.payload : state;
-      break;
+      // break;
     //==============================================
     case 'scroll':
-      const {anchor, y, direction} = action.payload;
-      if (y ==  state.y) return state;
+      const {anchor, y} = action.payload;
+      if (y ===  state.y) return state;
       if (y > state.y) return {anchor, y, direction: 1};
       if (y < state.y) return {anchor, y, direction: -1};
 
       break;
     //==============================================
     case 'globalStage':
-      console.log("changing global stage");
       return action.payload !== state ? action.payload : state;
-      break;
+      // break;
     //==============================================
     default:
         return state;
-      break;
+      // break;
   }
 
 }

@@ -20,7 +20,6 @@ $animation_time: 200ms;
   height: 8rem;
   overflow: hidden;
   width: 100%;
-
   top: 22pt;
   color: $color_title;
   // text-shadow: -1px -1px 0px rgb(73, 83, 90);
@@ -132,6 +131,7 @@ $animation_time: 200ms;
     right: $bord_height * -1;
     display: inline-block;
     content: "";
+    transition: all $animation_time ease-out;
   }
 
   &::before {
@@ -142,6 +142,7 @@ $animation_time: 200ms;
     width: 100%;
     display: block;
     content: "";
+    transition: all $animation_time ease-out;
   }
 
   @if ($stage == "show") {
@@ -152,10 +153,12 @@ $animation_time: 200ms;
     min-width: 0px;
 
     &::after {
-      border: none;
+      transition: all $animation_time ease-out;
+      border-left-width:0px;
     }
     &::before {
-      border: none;
+      transition: all $animation_time ease-out;
+      border-left-width:0px;
     }
   }
 

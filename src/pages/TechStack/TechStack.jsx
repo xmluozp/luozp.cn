@@ -1,14 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import styles from './TechStack.module.scss';
-// import Parallax from 'parallax-js';
 
 export default (props) => {
 
     const sceneRef = useRef(null);
 
     useEffect(() => {
-        var scene = sceneRef.current;
-        // var parallaxInstance = new Parallax(scene);
 
         return () => {
             

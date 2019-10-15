@@ -4,22 +4,22 @@ import { PageStage } from '../../context/store';
 import styles from './Home.module.scss';
 import SimpleTyping from '../../components/SimpleTyping/simpleTypeing';
 
-export default withRouter((props) => {
+export default withRouter(() => {
 
   const contextPageStage = useContext(PageStage);
 
   const [isEnd, setIsEnd] = useState(false)
 
   const textArray = [
-    'Hey, Admin! Spawn me a Front-en', 
-    'Hey, Admin! Spawn me a Programmer. Front-end preferate. Also master back-end such as PHP, SQL.',
-    'Hey, Admin! Spawn me a Programmer. Front-end preferate. Also master back-end such as PHP, Sql, non-Sql...etc. Fast learner. Has a cat.',
-    'Hey, Admin! Spawn me a Programmer. Front-end preferate. Also master back-end such as PHP, Sql, non-Sql...etc. Fast learner.... Hurry!'
+    'Hey, Game Master! Spawn me a Front-en', 
+    'Hey, Game Master! Spawn me a Programmer. Front-end preferate. Also master back-e',
+    'Hey, Game Master! Spawn me a Programmer. Front-end preferate. Just hurry!'
   ];
   const textArray2 = [
     'WHAT THE HEL',
     'WHAT THE HECK ARE YOU DOING? FIND ME A PROGRAMMER',
   ];
+
 
   useEffect(() => {
     contextPageStage.globalStage = 'ENTRANCE';
@@ -28,10 +28,9 @@ export default withRouter((props) => {
     }
   }, [])
 
+
   useEffect(() => {
-    console.log("hide or show?", contextPageStage.globalStage);
     return () => {
-      
     }
   }, [contextPageStage.globalStage])
 
@@ -42,12 +41,14 @@ export default withRouter((props) => {
           isEnd?
           <div className={styles.respondPopup}>
             <SimpleTyping waitingTime={1000} textArray={['SURE~~~~']} callBack={()=>{}} isSendIcon = {false}/>
-            <span className={styles.small}>[click my face]</span>
+            <span className={styles.small}>[click my face to discover]</span>
           </div>: null
         }
 
         <div className={styles.popup}>
-            <SimpleTyping waitingTime={1000} textArray={textArray} callBack={()=>{ setIsEnd(true); }} isSendIcon = {true}/>
+            <SimpleTyping waitingTime={1000} textArray={textArray} callBack={()=>{ 
+              setTimeout(()=>{setIsEnd(true); }, 2000)
+              }} isSendIcon = {true}/>
           </div>
         
 

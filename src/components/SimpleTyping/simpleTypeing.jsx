@@ -1,7 +1,7 @@
 //***** Modified from codepen.io's shared code, author: Gregory Schier
 import React, { useEffect, useRef, useState } from 'react';
 import { Send } from '@material-ui/icons';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 export default ({ className, waitingTime, textArray, isSendIcon ,callBack }) => {
 
@@ -25,10 +25,12 @@ export default ({ className, waitingTime, textArray, isSendIcon ,callBack }) => 
       txtRotate.clearTimer();
      };
   }, [])
-
-
   return <>
-      <span className={className} ref={simpleTyping} style={iconCursor}></span>{isEnd && isSendIcon? <Send style={{color: 'rgb(97, 195, 198)', fontSize: '13pt', verticalAlign: 'middle', marginLeft: '8pt'}}/> : null}
+      <span className={className} ref={simpleTyping} style={iconCursor}></span>{isEnd && isSendIcon? <span style={{color: 'rgb(173, 178, 179)', fontStyle: 'italic' ,fontSize: '.8rem', marginLeft: '8pt'}}>
+           [sent
+          <Send style={{color: 'rgb(173, 178, 179)', fontSize: '13pt', verticalAlign: 'middle', marginLeft: '2pt'}}/>]
+        </span>
+        : null}
     </>
 }
 
@@ -54,7 +56,7 @@ class TxtRotate {
   }
   calculateRemain(txtOld, txtNew) {
     let returnValue = '';
-    for (let index = 0; index < txtOld.length && txtOld[index] == txtNew[index]; index++) {
+    for (let index = 0; index < txtOld.length && txtOld[index] === txtNew[index]; index++) {
       returnValue += txtOld[index];
     }
     return returnValue.length;
