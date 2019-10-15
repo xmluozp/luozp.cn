@@ -67,7 +67,7 @@ class TxtRotate {
     var i = this.loopNum % this.textArray.length;
     var fullTxt = this.textArray[i];
     var that = this;
-    var delta = 200 - Math.random() * 100;
+    var delta = 150 - Math.random() * 100;
 
     // 后面借此判断是否继续打字
     // const isTyping = this.isLoop || ;
@@ -93,7 +93,7 @@ class TxtRotate {
         }
       } else if (this.isDeleting && (this.txt.length <= nextTxtLength)) { // 文字删光了，开始生成新的文字
         this.isDeleting = false;
-        delta = 500;
+        delta = 250;
         this.loopNum++;
       }
 

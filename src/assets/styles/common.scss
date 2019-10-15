@@ -107,6 +107,24 @@
     }
   }
 
+  // ------------------------- bottom left down
+  @if ($direction == "bld") {
+    border-right: 1px solid $border;
+    border-top: 1px solid $border;
+    border-radius: $radius $radius $radius 0px;
+
+    &:before {
+      border-top: $tailheight solid $background;
+      border-left: $tailheight solid $background;
+      content: "";
+      left: 0px;
+      bottom: $tailheight * -2;
+    }
+    &:after {
+      top: $radius - $thick;
+      height: calc(100% - #{2 * $radius + $angle - $thick + $tailheight * 2}); // need to check how many radius
+    }
+  }
   // ------------------------- bottom right
   @if ($direction == "brr") {
     border-left: 1px solid $border;

@@ -10,10 +10,19 @@
         .popup{
             @include popup($direction: "bll");
             position: fixed;
-            left: calc(50% - 300px);
-            max-width: 500px;
+            left: calc(50% - 250px);
+            max-width: 600px;
             bottom: 3rem;
-            min-height: 4rem;
+            min-height: 3rem;
+        }
+        .userFace{
+            position: fixed;
+            left: calc(50% - 350px);
+            bottom: 30px;
+            height: 72px;
+            width: 72px;
+            background-image: url('/images/icons/userFace.png');
+            z-index: 200;   
         }
         .respondPopup{
             color: #d8d3cb;
@@ -50,19 +59,29 @@
 :global(.isMobile) {
     :local{
         .popup{
-            @include popup($isMobile:true, $direction: "bll");
+            @include popup($isMobile:true, $direction: "bld");
             position: fixed;
-            left: 30px;
-            top: calc(50% + 128px);
-            width: calc(100vw - 50pt);
+            left: 40px;
+            bottom: 80px;
+            width: calc(100vw - 85px);
         }
+        .userFace{
+            position: fixed;
+            left: -20px;
+            bottom: 30px;
+            height: 72px;
+            width: 72px;
+            background-image: url('/images/icons/userFace.png');
+            z-index: 200;   
+        }
+
         .respondPopup{
             color: #d8d3cb;
             position:fixed;
             left: 10vw;
             top: calc(25% - 128px);
             width: 80vw;
-            font-size: 2rem;
+            font-size: 16vw;
             text-align: center;
             
             .small{
@@ -117,8 +136,8 @@
     border-top: 1px solid #474d4f;
     color: #aaa6a2;
     font-size: .8rem;
-    line-height: 1rem;
-    height: 1rem;
+    line-height: 20px;
+    height: 20px;
     padding-top:3px;
     width: 100%;
     text-align: center;

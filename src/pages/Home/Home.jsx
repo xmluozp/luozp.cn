@@ -12,8 +12,8 @@ export default withRouter(() => {
 
   const textArray = [
     'Hey, Game Master! Spawn me a Front-en', 
-    'Hey, Game Master! Spawn me a Programmer. Front-end preferate. Also master back-e',
-    'Hey, Game Master! Spawn me a Programmer. Front-end preferate. Just hurry!'
+    'Hey, Game Master! Spawn me a experienced Programmer. Front-end preferate. Also master back-e',
+    'Hey, Game Master! Spawn me a experienced Programmer. Just hurry!'
   ];
   const textArray2 = [
     'WHAT THE HEL',
@@ -45,7 +45,9 @@ export default withRouter(() => {
           </div>: null
         }
 
+        <div className={styles.userFace}></div>
         <div className={styles.popup}>
+            
             <SimpleTyping waitingTime={1000} textArray={textArray} callBack={()=>{ 
               setTimeout(()=>{setIsEnd(true); }, 2000)
               }} isSendIcon = {true}/>
