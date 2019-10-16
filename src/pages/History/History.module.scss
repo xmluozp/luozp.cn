@@ -17,17 +17,7 @@
   height: 10px;
   width: 100%;
 }
-.heading {
-  background: #ccc;
-  height: 50px;
-  line-height: 50px;
-  margin-top: 10px;
-  font-size: 30px;
-  padding-left: 10px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0px;
-}
+
 //-----------------styles
 .category > .title {
   color: #717377;
@@ -78,11 +68,12 @@
 
   // column left
   .title {
+    transition: all 300ms linear;
     padding-top: 5.5rem;
     width: 15rem;
     font-size: 1.5rem;
     padding-left: 1.5rem;
-    .stiky {
+    .sticky {
       position: -webkit-sticky;
       position: sticky;
       top: 50px;
@@ -144,7 +135,6 @@
     width: calc(100vw - 50px);
   }
 }
-
 @media only screen and (max-width: 1260px) {
   .box {
     padding-left: 25px;
@@ -157,10 +147,16 @@
       width: 100%;
       font-size: 2rem;
       padding-left: 1.5rem;
-      border-bottom: 1px solid $color_border;
+      border-bottom: 1px solid $color_bggrey;
       background-color: $color_border;
       line-height: 4rem;
-      .stiky {
+
+      // change the sticky to container. otherwise will be bring out
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+      z-index: 1; // prevent covered
+      .sticky {
         position: unset;
         padding-bottom: unset;
       }
@@ -172,7 +168,15 @@
       .item {
         padding-bottom: 3rem;
         &::before {
-          left: calc(-1.5rem - 3px);
+          left: calc(-1.5rem);
+        }
+      }
+      .content {
+        .content_l {
+          padding-left: 0rem;
+          li {
+            list-style: square outside;
+          }
         }
       }
     }
@@ -241,7 +245,7 @@
           .content_l {
             font-size: 0.9rem;
             color: #989898;
-            padding-left: 1rem;
+            padding-left: 0rem;
             li {
               list-style: square outside;
               line-height: 1.5rem;

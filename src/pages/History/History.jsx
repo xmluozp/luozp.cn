@@ -48,11 +48,12 @@ export default (props) => {
       {/* wrapper of inner box */}
       <div className={styles.box}>
 
+
         {/* wrapper of category: education*/}
         <div className={styles.category}>
+        
           <div className={styles.title}>
-            <div className={styles.stiky}> WORK </div>
-
+            <div className={styles.sticky}> WORK </div>
           </div>
           {/* wrapper of experiences */}
           <section className={styles.itemList}>
