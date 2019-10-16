@@ -6,9 +6,10 @@
       "location": "Winnipeg",
       "org": "Red River College",
       "duty": [    
-          "PHP on Xampp, Ruby on Rails, C#.NET, Linux, Windows Server Admin, Web tech stacks, Project management",
           "GPA: 4.20/4.50 for 2 years Diploma",
-          "One Great-West Life Award. Honour roll status every single term."
+          "One Great-West Life Award. Honour roll status every single term.",
+          "PHP, Xampp, Ruby on Rails, HTML5 + CSS3 + JS, C#, .NET, SQL databases, Data structure",
+          "Linux/Windows Server Admin, Kali for web security, Networking, Project management"
        ]
     },
      {
@@ -17,8 +18,8 @@
       "location": "China",
       "org": "Beijing Aptech",
       "duty": [
-        "Java for struts, C, C++, C#, VB",
-        "2 years cerfiticate"
+        "2 years cerfiticate",
+        "Java, struts, C, C++, C#, .NET, VB"
        ]
     },
     {

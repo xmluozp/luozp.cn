@@ -11,6 +11,12 @@
 .box {
   padding-top: 150px;
 }
+.theEnd{
+  background: linear-gradient(to bottom, $color_bgmiddle, $color_bgdeepdark);
+  display:block;
+  height: 10px;
+  width: 100%;
+}
 .heading {
   background: #ccc;
   height: 50px;
@@ -26,10 +32,9 @@
 .category > .title {
   color: #717377;
 }
-
 .itemList {
   padding-top: 5rem;
-  border-left: 1px solid #474b58;
+  border-left: 1px solid $color_border;
   .itemTitle {
     .position {
       font-size: 2.3rem;
@@ -41,13 +46,13 @@
       margin-top: 1.2rem;
       color: #7b8394;
       font-size: 1rem;
-      border-top: 1px solid #474b58;
+      border-top: 1px solid $color_border;
       line-height: 1.5rem;
     }
     .time {
       margin-top: 1.2rem;
       color: #ffffff;
-      border-top: 1px solid #474b58;
+      border-top: 1px solid $color_border;
       line-height: 1.5rem;
     }
   }
@@ -77,7 +82,7 @@
     width: 15rem;
     font-size: 1.5rem;
     padding-left: 1.5rem;
-    .stiky{ 
+    .stiky {
       position: -webkit-sticky;
       position: sticky;
       top: 50px;
@@ -88,11 +93,10 @@
     display: block;
     width: 100%;
     padding-left: 2rem;
-    min-height: 80vh;
     .item {
       position: relative;
       padding-bottom: 7rem;
-      &::before{
+      &::before {
         position: absolute;
         display: block;
         width: 6px;
@@ -135,34 +139,116 @@
   }
 }
 
-:global {
-  .test3d {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    top: 30px;
-    left: 50px;
-    box-shadow: 0px 0px 10px 0px #000000;
-    background-color: coral;
+@media only screen and (max-width: 1410px) {
+  .category {
+    width: calc(100vw - 50px);
+  }
+}
+
+@media only screen and (max-width: 1260px) {
+  .box {
+    padding-left: 25px;
+  }
+  .category {
     display: block;
-    animation-name: bounce;
-    animation-duration: 4s;
-  }
+    width: calc(100% - 50px);
+    .title {
+      padding-top: unset;
+      width: 100%;
+      font-size: 2rem;
+      padding-left: 1.5rem;
+      border-bottom: 1px solid $color_border;
+      background-color: $color_border;
+      line-height: 4rem;
+      .stiky {
+        position: unset;
+        padding-bottom: unset;
+      }
+    }
 
-  .testanimation-enter {
-    // animation-name: animation_tv_fade;
-    // animation-duration: 4s;
-  }
+    .itemList {
+      padding-top: 2.5rem;
+      padding-left: 1.5rem;
+      .item {
+        padding-bottom: 3rem;
+        &::before {
+          left: calc(-1.5rem - 3px);
+        }
+      }
+    }
 
-  .testanimation-enter-active {
-    // animation-name: animation_tv_fade;
-    // animation-duration: 4s;
+    .itemTitle {
+      .position {
+        font-size: 2.1rem;
+        padding-right: 1rem;
+        height: 4rem;
+      }
+      .company {
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+      }
+      .time {
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+      }
+    }
   }
+}
 
-  .testanimation-enter-done {
-    transition: all 1s ease-in-out;
-    // animation-name: animation_tv_fade;
-    // animation-duration: 4s;
-    box-shadow: 0px 0px 50px 0px #000000;
+@media only screen and (max-width: 882px) {
+  .box {
+    padding-left: 0px;
+    padding-top: 100px;
+  }
+  .category {
+    width: calc(100% - 30px);
+    .itemList {
+      padding-left: 1rem;
+      .item {
+        &::before {
+          width: 2px;
+          top: 5px;
+          height: 2.5rem;
+          left: calc(-1rem);
+        }
+        .itemTitle {
+          display: block;
+          width: 100%;
+          .position {
+            font-size: 1.5rem;
+            display: block;
+            height: auto;
+            line-height: 2rem;
+            width: auto;
+            border-bottom: 1px solid $color_border;
+          }
+          .company {
+            margin-top: 0px;
+            display: block;
+            border-top: none;
+          }
+          .time {
+            margin-top: 0px;
+            display: block;
+            border-top: none;
+            text-align: left;
+            border-bottom: 1px solid $color_border;
+          }
+        }
+
+        .content {
+          padding-top: 0.5rem;
+          .content_l {
+            font-size: 0.9rem;
+            color: #989898;
+            padding-left: 1rem;
+            li {
+              list-style: square outside;
+              line-height: 1.5rem;
+            }
+          }
+        }
+      }
+    }
   }
 }

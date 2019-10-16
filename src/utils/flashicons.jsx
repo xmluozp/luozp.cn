@@ -50,7 +50,7 @@ function initVaribles() {
     // isScroll = false;
     imageURLArr = [
         "images/icons/icons8-anonymous-mask-250.png",
-        "images/icons/icons8-frankensteins-monster-96.png",
+        "images/icons/icons8-frankensteins-monster-962.png",
         "images/icons/hammer.png",
         "images/icons/light-bulb.png",
         "images/icons/contact.png",

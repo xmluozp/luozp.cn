@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './History.module.scss';
 // import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 import axios from 'axios';
+import LazyLoad,  { forceCheck }  from 'react-lazyload';
 import LazyLoadBox from '../../components/LazyLoadBox/LazyLoadBox';
 
 
@@ -50,7 +51,7 @@ export default (props) => {
         {/* wrapper of category: education*/}
         <div className={styles.category}>
           <div className={styles.title}>
-            <div className={styles.stiky}>EXPERIENCE</div>
+            <div className={styles.stiky}> WORK </div>
 
           </div>
           {/* wrapper of experiences */}
@@ -80,9 +81,9 @@ export default (props) => {
                 </LazyLoadBox>
               );
             })}
-          </section>
+          </section>         
         </div>
-
+        <div className={styles.theEnd}></div>
       </div>
     </div>
   );
