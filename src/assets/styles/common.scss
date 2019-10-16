@@ -79,7 +79,7 @@
       border-right: $tailheight solid $background;
       border-top: $tailheight solid $background;
       content: "";
-      left: $tailheight * -2;
+      left: ($tailheight * -2 + 1);
       top: -1px;
     }
     &:after {
@@ -143,6 +143,25 @@
       height: calc(100% - #{2 * $radius + $angle - $thick + $tailheight * 2}); // need to check how many radius
     }
   }
+  // ------------------------- top right
+  @if ($direction == "trr") {
+    border-left: 1px solid $border;
+    border-top: 1px solid $border;
+    border-radius: $radius 0px $radius $radius;
+
+    &:before {
+      border-left: $tailheight solid $background;
+      border-top: $tailheight solid $background;
+      content: "";
+      right: $tailheight * -2;
+      top: -1px;
+    }
+    &:after {
+      top: $radius - $thick;
+      height: calc(100% - #{2 * $radius + $angle - $thick + $tailheight * 2}); // need to check how many radius
+    }
+  }
+
 
   @if ($isMobile) {
     padding: .7rem;

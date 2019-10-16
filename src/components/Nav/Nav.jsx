@@ -148,8 +148,8 @@ export default withRouter((props) => {
             }
         }
 
-        // if mobile, hide nav after switch. (ignore root)
-        if(isMobileOnly && !loading && toIndex !== 0) {
+        // hide nav after switch if: Mobile + Not in root + Ending animation + not first load
+        if(isMobileOnly && !loading && toIndex !== 0 && toIndex !== fromIndex) {
             toggleNav(false);
         }
 

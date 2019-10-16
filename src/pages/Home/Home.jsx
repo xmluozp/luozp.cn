@@ -11,9 +11,9 @@ export default withRouter(() => {
   const [isEnd, setIsEnd] = useState(false)
 
   const textArray = [
-    'Hey, Game Master! Spawn me a Front-en', 
-    'Hey, Game Master! Spawn me a experienced Programmer. Front-end preferate. Also master back-e',
-    'Hey, Game Master! Spawn me a experienced Programmer. Just hurry!'
+    'Hey, System Admin! Spawn me a Front-en', 
+    'Hey, System Admin! Spawn me an experienced Programmer. Front-end preferate. Also master back-e',
+    'Hey, System Admin! Spawn me an experienced Programmer. Just hurry!'
   ];
   const textArray2 = [
     'WHAT THE HEL',
@@ -49,7 +49,7 @@ export default withRouter(() => {
         <div className={styles.userFace}></div>
         <div className={styles.popup}>
             <SimpleTyping waitingTime={1000} textArray={textArray} callBack={()=>{ 
-              setTimeout(()=>{setIsEnd(true); }, 2000)
+              setTimeout(()=>{setIsEnd(true); }, 1800)
               }} isSendIcon = {true}/>
           </div>
         

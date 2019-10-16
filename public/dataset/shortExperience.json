@@ -34,31 +34,6 @@
          "Built ACE User Authentication System. It's a scaffold which will be re-used by future CO-OP students entering into the Red River College industry project."
        ]
     },
-     {
-      "position": "Front-End",
-      "time": "2006 - 2015",
-      "location": "China",
-      "org": "Tintop Technology",
-      "duty": [       
-        "HTML + CSS, Javascript(ExtJs), JSP, Flash",
-        "Collaborate with variety of back-end technologies. Build plug-ins, prototypes, patch existing project.",
-        "Delivered Information Acquisition and Management System of China Ministry of Public Security.",
-        "Delivered Frontier Inspection System of Haicang District Customhouse Administration Department.",
-        "Delivered Equipment Management System of Xiamen City Railway Power Supply Division."
-      ]
-
-    },
-     {
-      "position": "Project Manager",
-      "time": "2009 - 2010",
-      "location": "China",
-      "org": "Tintop Technology",
-      "duty": [    
-          "HTML+CSS, Javascript, Ext Js, Ms Sql Server.",
-          "Delivered Senior Citizens College Management System 1.0.",
-          "Using ID Card scanner to simplify register process for Seniors enrolling to Senior Citizens Colleges."
-        ]
-    },
     {
       "position": "Customer Service Manager",
       "time": "2013 - 2015",
@@ -70,6 +45,31 @@
         "Maintain Freeget.com e-commerce marketing platform."
        ]
     },
+    {
+      "position": "Project Manager",
+      "time": "2009 - 2010",
+      "location": "China",
+      "org": "Tintop Technology",
+      "duty": [    
+          "HTML+CSS, Javascript, Ext Js, Ms Sql Server.",
+          "Delivered Senior Citizens College Management System 1.0.",
+          "Using ID Card scanner to simplify register process for Seniors enrolling to Senior Citizens Colleges."
+        ]
+    },
+    {
+     "position": "Front-End",
+     "time": "2006 - 2015",
+     "location": "China",
+     "org": "Tintop Technology",
+     "duty": [       
+       "HTML + CSS, Javascript(ExtJs), JSP, Flash",
+       "Collaborate with variety of back-end technologies. Build plug-ins, prototypes, patch existing project.",
+       "Delivered Information Acquisition and Management System of China Ministry of Public Security.",
+       "Delivered Frontier Inspection System of Haicang District Customhouse Administration Department.",
+       "Delivered Equipment Management System of Xiamen City Railway Power Supply Division."
+     ]
+
+   },
     {
       "position": "Web Developer",
       "time": "2006 - 2015",

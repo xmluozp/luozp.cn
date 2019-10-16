@@ -1,14 +1,37 @@
-@import '../../assets/styles/colors.scss';
-@import '../../assets/styles/common.scss';
-.page_container{
-    background-color:$color_bgdefault;
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
+.conatiner{
+  // background-image: url('/images/aboutme_guy.png');
+  // background-size: auto;
+  // background-position: center bottom;
+  // background-repeat: no-repeat;
 }
-.pageInnerContainer{
-    padding: 10rem;
+.pageInnerContainer {}
+
+
+:global(.isMobile) {
+  :local {
+    .pageInnerContainer {
+      padding-top: 7rem;
+    }
+    .popup {
+      @include popup(true);
+      left: 1.5rem;
+      width: calc(100vw - 6rem);
+    }
+  }
+}
+:global(.isDesktop) {
+  :local {
+    .pageInnerContainer {
+      padding-top: 10rem;
+    }
+    .popup {
+      @include popup($direction:'bld');
+      left: 10rem;
+      width: calc(100vw - 30rem);
+    }
+  }
 }
 
-.popup {
-    @include popup;
-    left: 5rem;
-    width: 35rem;
-}
+

@@ -3,17 +3,29 @@ import styles from './AboutWebsite.module.scss';
 
 export default (props) => {
     return (
-        <div className={`${styles.testColor} page_container`}>
-            about website
+        // don't set padding or margin here. this is a styleing box
+        <div
+            className={[
+                "page_container",
+                styles.conatiner
+            ].join(' ')}>
 
 
-            <p>For this personal website, I integrated all things relativly new to me, for practice.</p>
-            <p>React CRA, Functional components + Hooks, css modules, scss, WebGL, WSL Ubuntu, npm, Docker, Heroku...</p>
-            <p>For some technologies, I only did "learning by doing" in my former projects to catch the deadline; for some technologies I just finished online courses or school projects so I need more practice.</p>      
-            <p>Yeah, my WebGL effect might superficial and time wasted, but whatever, office time is for routine tasks, personal time is for fun. I had fun.</p>
-            <p>(BTW, this shining effect is from Kenji Saito's Codepen)</p>
+            <div className={styles.pageInnerContainer}>
+                <div className={styles.popup}>
+                    <p>"Catching new tech is painful." Years ago, I used to believe.</p>
+                    <p>Whenever a new tech came out, I thought: "Wat? My stuff is becoming garbage again?". </p>
+                    <p>Now I've changed my mind.</p>
+                    <p>New programming tech is usually an elegant and better version of old ones. That's why people want to replace what they've already mastered.</p>
 
+                    <p>For this personal website, I integrated all things fresh to me, for practice.</p>
+                    <p>Functional components + Hooks in React CRA, css modules + scss, animation Routes , a WebGL effect, WSL Ubuntu in VS Code, Git + Heroku auto deployment.</p>
+                    <p>For some technologies, I only did "learning by doing" in my former projects to catch the deadline; for some technologies I just finished online courses or school projects so I need more practice.</p>
+                    <p>Yeah, my WebGL effect might computational resources wasted, but whatever, office time is for routine tasks, personal time is for fun. I had fun.</p>
+                    <p>(BTW, this shining effect is from Kenji Saito's Codepen)</p>
 
+                </div>
+            </div>
         </div>
     );
 }

@@ -97,6 +97,8 @@ function App(props) {
     //   contextPageStage.scroll = { anchor, y, direction: 0 };
     // }, false);
 
+    // window["testValue"]();
+    console.log(window.testValue);
     return () => {
       //
     };
