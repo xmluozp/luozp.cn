@@ -1,11 +1,120 @@
-@import '../../assets/styles/colors.scss';
-@import '../../assets/styles/common.scss';
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
 
-.popup{
-  @include popup;
+.conatiner {
+  // background-color: #3b435f;
 }
 
+.popup {
+  @include popup;
+}
+.box {
+  padding-top: 150px;
+}
+.heading {
+  background: #ccc;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 10px;
+  font-size: 30px;
+  padding-left: 10px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+}
+//-----------------styles
+.category > .title {
+  padding-top: 5rem;
+  color: #717377;
+}
 
+.itemList {
+  padding-top: 5rem;
+  border-left: 1px solid #474b58;
+  .itemTitle {
+    .position {
+      font-size: 2.3rem;
+      color: #dadac3;
+      padding-right: 2rem;
+      height: 5rem;
+    }
+    .company {
+      margin-top: 1.2rem;
+      color: #7b8394;
+      font-size: 1rem;
+      border-top: 1px solid #474b58;
+      line-height: 1.5rem;
+    }
+    .time {
+      margin-top: 1.2rem;
+      color: #ffffff;
+      border-top: 1px solid #474b58;
+      line-height: 1.5rem;
+    }
+  }
+
+  .content {
+    .content_l {
+      font-size: 1.1rem;
+      color: #989898;
+      li {
+        list-style: square inside;
+        line-height: 2rem;
+      }
+    }
+  }
+}
+
+//-----------------layout: flex structures
+.category {
+  display: flex;
+  flex-direction: row;
+  width: calc(100vw - 256px);
+
+  // column left
+  .title {
+    width: 200px;
+    font-size: 24pt;
+    padding-left: 10pt;
+  }
+  .itemList {
+    display: block;
+    width: 100%;
+    padding-left: 2rem;
+    min-height: 80vh;
+    .item {
+      .itemTitle {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .position {
+          width: auto;
+          text-align: left;
+        }
+        .company {
+          flex: 1;
+          text-align: left;
+        }
+        .time {
+          display: block;
+          text-align: right;
+        }
+      }
+      .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .content_l {
+          width: auto;
+        }
+        .content_r {
+          width: auto;
+        }
+      }
+    }
+  }
+}
 
 :global {
   .test3d {
@@ -38,4 +147,3 @@
     box-shadow: 0px 0px 50px 0px #000000;
   }
 }
-

@@ -1,0 +1,33 @@
+.lazyLoad-appear{
+    opacity: 0;
+    transform: scaleY(1.5) translateY( -5px);
+}
+.lazyLoad-appear-active{
+    opacity: 0;
+    animation-name: loadIn;
+    animation-delay: 500ms;
+    animation-duration: 300ms;
+}
+
+@keyframes loadIn {
+    0%{
+        transform: scaleY(1.5) translateY( -50px);
+        animation-timing-function:ease-out;
+        opacity: 0;
+    }
+    // 20%{
+    //     transform: scaleY(0.8);
+    //     animation-timing-function: ease-out-in;
+    //     opacity: 1;
+    // }
+    // 60%{
+    //     transform: scaleY(1.1);
+    //     animation-timing-function: ease-out;
+    //     opacity: 1;
+    // }
+    100%{
+        transform: scaleY(1) translateY( 0);
+        opacity: 1;
+    }
+
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { PageStage, NavLinks } from '../../context/store';
 // import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -9,7 +9,8 @@ import styles from './Title.module.scss';
 export default (props) => {
 
     const contextPageStage = useContext(PageStage);
-    const { toIndex, scroll } = contextPageStage;
+    const { toIndex } = contextPageStage;
+    const [scrollStats, setScrollStats] = useState('TOP')
 
     // get current stage by current path
     const cssStage = ([
@@ -21,7 +22,34 @@ export default (props) => {
         styles.stage1
     ])[toIndex];
 
-    const cssIsShow = scroll.y > 50 ? styles.hide: styles.show;
+    const cssIsShow = scrollStats !== 'TOP' ? styles.hide: styles.show;
+
+
+
+
+    useEffect(() => {
+
+        //================= scroll listener
+        window.addEventListener('scroll', _scrollListener, false);
+    
+        return () => {
+            window.removeEventListener("scroll", _scrollListener, false); 
+        };
+      }, [])
+
+
+
+
+    //--------------------
+    const _scrollListener = (e) => {
+        let y = window.pageYOffset || document.documentElement.scrollTop;
+
+        // remember, here can't get newest data
+        if (y === 0) { setScrollStats('TOP') }
+        else if (window.innerHeight + y >= document.body.offsetHeight) { setScrollStats('BOTTOM') }
+        else { setScrollStats('CENTER') }
+    }
+
 
     return (
         <>
@@ -61,3 +89,6 @@ const TitleItem = (props) => {
     return (<span className={spanClassNames}>{title}</span>)
 
 }
+
+
+

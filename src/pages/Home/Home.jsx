@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { PageStage } from '../../context/store';
 import styles from './Home.module.scss';
-import SimpleTyping from '../../components/SimpleTyping/simpleTypeing';
+import SimpleTyping from '../../components/SimpleTyping/SimpleTypeing';
 
 export default withRouter(() => {
 
@@ -45,9 +45,9 @@ export default withRouter(() => {
           </div>: null
         }
 
+        {/* a funny face bottom left */}
         <div className={styles.userFace}></div>
         <div className={styles.popup}>
-            
             <SimpleTyping waitingTime={1000} textArray={textArray} callBack={()=>{ 
               setTimeout(()=>{setIsEnd(true); }, 2000)
               }} isSendIcon = {true}/>

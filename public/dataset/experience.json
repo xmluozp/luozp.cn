@@ -1,0 +1,89 @@
+{
+    "1": {
+      "ttl": "Front-End Developer",
+      "time": "2018 – Present",
+      "location": "Winnipeg, MB",
+      "position": "Part-Time Contractor",
+      "project": "Higetup.com",
+      "org": "HiGetUp Entertainment Service LTD.",
+      "techStack": "JQuery, Bootstrap, HTML, CSS, SVN, Visual Studio Code",
+      "Methodology": "Waterfall",
+      "desc": "A mobile website which provides tourism-related services."
+    },
+    "2": {
+      "ttl": "Full-Stack Developer",
+      "time": "Sep 2018 – Dec 2018",
+      "location": "Winnipeg, MB",
+      "position": "Full-Time Contractor",
+      "project": "MybabyManitoba.ca",
+      "org": "School of Health Science, Red River College",
+      "techStack": "Meteor.Js, React, Bootstrap, MongoDb, Git, Es-Lint, Visual Studio Code",
+      "Methodology": "Agile",
+      "desc": "A website for subscribing SMS service of parenting knowledge."
+    },
+    "3": {
+      "ttl": "Full-Stack Developer",
+      "time": "Jan 2018 – April 2018",
+      "location": "Winnipeg, MB",
+      "position": "Part-Time Contractor",
+      "project": "ACE CI User authentication system",
+      "org": "solo project",
+      "techStack": "PHP with Codeigniter, JQuery, Bootstrap, MySql, Git, PHP Storm",
+      "Methodology": "Self management",
+      "desc": "An project scaffold with user authentication will be re-used by future CO-OP students entering into the Red River College industry project."
+    },
+    "4": {
+      "ttl": "Full-Stack Developer",
+      "time": "Jan 2018 – April 2018",
+      "location": "Winnipeg, MB",
+      "position": "CO-OP student",
+      "project": "Random Transport Dispatch",
+      "org": "ACE Project Space, Red River College",
+      "techStack": "PHP with Codeigniter, JQuery, Bootstrap, Codeigniter, MySql, PHP Storm",
+      "Methodology": "Agile",
+      "desc": "A web application to dispatch vehicle shipping orders and routes to drivers."
+    },
+    "5": {
+      "ttl": "Front-End Developer, Co-Founder",
+      "time": "Dec 2006 - Nov 2015",
+      "location": "Xiamen, China",
+      "position": "Permanent",
+      "project": "Outsourced projects from Chinese government including: Fujian province highway toll system, Xiamen city prison management system, Information Acquisition and Management System of China Ministry of Public Security, Frontier Inspection System of Haicang District Customhouse Administration Department, Equipment Management System of Xiamen City Railway Power Supply Division",
+      "org": "Xiamen Tintop Technology Co., Ltd.",
+      "techStack": "HTML + CSS, Javascript(ExtJs), JSP, Flash",
+      "Methodology": "Waterfall",
+      "desc": "Collaborate with variety of back-end technologies. Build plug-ins, prototypes, patch existing project."
+    },
+    "6": {
+      "ttl": "Project Manager/ Front-End Developer",
+      "time": "2009 - 2010",
+      "location": "Xiamen, China",
+      "position": "Permanent",
+      "project": "Senior Citizens College Management System 1.0",
+      "org": "Xiamen Tintop Technology Co., Ltd.",
+      "techStack": "HTML+CSS, Javascript, Ext Js, Ms Sql Server",
+      "Methodology": "WaterFall",
+      "desc": "The original idea is using ID Card scanner to simplify register process for Seniors enrolling to Senior Citizens Colleges. It was a two-developers-group project. Then the requirement creeps. It became a whole management system. Currently the remake version 3.0 has been used by over 300 Senior Citizens College all over the China"
+    },
+    "7": {
+      "ttl": "Customer Service Manager",
+      "time": "2013 - 2015",
+      "location": "Xiamen, China",
+     "position": "Permanent",
+      "project": "Freeget.com e-commerce marketing platform",
+      "org": "Xiamen Tintop Technology Co., Ltd.",
+      "techStack": "VMWare ESXI, general documentation tools such as MS Word or MS Excel",
+      "desc": "An online store advertising plateform."
+    },
+    "8": {
+      "ttl": "Full-Stack Developer",
+      "time": "Dec 2006 - Nov 2015",
+      "location": "Xiamen, China",
+      "position": "Permanent",
+      "project": "Over 50 websites for small businesses",
+      "org": "Xiamen Tintop Technology Co., Ltd.",
+      "techStack": "ASP+Access/MySQL, HTML+CSS, Javascript, Flash",
+      "Methodology": "Self management",
+      "desc": "That is a long length of years I work under deadlines everyday. Most of website I have to finish them in 1 week including everything. From writing agreements to dunning."
+    }
+  }

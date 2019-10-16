@@ -34,7 +34,7 @@ export default withRouter(({ children, location }) => {
   const [fromPath, setTromPath] = React.useState(location.pathname);
 
   const [c_loading, dispatchLoading] = React.useReducer(reducer, true);
-  const [c_scroll, dispatchScroll] = React.useReducer(reducer, { anchor: 'top', y: 0, direction: 0 });
+  const [c_scroll, dispatchScroll] = React.useReducer(reducer, { anchor: 'TOP', y: 0, direction: 0 });
   const [c_globalStage, dispatchGlobalStage] = React.useReducer(reducer, 'NONE');
 
 
@@ -74,10 +74,12 @@ const reducer = (state, action) => {
       // break;
     //==============================================
     case 'scroll':
-      const {anchor, y} = action.payload;
-      if (y ===  state.y) return state;
-      if (y > state.y) return {anchor, y, direction: 1};
-      if (y < state.y) return {anchor, y, direction: -1};
+      const {anchor} = action.payload;
+      console.log("store",action.payload);
+      return anchor !==  state.anchor? action.payload : state;
+      // if (anchor ===  state.anchor) return state;
+      // if (y > state.y) return {anchor, y, direction: 1};
+      // if (y < state.y) return {anchor, y, direction: -1};
 
       break;
     //==============================================

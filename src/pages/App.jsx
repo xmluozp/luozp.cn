@@ -88,14 +88,14 @@ function App(props) {
   useEffect(() => {
 
     //================= scroll listener
-    window.addEventListener('scroll', (e) => {
-      let anchor;
-      let y = window.pageYOffset || document.documentElement.scrollTop;
-      if (y === 0) { anchor = 'top' }
-      else if (window.innerHeight + y >= document.body.offsetHeight) { anchor = 'bottom' }
-      else { anchor = 'center' }
-      contextPageStage.scroll = { anchor, y, direction: 0 };
-    }, false);
+    // window.addEventListener('scroll', (e) => {
+    //   let anchor;
+    //   let y = window.pageYOffset || document.documentElement.scrollTop;
+    //   if (y === 0) { anchor = 'top' }
+    //   else if (window.innerHeight + y >= document.body.offsetHeight) { anchor = 'bottom' }
+    //   else { anchor = 'center' }
+    //   contextPageStage.scroll = { anchor, y, direction: 0 };
+    // }, false);
 
     return () => {
       //
