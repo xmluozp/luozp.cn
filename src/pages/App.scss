@@ -27,6 +27,8 @@ $left_deviate: - $cube_distance * 0.25;
         border: none;
     }
     100%{
+        -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(0%);
         animation-timing-function: linear;
         transform: translateZ(0px);
         opacity: 1;
@@ -129,6 +131,7 @@ $left_deviate: - $cube_distance * 0.25;
         transform: rotateY(  0deg) translateZ($cube_distance * -1) translateX($left_deviate);
         animation-timing-function: ease-out; 
         border: 1px solid rgba(255, 255, 255, 0.5);
+        filter: grayscale(0%);
         z-index: 700;
         opacity: 0.5;
     }

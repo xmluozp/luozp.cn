@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { isMobileOnly } from 'react-device-detect';
 import useCancelableTimeout from "use-cancelable-timeout";
 import _ from 'lodash';
 import { PageStage, NavLinks } from '../../context/store';
@@ -88,7 +89,6 @@ export default withRouter((props) => {
 
         e.preventDefault();
     }
-
     const toggleNav = (isShow) => {
 
         if (!isShow) { // or I can set it in useEffect
@@ -146,6 +146,11 @@ export default withRouter((props) => {
                 imgSwitch(toIndex, w, h);
                 fadeIn();
             }
+        }
+
+        // if mobile, hide nav after switch. (ignore root)
+        if(isMobileOnly && !loading && toIndex !== 0) {
+            toggleNav(false);
         }
 
         // // delay and hide the nav bar      
