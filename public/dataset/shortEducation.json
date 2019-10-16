@@ -1,0 +1,33 @@
+{"code":200,
+  "msg": "Request succeed!",
+  "dataset": [{
+      "position": "Business Information Technology",
+      "time": "2016 – 2019",
+      "location": "Winnipeg",
+      "org": "Red River College",
+      "duty": [    
+          "PHP on Xampp, Ruby on Rails, C#.NET, Linux, Windows Server Admin, Web tech stacks, Project management",
+          "GPA: 4.20/4.50 for 2 years Diploma",
+          "One Great-West Life Award. Honour roll status every single term."
+       ]
+    },
+     {
+      "position": "Advanced Computer Programmer",
+      "time": "2003 - 2005",
+      "location": "China",
+      "org": "Beijing Aptech",
+      "duty": [
+        "Java for struts, C, C++, C#, VB",
+        "2 years cerfiticate"
+       ]
+    },
+    {
+      "position": "Information Management",
+      "time": "2018",
+      "location": "China",
+      "org": "Xiamen University of Technology",
+      "duty": [       
+        "3 years Diploma for Information Technology Management related courses."
+       ]
+    }]
+  }

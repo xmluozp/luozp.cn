@@ -24,7 +24,6 @@
 }
 //-----------------styles
 .category > .title {
-  padding-top: 5rem;
   color: #717377;
 }
 
@@ -57,8 +56,9 @@
     .content_l {
       font-size: 1.1rem;
       color: #989898;
+      padding-left: 1.2rem;
       li {
-        list-style: square inside;
+        list-style: square outside;
         line-height: 2rem;
       }
     }
@@ -73,9 +73,16 @@
 
   // column left
   .title {
-    width: 200px;
-    font-size: 24pt;
-    padding-left: 10pt;
+    padding-top: 5.5rem;
+    width: 15rem;
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+    .stiky{ 
+      position: -webkit-sticky;
+      position: sticky;
+      top: 50px;
+      padding-bottom: 7rem;
+    }
   }
   .itemList {
     display: block;
@@ -83,6 +90,18 @@
     padding-left: 2rem;
     min-height: 80vh;
     .item {
+      position: relative;
+      padding-bottom: 7rem;
+      &::before{
+        position: absolute;
+        display: block;
+        width: 6px;
+        height: 20px;
+        background-color: #82889d;
+        content: "";
+        left: calc(-2rem - 3px);
+        top: 0.8rem;
+      }
       .itemTitle {
         display: flex;
         flex-direction: row;

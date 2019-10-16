@@ -75,13 +75,13 @@ const reducer = (state, action) => {
     //==============================================
     case 'scroll':
       const {anchor} = action.payload;
-      console.log("store",action.payload);
+      // console.log("store",action.payload);
       return anchor !==  state.anchor? action.payload : state;
       // if (anchor ===  state.anchor) return state;
       // if (y > state.y) return {anchor, y, direction: 1};
       // if (y < state.y) return {anchor, y, direction: -1};
 
-      break;
+      // break;
     //==============================================
     case 'globalStage':
       return action.payload !== state ? action.payload : state;
