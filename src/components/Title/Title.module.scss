@@ -36,7 +36,10 @@ $animation_time: 200ms;
   }
 
   @if $isMobile {
-    left: 5vw;
+    @if ($stage == "show") {
+      left: 5vw;
+    }
+
     top: 10pt;
     font-size: 3rem;
   }
@@ -155,15 +158,19 @@ $animation_time: 200ms;
 
     &::after {
       transition: all $animation_time ease-out;
-      border-left-width:0px;
+      border-left-width: 0px;
     }
     &::before {
       transition: all $animation_time ease-out;
-      border-left-width:0px;
+      border-left-width: 0px;
     }
   }
 
-  @if $isMobile {
+
+  @if $isMobile{
+    @if $stage == "show" {
+      width: 100vw;
+    }
     top: 55pt;
   }
 

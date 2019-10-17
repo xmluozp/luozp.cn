@@ -176,11 +176,13 @@
 }
 :global(.isMobile) {
   :local{
-    .theEnd{
-      background: linear-gradient(to bottom, $color_bgmiddle, $color_bgdeepdark);
-      display:block;
-      height: 10px;
-      width: 100%;
+    @media only screen and (max-width: 768px) {
+      .theEnd{
+        background: linear-gradient(to bottom, $color_bgmiddle, $color_bgdeepdark);
+        display:block;
+        height: 10px;
+        width: 100%;
+      }
     }
   }
 }
