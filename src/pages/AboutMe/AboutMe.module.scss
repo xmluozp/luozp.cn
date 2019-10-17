@@ -41,11 +41,26 @@
 .picture {
   overflow: hidden;
   border-radius: 3pt;
-  border: 3pt solid #535767;
+  border: 1px solid #535767;
   img {
     margin-left: 50%;
     transform: translateX(-42%);
   }
+  // $thick: 5px;
+  // $angle: 30px;
+  // $radius: 30px;
+  // &:after{
+  //   background-color: transparent;
+  //   position: absolute;
+  //   right: 0px;
+  //   display: block;
+  //   width: 0px;
+  //   content: "";
+  //   border: $angle solid transparent;
+  //   border-left: $thick solid #666975;
+  //   top: 0px;
+  //   height: 100%;
+  // }
 }
 
 @mixin desktopWrapper {
@@ -116,16 +131,17 @@
       max-height: 660px;
       width: 100vw;
       margin: 0rem auto;
-      padding-top: 0rem;
+      padding-top: 1.3rem;
       padding-bottom: 3rem;
       .picture {
         width: 100vw;
-        height: calc(100vw - 4rem);
+        height: calc(75vw - 4rem);
         max-width: 660px;
         max-height: 660px;
         img {
           margin-left: 50%;
-          transform: translateX(-42%);
+          margin-top: 5%;
+          transform: translateX(-42%) translateY(-5%);
         }
       }
     }
@@ -166,10 +182,10 @@
           padding-top: 5rem;
           padding-bottom: 3rem;
           .picture {
-            height: 80vw;
+            height: 30vw;
             img {
               margin-left: 50%;
-              transform: translateX(-42%);
+              transform: translateX(-42%) translateY(-5%);
             }
           }
         }
@@ -203,4 +219,13 @@
       }
     }
   }
+}
+
+
+.annoyingTalk{
+  position:absolute;
+  right: 0px;
+  top: -70px;
+  max-width: calc(40vw - 180px);
+  box-shadow: 0px 0px 4px 0px #EEE;
 }

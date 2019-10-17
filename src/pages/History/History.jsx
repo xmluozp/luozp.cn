@@ -31,7 +31,7 @@ export default (props) => {
 
 
   useEffect(() => {
-    console.log("forceCheck");
+    // console.log("forceCheck");
     // forceCheck();
   },[]);
 

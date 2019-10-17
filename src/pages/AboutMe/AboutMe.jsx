@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styles from './AboutMe.module.scss';
+import { isMobileOnly } from 'react-device-detect';
+// import LazyLoadBox,  { forceCheck }  from '../../components/LazyLoadBox/LazyLoadBox'
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
@@ -12,7 +12,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 export default (props) => {
 
   useEffect(() => {
-
+    // forceCheck();
     return () => {
       // if (canvas) canvas.destroy()
     }
@@ -29,10 +29,13 @@ export default (props) => {
       <div className={styles.pageInnerContainer}>
 
         <div className={styles.floating}>
-        <div className={styles.floating_l}>
-            <div className={styles.picture}>
-              <img src='./images/myself.png' alt='picture of zhaoping luo' />
-            </div>
+          <div className={styles.floating_l}>
+
+              <div className={styles.picture}>
+                <img src='./images/myself.png' alt='picture of zhaoping luo' />
+              </div>
+
+
           </div>
           <div className={styles.floating_r}>
 
@@ -46,32 +49,25 @@ export default (props) => {
 
 
             <div className={styles.popup}>
-              <p>"Catching new tech is painful." Years ago, I used to believe.</p>
-              <p>Whenever a new tech came out, I thought: "Wat? My stuff is becoming garbage again?". </p>
-              <p>Now I've changed my mind.</p>
-              <p>New programming tech is usually an elegant and better version of old ones. That's why people want to replace what they've already mastered.</p>
-              <p>Now I enjoy it.</p>
+            {isMobileOnly? null : <div className={styles.annoyingTalk}>  
+              Hah.  <b>What</b> is this Zhaoping? Let’s see if it is worth to <b>INSTANTIATE</b>!! ...... db.npcElite.find( {'{'}name...;
+            </div> }
+              <p>I am a web developer who has over 5 years of web development experience, skilled in both front-end and back-end.</p>
+              <p>In the year 2015, I immigrated to Canada. Then I went back to school, Red River College, Winnipeg. Besides a certificate, It kept my programming knowledge up-to-date, as well as modern software industry programming standards (Agile, Git, Docker, Es-lint, Linux..etc).</p>
+              <p>Recently, I graduated.</p>
+              <p>It's time to get a job.</p>
               <div className={styles.mySocial}>
-                <a href="https://github.com/xmluozp" target="_blank" title="GitHub of Zhaoping Luo"><GitHubIcon/></a>
-                <a href="https://www.linkedin.com/in/zhaopingluo/" target="_blank" title="LinkedIn of Zhaoping Luo"><LinkedInIcon/></a>
-                <a href="https://www.facebook.com/luo.zhaoping" target="_blank" title="FaceBook of Zhaoping Luo"><FacebookIcon/></a>
-            </div>
+                <a href="https://github.com/xmluozp" target="_blank" title="GitHub of Zhaoping Luo"><GitHubIcon /></a>
+                <a href="https://www.linkedin.com/in/zhaopingluo/" target="_blank" title="LinkedIn of Zhaoping Luo"><LinkedInIcon /></a>
+                <a href="https://www.facebook.com/luo.zhaoping" target="_blank" title="FaceBook of Zhaoping Luo"><FacebookIcon /></a>
+              </div>
             </div>
           </div>
-
         </div>
 
 
-        {/* <button onClick={handleDisplay}>test button</button> */}
-        {/* 
-            <img src={require('../../assets/images/testpictureForSize.jpg')}/> */}
-        {/* <CSSTransition
-                    classNames="testanimation"
-                    in = {display}
-                    timeout={300}
-                    appear={true}
-                >
-                <div className="test3d"> display {display?"true":"false"} </div></CSSTransition> */}
+        <div className={styles.theEnd}></div>
+                
       </div>
     </div>
   );

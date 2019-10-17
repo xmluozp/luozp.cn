@@ -21,6 +21,7 @@ import History from './History/History';
 // components
 import Nav from '../components/Nav/Nav';
 import Title from '../components/Title/Title';
+import DelayLoader from '../components/DelayLoader/DelayLoader';
 
 // context
 import { PageStage } from '../context/store';
@@ -98,7 +99,7 @@ function App(props) {
     // }, false);
 
     // window["testValue"]();
-    console.log(window.testValue);
+    // console.log(window.testValue);
     return () => {
       //
     };
@@ -145,13 +146,14 @@ export default withRouter(App);
  * here is "key" attribute to trigger animation, if you want to use CSSTransition, there is an "in" attribute
  */
 const AnimationRoute = withRouter((props) => {
-  const timeout = 1500;
+  const TIMEOUT = 1500;
+  const LOAD_DELAY = 0;
 
   return (
     <TransitionGroup>
       <CSSTransition
         classNames="slide-in"
-        timeout={timeout}
+        timeout={TIMEOUT}
         key={props.location.pathname === props.path}
         onExit={props.onLock}
         onExited={props.onUnlock}
@@ -160,7 +162,7 @@ const AnimationRoute = withRouter((props) => {
         appear={true}
       >
         <div className={props.path} data-path={props.path}>
-          <Route {...props} />
+          <DelayLoader component={props.path} delay={ LOAD_DELAY } ><Route {...props} /></DelayLoader>
         </div>
 
       </CSSTransition>

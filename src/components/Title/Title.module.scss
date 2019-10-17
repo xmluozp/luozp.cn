@@ -30,12 +30,13 @@ $animation_time: 200ms;
   // width: 40vw;
 
   @if ($stage == "show") {
-    left: 5vw;
+    left: 95px;
   } @else if ($stage == "hide") {
     left: -100vw;
   }
 
   @if $isMobile {
+    left: 5vw;
     top: 10pt;
     font-size: 3rem;
   }

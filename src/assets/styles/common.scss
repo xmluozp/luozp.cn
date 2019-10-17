@@ -174,3 +174,30 @@
       content: none;}
   }
 }
+:global(.isMobile) {
+  :local{
+    .theEnd{
+      background: linear-gradient(to bottom, $color_bgmiddle, $color_bgdeepdark);
+      display:block;
+      height: 10px;
+      width: 100%;
+    }
+  }
+}
+
+
+.annoyingTalk{
+  background-image: url('/images/icons/z_small.png');
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  display:inline-block;
+  min-height: 1.3rem;
+  line-height: 1.3rem;
+  font-size: 0.75rem;
+  color: #9aa3af;
+  padding:  0.5rem 25px 0.5rem 45px;
+  background-color: #384250;
+  border-radius: 1.5rem;
+  max-width: 80vw;
+  width:auto;
+}

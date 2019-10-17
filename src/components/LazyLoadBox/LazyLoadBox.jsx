@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
-import LazyLoad,  { forceCheck }  from 'react-lazyload';
+import LazyLoad,  { forceCheck as LazyBoxForceCheck }  from 'react-lazyload';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './LazyLoadBox.scss' // use general scss
+
+const forceCheck = () => { LazyBoxForceCheck(); };
 
 export default (props) => {
 
     useEffect(() => {
-        forceCheck();
+        LazyBoxForceCheck();
         return () => {
         };
     }, [])
@@ -23,3 +25,5 @@ export default (props) => {
         </LazyLoad>
     )
 }
+
+export {forceCheck};
