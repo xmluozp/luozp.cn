@@ -39,7 +39,10 @@ export default (props) => {
 
           </div>
           <div className={styles.floating_r}>
-
+          {isBrowser? <div className={styles.annoyingTalk}>  
+              Let me fetch my log.. Hah.  <b>Who</b> is this Zhaoping guy? Let’s see if it's worth to <b>INSTANTIATE</b>!! 
+              {/* ... db.npcElite.find( {'{'}name: Zhao... */}
+            </div> : null }
             <div className={styles.myName}>
               Zhaoping Luo
             </div>
@@ -50,12 +53,9 @@ export default (props) => {
 
 
             <div className={styles.popup}>
-            {isBrowser? <div className={styles.annoyingTalk}>  
-              Let me fetch my log.. Hah.  <b>What</b> this Zhaoping is? Let’s see if it's worth to <b>INSTANTIATE</b>!! 
-              {/* ... db.npcElite.find( {'{'}name: Zhao... */}
-            </div> : null }
+
               <p>I am a programmer who has over 5 years of web development experience, skilled in both front-end and back-end. (<Link to="/history">My past experience</Link>)</p>
-              <p>In the year 2015, I immigrated to Canada. Then I went back to school, Red River College, Winnipeg. Besides a certificate, This journey also kept my programming knowledge up-to-date, as well as modern software industry programming standards (Agile, Git, Docker, Es-lint, Linux..etc).</p>
+              <p>In the year 2015, I immigrated to Canada. Then I went back to school, Red River College, Winnipeg. Besides a certificate, This journey also kept my programming knowledge up-to-date, as well as learning about modern software industry programming standards (Agile, Git, Docker, Es-lint, Linux. etc.).</p>
               <p>Recently, I graduated. It's time to get a job.</p>
               <div className={styles.mySocial}>
                 <a href="https://github.com/xmluozp" target="_blank" title="GitHub of Zhaoping Luo"><GitHubIcon /></a>

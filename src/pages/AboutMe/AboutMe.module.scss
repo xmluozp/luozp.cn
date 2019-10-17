@@ -222,17 +222,22 @@
     @media only screen and (min-width: 760px) {
       .floating {
         .floating_l {
-          padding-top: 5rem;}
+          padding-top: 5rem;
         }
+      }
     }
   }
 }
 
-
-.annoyingTalk{
-  position:absolute;
-  right: 0px;
-  top: -70px;
-  max-width: calc(40vw - 180px);
-  box-shadow: 0px 0px 4px 0px #EEE;
+.annoyingTalk {
+  position: absolute;
+  right: 10px;
+  top: -35px;
+  border-top-right-radius: unset;
+  //
+}
+@media only screen and (max-width: 1380px) {
+  .annoyingTalk {
+    display: none;
+  }
 }
