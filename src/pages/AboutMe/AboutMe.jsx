@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './AboutMe.module.scss';
-import { isMobileOnly, isBrowser } from 'react-device-detect';
+import { isBrowser } from 'react-device-detect';
+import { Link } from 'react-router-dom';
 // import LazyLoadBox,  { forceCheck }  from '../../components/LazyLoadBox/LazyLoadBox'
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -50,12 +51,12 @@ export default (props) => {
 
             <div className={styles.popup}>
             {isBrowser? <div className={styles.annoyingTalk}>  
-              Hah.  <b>What</b> is this Zhaoping? Let’s see if it is worth to <b>INSTANTIATE</b>!! ...... db.npcElite.find( {'{'}name...;
+              Let me fetch my log.. Hah.  <b>What</b> this Zhaoping is? Let’s see if it's worth to <b>INSTANTIATE</b>!! 
+              {/* ... db.npcElite.find( {'{'}name: Zhao... */}
             </div> : null }
-              <p>I am a web developer who has over 5 years of web development experience, skilled in both front-end and back-end.</p>
-              <p>In the year 2015, I immigrated to Canada. Then I went back to school, Red River College, Winnipeg. Besides a certificate, It kept my programming knowledge up-to-date, as well as modern software industry programming standards (Agile, Git, Docker, Es-lint, Linux..etc).</p>
-              <p>Recently, I graduated.</p>
-              <p>It's time to get a job.</p>
+              <p>I am a programmer who has over 5 years of web development experience, skilled in both front-end and back-end. (<Link to="/history">My past experience</Link>)</p>
+              <p>In the year 2015, I immigrated to Canada. Then I went back to school, Red River College, Winnipeg. Besides a certificate, This journey also kept my programming knowledge up-to-date, as well as modern software industry programming standards (Agile, Git, Docker, Es-lint, Linux..etc).</p>
+              <p>Recently, I graduated. It's time to get a job.</p>
               <div className={styles.mySocial}>
                 <a href="https://github.com/xmluozp" target="_blank" title="GitHub of Zhaoping Luo"><GitHubIcon /></a>
                 <a href="https://www.linkedin.com/in/zhaopingluo/" target="_blank" title="LinkedIn of Zhaoping Luo"><LinkedInIcon /></a>

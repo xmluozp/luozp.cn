@@ -30,7 +30,14 @@ ul, li{
   width: 100%;
   margin-right: calc(100% - 100vw);
 }
-a{-webkit-tap-highlight-color:transparent;}
+a{
+  -webkit-tap-highlight-color:transparent;
+  transition: all 200ms linear;
+  color: $color_linkreverse;
+  &:hover{
+    color: $color_danger;
+  }
+}
 
 /* ============ z-index */
 .z_avatar {

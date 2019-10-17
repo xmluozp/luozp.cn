@@ -26,9 +26,9 @@ export default ({ className, waitingTime, textArray, isSendIcon ,callBack }) => 
      };
   }, [])
   return <>
-      <span className={className} ref={simpleTyping} style={iconCursor}></span>{isEnd && isSendIcon? <span style={{color: 'rgb(173, 178, 179)', fontStyle: 'italic' ,fontSize: '.8rem', marginLeft: '8pt'}}>
+      <span className={className} ref={simpleTyping} style={iconCursor}></span>{isEnd && isSendIcon? <span style={{display: 'inline-block',color: 'rgb(173, 178, 179)', fontStyle: 'italic' ,fontSize: '.8rem', marginLeft: '4pt'}}>
            [sent
-          <Send style={{color: 'rgb(173, 178, 179)', fontSize: '13pt', verticalAlign: 'middle', marginLeft: '2pt'}}/>]
+          <Send style={{color: 'rgb(173, 178, 179)', fontSize: '13pt', verticalAlign: 'middle', marginLeft: '1pt'}}/>]
         </span>
         : null}
     </>

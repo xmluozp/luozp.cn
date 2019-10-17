@@ -14,7 +14,7 @@ export const NavLinks = [
   { title: "Skill Sets", to: "/techstack" },
   { title: "Experience", to: "/history" },
   { title: "Contact me", to: "/blog" },
-  { title: "About Site", to: "/aboutwebsite" },
+  { title: "This Site", to: "/aboutwebsite" },
 ];
 export const isMobile = isMobileOnly;
 
