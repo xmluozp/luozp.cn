@@ -39,7 +39,7 @@
   .googleMap {
 
     @include border-embed;
-    border-width: 3px;
+    // border-width: 3px;
     overflow: hidden;
 
     @if($isMobile==true) {

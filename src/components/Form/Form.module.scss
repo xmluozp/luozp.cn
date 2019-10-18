@@ -27,7 +27,8 @@
         color: $color_dark;
         transition: all 200ms ease-in;
         &:focus{
-            box-shadow: 0px 0px 8px 0px $color_bggrey;
+            box-shadow: 0px 0px 3px 0px $color_bggrey;
+            outline: none;
         }
     }
     button{

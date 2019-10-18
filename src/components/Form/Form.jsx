@@ -40,7 +40,8 @@ export default ({onMessage}) => {
             if (xhr.status === 200) {
                 // form.reset();
                 actions.resetForm();
-                setState({type: 1, messag:"Message has been sent to Zhaoping's email."});
+                setState({type: 1, message:"Message has been sent to Zhaoping's email."});
+                onMessage(" Well done! Dear user. Then Zhaoping will respond you ASAP");
             } else {
                 setState({type: -1, message:"Error, should be network issue."});
             }
@@ -136,61 +137,9 @@ export default ({onMessage}) => {
                         </button>
 
                         <span className={status.type === 1 ? styles.success : styles.fail}>
-                            {status.type !== 0? status.message : null}</span>
+                            {status.type !== 0 ? status.message : null}</span>
                     </div>
                 </form>
             )}
     </Formik>
-}
-
-
-
-// export default 
-class MyForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.submitForm = this.submitForm.bind(this);
-        this.state = {
-            status: ""
-        };
-    }
-
-    render() {
-        const { status } = this.state;
-        return (
-            <form
-                onSubmit={this.submitForm}
-                action="https://formspree.io/mogodadm"
-                method="POST"
-            >
-                <label>Email:</label>
-                <input type="email" name="email" />
-                <label>Message:</label>
-                <input type="text" name="message" />
-                {status === "SUCCESS" ? <p>Thanks!</p> : <button>Submit</button>}
-                {status === "ERROR" && <p>Ooops! There was an error.</p>}
-            </form>
-        );
-    }
-
-    submitForm(ev) {
-        ev.preventDefault();
-        const form = ev.target;
-        const data = new FormData(form);
-
-        console.log(form);
-        const xhr = new XMLHttpRequest();
-        xhr.open(form.method, form.action);
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== XMLHttpRequest.DONE) return;
-            if (xhr.status === 200) {
-                form.reset();
-                this.setState({ status: "SUCCESS" });
-            } else {
-                this.setState({ status: "ERROR" });
-            }
-        };
-        xhr.send(data);
-    }
 }
