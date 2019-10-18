@@ -1,0 +1,83 @@
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
+
+
+.form{}
+
+.formTitle{
+    font-size: 1rem;
+    label{
+        display:inline-block;
+    }
+    span{
+        padding-left: 5pt;
+        font-size: .8rem;
+        color: $color_danger;
+    }
+}
+
+.formInput{
+    input, textarea{
+        width: calc(100% - 3pt);
+        @include border-embed-light;
+        // background-image: url("/images/light-grey-terrazzo.png");
+        border-radius: 5px 5px 5px 0px;
+        padding:3pt;
+        font-size: 1rem;
+        color: $color_dark;
+        transition: all 200ms ease-in;
+        &:focus{
+            box-shadow: 0px 0px 8px 0px $color_bggrey;
+        }
+    }
+    button{
+        height: 3rem;
+        width: 10rem;
+        font-size: 1.2rem;
+        background: $color_secondary;
+        color:$color_light;
+        border-top: 1px solid #c3c9df;
+        border-left: 1px solid #c3c9df;
+        border-bottom: 1px solid #525977;
+        border-right: 1px solid #525977;
+
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 200ms ease-in;
+
+        svg{
+            vertical-align: middle;
+            margin-left: 0.5rem;
+            height: 15px;
+        }
+        &:hover{
+            background: $color_danger;
+        }
+
+
+    }
+
+    padding-bottom: .5rem;
+    padding-right: 5pt;
+
+
+    .success{ 
+        display: block;
+        color: $color_success;
+    }
+    .fail {
+        display: block;
+        color: $color_danger;       
+    }
+}
+
+:global(.isMobile) {
+    :local {
+        .formInput{
+            button{
+                width:100%;
+            }
+        }
+    }
+  }
+  

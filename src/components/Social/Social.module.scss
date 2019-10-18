@@ -1,0 +1,36 @@
+@import "../../assets/styles/colors.scss";
+// @import "../../assets/styles/common.scss";
+
+@mixin social($theme: "light") {
+  transition: all 200ms linear;
+  svg {
+    transition: all 200ms linear;
+  }
+  &:hover {
+    svg {
+      transform: scale(1.2);
+    }
+  }
+  padding: 3pt;
+
+  @if ($theme == "light") {
+    color: $color_dark;
+    &:hover {
+      color: $color_danger;
+    }
+  }
+  @if ($theme == "dark") {
+    color: $color_light;
+    &:hover {
+      color: $color_warning;
+    }
+  }
+}
+
+.social_lightbg {
+  @include social("light");
+}
+
+.social_darkbg {
+  @include social("dark");
+}

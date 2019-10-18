@@ -14,14 +14,14 @@ import './App.scss';
 import Home from './Home/Home';
 import AboutMe from './AboutMe/AboutMe';
 import AboutWebsite from './AboutWebsite/AboutWebsite';
-import Blog from './Blog/Blog';
+import Contact from './Contact/Contact';
 import TechStack from './TechStack/TechStack';
 import History from './History/History';
 
 // components
 import Nav from '../components/Nav/Nav';
 import Title from '../components/Title/Title';
-import DelayLoader from '../components/DelayLoader/DelayLoader';
+import DelayLoader from '../utils/DelayLoader/DelayLoader'
 
 // context
 import { PageStage } from '../context/store';
@@ -133,7 +133,7 @@ function App(props) {
         <AnimationRoute path="/techstack" exact component={TechStack} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/history" exact component={History} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
         <AnimationRoute path="/aboutwebsite" exact component={AboutWebsite} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-        <AnimationRoute path="/blog" exact component={Blog} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+        <AnimationRoute path="/contact" exact component={Contact} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
       </section>
     </>
   );

@@ -1,9 +1,14 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
+import LoadingBar from '../../components/LoadingBar/LoadingBar';
+import QueueLoader from '../../utils/QueueLoader/QueueLoader';
 import styles from './TechStack.module.scss';
 
 export default (props) => {
 
-    const sceneRef = useRef(null);
+
+    const handleAllLoaded = () => {
+       
+    }
 
     useEffect(() => {
 
@@ -16,19 +21,15 @@ export default (props) => {
 
     return (
         <div className={`${styles.testColor} page_container`}>
-            <div className="animation_title">This is about me title</div>
-            <div id="scene" ref = {sceneRef}>
-                    <div data-depth="0.2" style={{position:'absolute', left:"50px"}}>My first Layer!</div>
-                    <div data-depth="0.6">My second Layer!</div>
-            </div>
-            tech stack0
+            <div className={styles.pageInnerContainer}>
 
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>tech stack1
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>tech stack2
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>tech stack3
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>tech stack4
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>tech stack5
-            <br/>
+            {/* <QueueLoader key="queueloader1" delay={1000} onAllLoaded={handleAllLoaded}>
+                <LoadingBar title='React' key = "React"/>
+                <LoadingBar title='HTML5' key = "HTML5"/>
+                <LoadingBar title='CSS3' key ="CSS3"/>
+            </QueueLoader> */}
+            </div>
+ 
         </div>
     );
 }

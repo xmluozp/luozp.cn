@@ -17,7 +17,7 @@
   $direction: "brr",
   $border: #fafafa,
   // $background: rgba(244, 246, 248, 0.9),
-  $background:#e0e3e6,
+  $background:$color_bgPopup,
   $color: #151616  
 ) {
   
@@ -182,28 +182,41 @@
         display:block;
         height: 10px;
         width: 100%;
+        position:fixed;
+        bottom: 0px;
       }
     }
   }
 }
 
+@mixin border-embed{
+  border-top: 1px solid #21262c;
+  border-left: 1px solid #21262c; 
+  border-bottom: 1px solid #3b434d;
+  border-right: 1px solid #3b434d;
+}
+
+@mixin border-embed-light{
+  border-top: 1px solid #9ea8b4;
+  border-left: 1px solid #9ea8b4; 
+  border-bottom: 1px solid #dde4ec;
+  border-right: 1px solid #dde4ec;
+}
+
 
 .annoyingTalk{
   background-image: url('/images/icons/z_small.png');
-  background-position: 10px center;
+  background-position: 6px .1rem;
   background-repeat: no-repeat;
   display:inline-block;
   min-height: 1.3rem;
   line-height: 1.3rem;
   font-size: 0.75rem;
-  color: #838e9c;
+  color: #9fa8b4;
   padding:  0.5rem 25px 0.5rem 45px;
   background-color: #282a2c;
   border-radius: 1.5rem;
-  border-top: 1px solid #21262c;
-  border-left: 1px solid #21262c; 
-  border-bottom: 1px solid #3b434d;
-  border-right: 1px solid #3b434d;
+  @include border-embed;
   
   max-width: 80vw;
   width:auto;

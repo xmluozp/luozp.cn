@@ -23,25 +23,12 @@
 .mySocial {
   text-align: right;
   padding-top: 5pt;
-  a {
-    color: $color_dark;
-    transition: all 200ms linear;
-    svg {
-      transition: all 200ms linear;
-    }
-    &:hover {
-      color: $color_danger;
-      svg {
-        transform: scale(1.2);
-      }
-    }
-    padding: 3pt;
-  }
+
 }
 .picture {
   overflow: hidden;
-  border-radius: 3pt;
-  border: 1px solid #535767;
+  border-radius: 30px 0px 30px 0px;
+  @include border-embed;
   img {
     margin-left: 50%;
     transform: translateX(-42%);
@@ -81,7 +68,7 @@
   //------------------------------------- styling
   .floating {
     position: absolute;
-    top: 20vh;
+    // top: 20vh;
     width: calc(100vw - 350px);
     left: 30%;
     transform: translateX(-30%);
@@ -139,6 +126,8 @@
         max-width: 660px;
         max-height: 660px;
         img {
+          max-width: 780px;
+          max-height: 780px;
           margin-left: 50%;
           margin-top: 5%;
           transform: translateX(-42%) translateY(-5%);
@@ -168,6 +157,12 @@
   :local {
     @media only screen and (min-width: 1381px) {
       @include desktopWrapper;
+      .picture {
+        img {
+          height: 35vw; 
+          transform: translateX(-42%);
+        }
+      }
     }
     @media only screen and (max-width: 1380px) and (min-width: 661px) {
       @include mobileWrapper;

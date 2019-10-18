@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { PageStage } from '../../context/store';
 import styles from './Home.module.scss';
-import SimpleTyping from '../../components/SimpleTyping/SimpleTypeing';
+import SimpleTyping from '../../utils/SimpleTyping/SimpleTypeing';
 
 export default withRouter(() => {
 

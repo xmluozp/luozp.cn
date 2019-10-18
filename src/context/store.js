@@ -11,9 +11,9 @@ export const PageStage = React.createContext();
 export const NavLinks = [
   { title: "Home", to: "/" },
   { title: "About Me", to: "/aboutme" },
-  { title: "Skill Sets", to: "/techstack" },
+  { title: "Skill Set", to: "/techstack" },
   { title: "Experience", to: "/history" },
-  { title: "Contact me", to: "/blog" },
+  { title: "Contact me", to: "/contact" },
   { title: "This Site", to: "/aboutwebsite" },
 ];
 export const isMobile = isMobileOnly;

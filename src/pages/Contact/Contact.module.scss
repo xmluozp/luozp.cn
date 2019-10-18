@@ -1,0 +1,145 @@
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
+
+.conatiner {
+  background-color: $color_bgdefault;
+}
+
+@mixin all($isMobile: false, $device: "desktop_full") {
+  //======================out side padding container
+  .pageInnerContainer {
+    @if ($isMobile == false) {
+      padding-top: 9rem;
+    } @else {
+      padding-top: 5.5rem;
+    }
+  }
+
+  //======================floating layer
+  .floating {
+
+    @if ($isMobile) {
+      display: block;
+      .floating_r {
+        width: 100%;
+      }
+    } @else {
+      display: flex;
+      flex-direction: row;
+      margin-left: 95px;
+      margin-right: 256px;
+      .floating_r {
+        padding-left: 4rem;
+        width: 100%;
+      }
+    }
+  }
+
+  //======================google map
+  .googleMap {
+
+    @include border-embed;
+    border-width: 3px;
+    overflow: hidden;
+
+    @if($isMobile==true) {
+        height: 40vh;
+        width:100%;
+        border-left: none;
+        border-right: none;
+    }
+    @else {
+        border-radius: 30px 0px 30px 0px;
+        width: 250px;
+        height: 400px;
+    }
+
+    .googleMapWrapper {
+      display: block;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+  }
+
+  //======================annoyingTalk
+  .annoyingTalkWrapper {
+
+    text-align: right;
+    padding-bottom: 2rem;
+    @if($isMobile== true){
+        padding: 1rem 1.5rem;    
+    }
+  }
+  .annoyingTalk {
+    border-top-right-radius: unset;
+    border-top-left-radius: unset;
+    // margin-top: -20px;
+    text-align: left;
+    .errorMessages {
+      font-size: 1rem;
+      color: $color_warning;
+    }
+  }
+
+  //======================popup
+  .popup {
+    
+    @if($isMobile==true) {
+        @include popup($isMobile: true, $direction: "bld");
+        
+        left: 1.5rem;
+        width: calc(100vw - 4.5rem);
+    } @else {
+        @include popup($direction: "bld");
+
+    }
+  }
+
+  //======================social
+  .mySocial{
+    position: absolute;
+    right:0px;
+    bottom: .5rem;
+  }
+
+  //======================userPicture
+  .userFace {
+    height: 75px;
+    width: calc(100% + 20px);
+    margin-left: -20px;
+    padding-top: 20px;
+    background-image: url("/images/icons/userFace.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    z-index: 200;
+    border-bottom: 1px solid $color_bglight;
+    // box-shadow: inset 1px 1px 10px 0px #000;
+    position: relative;
+    &::before {
+      display: block;
+      position: absolute;
+      bottom: -10px;
+      height: 0px;
+      content: "";
+    }
+    &::after {
+      content: "";
+    }
+  }
+}
+
+
+
+:global(.isMobile) {
+  :local {
+    @include all($isMobile:true);
+  }
+}
+
+:global(.isDesktop) {
+  :local {
+    @include all($isMobile:false);
+  }
+}

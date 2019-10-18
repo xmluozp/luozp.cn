@@ -3,7 +3,7 @@ import styles from './History.module.scss';
 // import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 import axios from 'axios';
 import LazyLoad,  { forceCheck }  from 'react-lazyload';
-import LazyLoadBox from '../../components/LazyLoadBox/LazyLoadBox';
+import LazyLoadBox from '../../utils/LazyLoadBox/LazyLoadBox';
 
 
 export default (props) => {
