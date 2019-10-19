@@ -86,24 +86,6 @@ function App(props) {
   /**
    * initialize
    */
-  useEffect(() => {
-
-    //================= scroll listener
-    // window.addEventListener('scroll', (e) => {
-    //   let anchor;
-    //   let y = window.pageYOffset || document.documentElement.scrollTop;
-    //   if (y === 0) { anchor = 'top' }
-    //   else if (window.innerHeight + y >= document.body.offsetHeight) { anchor = 'bottom' }
-    //   else { anchor = 'center' }
-    //   contextPageStage.scroll = { anchor, y, direction: 0 };
-    // }, false);
-
-    // window["testValue"]();
-    // console.log(window.testValue);
-    return () => {
-      //
-    };
-  }, [])
 
   /**
    * ending of every page rolling animation, release loading state
@@ -114,8 +96,6 @@ function App(props) {
       contextPageStage.loading = false;
     }
   }, [navLocks])
-
-
 
 
   return (

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styles from './Form.module.scss';
 import { Formik } from 'formik';
-import { Send } from '@material-ui/icons';
+import Send from '@material-ui/icons/Send';
 
 
 export default ({onMessage}) => {

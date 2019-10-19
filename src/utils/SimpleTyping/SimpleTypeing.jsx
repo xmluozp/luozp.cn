@@ -1,6 +1,6 @@
 //***** Modified from codepen.io's shared code, author: Gregory Schier
 import React, { useEffect, useRef, useState } from 'react';
-import { Send } from '@material-ui/icons';
+import Send from '@material-ui/icons/Send';
 // import _ from 'lodash';
 
 export default ({ className, waitingTime, textArray, isSendIcon ,callBack }) => {
@@ -28,7 +28,8 @@ export default ({ className, waitingTime, textArray, isSendIcon ,callBack }) => 
   return <>
       <span className={className} ref={simpleTyping} style={iconCursor}></span>{isEnd && isSendIcon? <span style={{display: 'inline-block',color: 'rgb(173, 178, 179)', fontStyle: 'italic' ,fontSize: '.8rem', marginLeft: '4pt'}}>
            [sent
-          <Send style={{color: 'rgb(173, 178, 179)', fontSize: '13pt', verticalAlign: 'middle', marginLeft: '1pt'}}/>]
+          <Send style={{color: 'rgb(173, 178, 179)', fontSize: '13pt', verticalAlign: 'middle', marginLeft: '1pt'}}/>
+          ]
         </span>
         : null}
     </>
@@ -67,7 +68,7 @@ class TxtRotate {
     var i = this.loopNum % this.textArray.length;
     var fullTxt = this.textArray[i];
     var that = this;
-    var delta = 120 - Math.random() * 100;
+    var delta = 120;
 
     // 后面借此判断是否继续打字
     // const isTyping = this.isLoop || ;
