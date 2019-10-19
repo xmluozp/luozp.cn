@@ -1,7 +1,9 @@
 body{
   background-image: url( "../images/stardust.png");
   background-color: #1e1e24;
-  
+  background-position-x: 0px;
+  animation: bgmoving 20s infinite;
+  animation-timing-function: linear;
 }
 
 .global_loader{
@@ -48,4 +50,18 @@ body{
         opacity: 0;
       }
 
+}
+
+@keyframes bgmoving {
+  0% {
+    background-position-x: 0px;
+  }
+
+  50% {
+    background-position-x: -400px;
+  }
+
+  100% {
+    background-position-x: -800px;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './LoadingBar.module.scss';
 
 
@@ -10,10 +10,11 @@ export default (props) => {
     // status: wait/start/done
 
     let cssRank = {};
+    
 
     switch (status) {
         case 'wait':
-            cssRank = {width: '20%', transition: `width ${speed}ms ease-out`}
+            cssRank = {width: '20%' ,transition: `width ${speed}ms ease-out`}
             break;
         case 'start':
             cssRank = {width: '20%', transition: `width ${speed}ms ease-out`}
@@ -25,8 +26,9 @@ export default (props) => {
             break;
     }
 
+
     return (
-        <div className={styles.box + ' ' + className}>
+        <div className={styles.box + ' ' + className} style={{transform: `scale(${scale || 1})`}}>
             <div className={styles.shine}>
                 <span>{title}</span>
             </div>

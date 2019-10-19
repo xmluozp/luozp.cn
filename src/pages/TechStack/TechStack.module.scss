@@ -19,14 +19,17 @@
   .category {
 
     width: 100%;
+
     @if ($isMobile) {
         display: block;
+        padding-bottom: 1.5rem;
     } @else {
         display: flex;
+        padding-bottom: 1.5rem;
+        padding-top: 1.5rem;
     }
     flex-direction: inherit;
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
+
     border-bottom: 1px solid $color_bgdeepdark;
     border-top: 1px solid $color_bgtitle_linedown;
 
@@ -66,14 +69,26 @@
   }
   .floating_r {
     width: 100%;
+    @if (NOT $isMobile) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
   }
 
   .LoadingBar {
+    
     display: block;
     margin-bottom: 1rem;
+    box-sizing: border-box;
 
     &:last-child{
         margin-bottom: 0rem;
+    }
+
+    @if (NOT $isMobile) {
+      width: 49%;
     }
   }
 

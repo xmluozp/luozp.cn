@@ -22,8 +22,6 @@ const MyGoogleComponent = compose(
     withGoogleMap
 )(({isAddressOpen, setIsOpen}) => {
 
-
-    console.log(isAddressOpen);
     return <GoogleMap
         defaultOptions={{
             styles: mapstyles,
@@ -37,7 +35,7 @@ const MyGoogleComponent = compose(
             }
         }}
         defaultZoom={14}
-        defaultCenter={{ lat: 49.8866903, lng: -97.1401478 }}
+        defaultCenter={{ lat: 49.887, lng: -97.1401478 }}
 
     >
         <Marker
@@ -47,7 +45,7 @@ const MyGoogleComponent = compose(
             }}
         />
         {isAddressOpen && <InfoBox
-            defaultPosition={new window.google.maps.LatLng(49.8866903, -97.1401478)}
+            defaultPosition={new window.google.maps.LatLng(49.8866003, -97.1401478)}
             options={{ closeBoxURL: ``, enableEventPropagation: true, alignBottom:true, pixelOffset: new window.google.maps.Size(-100, -43) }}>
             {myAddress}
         </InfoBox>}

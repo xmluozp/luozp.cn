@@ -17,11 +17,11 @@ import AboutWebsite from './AboutWebsite/AboutWebsite';
 import Contact from './Contact/Contact';
 import TechStack from './TechStack/TechStack';
 import History from './History/History';
+import Error from './Error/Error';
 
 // components
 import Nav from '../components/Nav/Nav';
 import Title from '../components/Title/Title';
-import DelayLoader from '../utils/DelayLoader/DelayLoader'
 
 // context
 import { PageStage } from '../context/store';
@@ -116,25 +116,34 @@ function App(props) {
   }, [navLocks])
 
 
+
+
   return (
     <>
-      <Title />
-      <Nav navLocks={navLocks}/>
-      {/* section */}
 
-      <section className={[
-        "z_main",
-        styles.main,
-        contextPageStage.loading ? styles.main_lock : styles.main_unlock,
-      ].join(' ')}>
+      {contextPageStage.toIndex !== -1 ?
+        <>
+          <Title />
+          <Nav navLocks={navLocks} />
+          {/* section */}
+          <section className={[
+            "z_main",
+            styles.main,
+            contextPageStage.loading ? styles.main_lock : styles.main_unlock,
+          ].join(' ')}>
 
-        <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop}/>
-        <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-        <AnimationRoute path="/techstack" exact component={TechStack} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-        <AnimationRoute path="/history" exact component={History} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-        <AnimationRoute path="/aboutwebsite" exact component={AboutWebsite} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-        <AnimationRoute path="/contact" exact component={Contact} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
-      </section>
+            <AnimationRoute path="/" exact component={Home} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+            <AnimationRoute path="/aboutme" exact component={AboutMe} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+            <AnimationRoute path="/techstack" exact component={TechStack} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+            <AnimationRoute path="/history" exact component={History} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+            <AnimationRoute path="/aboutwebsite" exact component={AboutWebsite} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+            <AnimationRoute path="/contact" exact component={Contact} onLock={handlePageChangeStart} onUnlock={handlePageChangeStop} />
+          </section>
+        </>
+        : 
+        <Error/>
+      }
+
     </>
   );
 }
@@ -147,8 +156,6 @@ export default withRouter(App);
  */
 const AnimationRoute = withRouter((props) => {
   const TIMEOUT = 1500;
-  const LOAD_DELAY = 0;
-
   return (
     <TransitionGroup>
       <CSSTransition
@@ -162,7 +169,11 @@ const AnimationRoute = withRouter((props) => {
         appear={true}
       >
         <div className={props.path} data-path={props.path}>
-          <DelayLoader component={props.path} delay={ LOAD_DELAY } ><Route {...props} /></DelayLoader>
+
+          {/* <DelayLoader delay={LOAD_DELAY} > */}
+              <Route {...props} />
+          {/* </DelayLoader> */}
+
         </div>
 
       </CSSTransition>

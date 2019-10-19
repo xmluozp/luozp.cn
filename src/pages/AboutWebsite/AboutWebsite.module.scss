@@ -13,11 +13,12 @@
   :local {
     .pageInnerContainer {
       padding-top: 7rem;
+      padding-bottom: 1.5rem;
     }
     .popup {
-      @include popup(true);
-      left: 1.5rem;
-      width: calc(100vw - 6rem);
+      @include popup(true, 'none');
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
     }
   }
 }
@@ -27,9 +28,9 @@
       padding-top: 10rem;
     }
     .popup {
-      @include popup($direction:'bld');
-      left: 10rem;
-      width: calc(100vw - 30rem);
+      @include popup($direction:'trr');
+      margin-left: 95px;
+      margin-right: 256px;
     }
   }
 }

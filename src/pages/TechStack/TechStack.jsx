@@ -27,7 +27,7 @@ export default (props) => {
         return () => { };
     }, []);
 
-
+    // scale={ 0.5 + 0.5 *(key+1) / category.skills.length } 
 
 
     return (
@@ -49,7 +49,7 @@ export default (props) => {
                                 <div className={styles.floating_r}>
                                     <QueueLoader key={category.title + " queue"} delay={300} onAllLoaded={handleAllLoaded}>
                                         {category.skills.sort((a, b) => b.rank - a.rank) // order by rank
-                                            .map((skill) => {
+                                            .map((skill, key) => {
                                                 return <LoadingBar key={skill.title} title={skill.title} rank={skill.rank} className={styles.LoadingBar} />
                                             })}
                                     </QueueLoader>

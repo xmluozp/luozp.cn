@@ -1,0 +1,32 @@
+.delayLoad-appear{
+    opacity: 0;
+    transform: translateY( -20px);
+}
+.delayLoad-appear-active{
+    opacity: 0;
+    animation-name: loadIn;
+    animation-duration: 500ms;
+    animation-timing-function:ease-in;
+}
+
+@keyframes loadIn {
+    0%{
+        transform: scaleX(1.2) translateX( -20px);  
+        opacity: 0;
+    }
+    // 20%{
+    //     transform: scaleY(0.8);
+    //     animation-timing-function: ease-out-in;
+    //     opacity: 1;
+    // }
+    // 60%{
+    //     transform: scaleY(1.1);
+    //     animation-timing-function: ease-out;
+    //     opacity: 1;
+    // }
+    100%{
+        transform: scaleX(1) translateX( 0);
+        opacity: 1;
+    }
+
+}

@@ -25,12 +25,13 @@ export default (props) => {
                 <div className={styles.floating}>
                     <div className={styles.floating_l}>
                         <div className={styles.googleMap}>
+                            <DelayLoader delay={2000} fade={false}>
                             <div className={styles.googleMapWrapper}>
-                                <DelayLoader delay={2000}>
+                                
                                     <GoogleApi />
-                                </DelayLoader>
                                 
                             </div>
+                            </DelayLoader>
                         </div>
                     </div>
                     <div className={styles.floating_r}>

@@ -27,7 +27,6 @@ export default withRouter(({ children, location }) => {
     return v.to === location.pathname;
   });
 
-
   const [fromIndex, setFromIndex] = React.useState(getCurrentIndex);
   const [toIndex, setToIndex] = React.useState(getCurrentIndex);
   const [toPath, setToPath] = React.useState(location.pathname);

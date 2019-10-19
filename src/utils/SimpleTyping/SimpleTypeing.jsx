@@ -67,7 +67,7 @@ class TxtRotate {
     var i = this.loopNum % this.textArray.length;
     var fullTxt = this.textArray[i];
     var that = this;
-    var delta = 150 - Math.random() * 100;
+    var delta = 120 - Math.random() * 100;
 
     // 后面借此判断是否继续打字
     // const isTyping = this.isLoop || ;

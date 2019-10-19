@@ -40,7 +40,7 @@ export default withRouter(() => {
         {
           isEnd?
           <div className={styles.respondPopup}>
-            <SimpleTyping waitingTime={1000} textArray={['SURE~~~~']} callBack={()=>{}} isSendIcon = {false}/>
+            <SimpleTyping waitingTime={700} textArray={['SURE~~~~']} callBack={()=>{}} isSendIcon = {false}/>
             <span className={styles.small}>[click my face to discover]</span>
           </div>: null
         }
