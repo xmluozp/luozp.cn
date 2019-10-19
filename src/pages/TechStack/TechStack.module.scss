@@ -13,8 +13,7 @@
   .floating{
     display: block;
     @if($isMobile) {
-        width: 90%;
-        margin: 0px auto;
+        margin: 0px 1rem;
     }
   }
   .category {
@@ -83,8 +82,10 @@
       .annoyingTalk{
           border-top-right-radius: 0px;
           border-top-left-radius: 0px;
+          text-align: left;
       }
      @if ($isMobile) {
+        margin-top: 1rem;
         display: block;
     }     
   }

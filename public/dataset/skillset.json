@@ -42,7 +42,7 @@
             "title": "BACK-END/ \n FULL-STACK",
             "skills": [
                 {
-                    "title": "PHP Codeigniter + MySql",
+                    "title": "PHP Codeigniter",
                     "rank": 80
                 },
                 {
@@ -52,6 +52,10 @@
                 {
                     "title": "Ruby on Rails",
                     "rank": 50
+                },
+                {
+                    "title": "SQL",
+                    "rank": 75
                 }
             ]
         },
@@ -81,7 +85,7 @@
             ]
         },
         {
-            "title": "OTHER LEARNED",
+            "title": "OTHER SKILLS",
             "skills": [
                 {
                     "title": "Unreal Engine",

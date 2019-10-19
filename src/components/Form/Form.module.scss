@@ -54,8 +54,12 @@
         &:hover{
             background: $color_danger;
         }
+    }
 
-
+    &.sent{
+        button{
+            background: $color_success;
+        }
     }
 
     padding-bottom: .5rem;

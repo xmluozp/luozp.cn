@@ -70,7 +70,7 @@ export default (props) => {
         {/* wrapper of category: work */}
         <div className={styles.category}>
           <div className={styles.title}>
-            <div className={styles.stiky}>EDUCATION</div>
+            <div className={styles.sticky}>EDUCATION</div>
 
           </div>
           {/* wrapper of experiences */}

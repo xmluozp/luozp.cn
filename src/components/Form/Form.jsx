@@ -69,7 +69,7 @@ export default ({onMessage}) => {
             if (!values.message) {
                 errors.message = '[Required]';
             }
-
+            setState({type: 0, message:"Waiting"});
             handleFormMessage(errors)
             return errors;
         }}
@@ -130,8 +130,8 @@ export default ({onMessage}) => {
 
                         </textarea>
                     </div>
-                    <div className={styles.formInput}>
-                        <button type="submit" disabled={isSubmitting} className={styles.button}>
+                    <div className={styles.formInput + " " + (status.type===1 ? styles.sent: "")}>
+                        <button type="submit" disabled={isSubmitting}>
                             Submit
                             <Send/>
                         </button>
