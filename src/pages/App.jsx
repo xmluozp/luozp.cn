@@ -24,7 +24,7 @@ import Nav from '../components/Nav/Nav';
 import Title from '../components/Title/Title';
 
 // context
-import { PageStage } from '../context/store';
+import { PageStage, NavLinks } from '../context/store';
 
 //****************************************************************************************************/
 //****************************************************************************************************/
@@ -44,7 +44,7 @@ function App(props) {
 
 
   //**************************************************************************/
-  const [navLocks, setNavLocks] = useState(new Array(props.location.pathname));
+  const [navLocks, setNavLocks] = useState([]);
   const contextPageStage = useContext(PageStage);
 
 
@@ -62,7 +62,12 @@ function App(props) {
     setNavLocks(prevState => {
       const currentLocks = prevState.slice();
       const path = e.getAttribute('data-path');
-      if (!_.includes(currentLocks, path)) currentLocks.push(path);
+
+      // only lock the link in the path list
+      const validPaths = Array.from(NavLinks, item => item.to);   
+
+      // lock the nav.
+      if (!_.includes(currentLocks, path) && _.includes(validPaths, path)) currentLocks.push(path);
       return currentLocks;
     });
   }
