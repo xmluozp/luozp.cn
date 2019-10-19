@@ -11,7 +11,7 @@ export default ({ children, delay, onAllLoaded}) => {
     // render an array or an element
     const childrenItems = children.length > 0 ? children.map((item, index) => {
         return (
-                <ChildrenItem key={item.props.title + index} delayStart={delay * index} delayDone={delay * (index + 1)} index={index} maxIndex={children.length - 1} onAllLoaded={onAllLoaded}>{item}</ChildrenItem>
+                <ChildrenItem key={item.props&&item.props.title?item.props.title:"queue" + index} delayStart={delay * index} delayDone={delay * (index + 1)} index={index} maxIndex={children.length - 1} onAllLoaded={onAllLoaded}>{item}</ChildrenItem>
             );
         }) : children;
 

@@ -7,27 +7,12 @@
 
 @mixin all($isMobile: false, $device: "desktop_full") {
   //======================out side padding container
-  .pageInnerContainer {
-    @if ($isMobile == false) {
-      padding-top: 9rem;
-    } @else {
-      padding-top: 5.5rem;
-    }
-  }
-
   //======================floating layer
-  .floating {
+  @include standard_frame($isMobile);
 
-    @if ($isMobile) {
-      display: block;
-      .floating_r {
-        width: 100%;
-      }
-    } @else {
-      display: flex;
-      flex-direction: row;
-      margin-left: 95px;
-      margin-right: 256px;
+
+  .floating {
+    @if ($isMobile == false) {
       .floating_r {
         padding-left: 4rem;
         width: 100%;

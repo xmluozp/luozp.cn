@@ -150,7 +150,7 @@ $animation_time: 200ms;
   }
 
   @if ($stage == "show") {
-    width: calc(100vw - 256px);
+    width: calc(100% - 256px);
     min-width: 300pt;
   } @else if ($stage == "hide") {
     width: 0px;

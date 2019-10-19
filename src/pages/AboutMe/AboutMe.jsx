@@ -29,7 +29,7 @@ export default (props) => {
         <div className={styles.floating}>
           <div className={styles.floating_l}>
               <div className={styles.picture}>
-                <img src='./images/myself.png' alt='picture of zhaoping luo' />
+                <img src='./images/myself.png' alt='Zhaoping Luo' />
               </div>
           </div>
           <div className={styles.floating_r}>

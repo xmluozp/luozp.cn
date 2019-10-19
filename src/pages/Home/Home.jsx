@@ -11,9 +11,9 @@ export default withRouter(() => {
   const [isEnd, setIsEnd] = useState(false)
 
   const textArray = [
-    'Hey, System Admin! Spawn me a Front-en', 
-    'Hey, System Admin! Spawn me an experienced Programmer. Front-end preferate. Also master back-e',
-    'Hey, System Admin! Spawn me an experienced Programmer. Just hurry!'
+    'Hey, System God! PLEASE spawn me a Front-en', 
+    'Hey, System God! PLEASE spawn me an experienced Programmer. Front-end preferate. Also master back-e',
+    'Hey, System God! PLEASE spawn me an experienced Programmer. Just hurry!'
   ];
   const textArray2 = [
     'WHAT THE HEL',

@@ -1,0 +1,121 @@
+{
+    "code": 200,
+    "msg": "Request succeed!",
+    "dataset": [
+        {
+            "title": "BASIC",
+            "skills": [{
+                "title": "Attitude",
+                "rank": 100
+            },
+            {
+                "title": "Teamwork",
+                "rank": 100
+            }]
+        },
+        {    
+            "title": "FRONT-END",
+            "skills": [
+                {
+                    "title": "HTML5 + CSS3",
+                    "rank": 90
+                },
+                {
+                    "title": "Javascript (ES5/ES6)",
+                    "rank": 85
+                },
+                {
+                    "title": "React + Hooks",
+                    "rank": 80
+                },
+                {
+                    "title": "JQuery",
+                    "rank": 70
+                },
+                {
+                    "title": "Scss",
+                    "rank": 70
+                }
+            ]
+        },
+        {
+            "title": "BACK-END/ \n FULL-STACK",
+            "skills": [
+                {
+                    "title": "PHP Codeigniter + MySql",
+                    "rank": 80
+                },
+                {
+                    "title": "Meteor.js + MongoDb",
+                    "rank": 70
+                },
+                {
+                    "title": "Ruby on Rails",
+                    "rank": 50
+                }
+            ]
+        },
+        {
+            "title": "DEVELOPMENT PROCCESS",
+            "skills": [
+                {
+                    "title": "Agile Methodology",
+                    "rank": 60
+                },
+                {
+                    "title": "Git / SVN",
+                    "rank": 60
+                },
+                {
+                    "title": "Jest",
+                    "rank": 50
+                },
+                {
+                    "title": "Docker",
+                    "rank": 50
+                },
+                {
+                    "title": "Linux Ubuntu",
+                    "rank": 50
+                }
+            ]
+        },
+        {
+            "title": "OTHER LEARNED",
+            "skills": [
+                {
+                    "title": "Unreal Engine",
+                    "rank": 15
+                },
+                {
+                    "title": "HTML5 Canvas",
+                    "rank": 10
+                },
+                {
+                    "title": "WebGl + three.js",
+                    "rank": 10
+                },
+                {
+                    "title": "Node.js",
+                    "rank": 15
+                },
+                {
+                    "title": "Photoshop",
+                    "rank": 75
+                },
+                {
+                    "title": "Java",
+                    "rank": 60
+                },
+                {
+                    "title": "C++",
+                    "rank": 50
+                },
+                {
+                    "title": "C#.NET",
+                    "rank": 45
+                }
+            ]
+        }
+    ]
+}

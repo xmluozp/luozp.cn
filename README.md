@@ -13,4 +13,4 @@ Welcome to my home and feel free to reuse anything you want.
 
 <br />
 The living version will be on: 
-http://luozp.cn ([http://luozp.cn])
+http://luozp.cn

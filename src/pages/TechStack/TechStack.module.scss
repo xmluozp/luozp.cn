@@ -1,5 +1,105 @@
-@import '../../assets/styles/colors.scss';
-@import '../../assets/styles/common.scss';
-.testColor{
-    background-color: $color_bgdefault;
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
+.conatiner {
+  background-color: $color_bgdefault;
+}
+.pageInnerContainer {
+
+}
+
+@mixin all($isMobile: false, $device: "desktop_full") {
+  //======================out side padding container
+  @include standard_frame($isMobile);
+  .floating{
+    display: block;
+    @if($isMobile) {
+        width: 90%;
+        margin: 0px auto;
+    }
+  }
+  .category {
+
+    width: 100%;
+    @if ($isMobile) {
+        display: block;
+    } @else {
+        display: flex;
+    }
+    flex-direction: inherit;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    border-bottom: 1px solid $color_bgdeepdark;
+    border-top: 1px solid $color_bgtitle_linedown;
+
+    &:last-child{ border-bottom:none;}
+    &:first-child{ border-top: none;}
+  }
+  .floating_l {
+    @if ($isMobile) {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0px;
+        line-height: 4rem;
+        background-image: linear-gradient(to bottom, #2d303a 90%, #00000000  );
+        z-index: 4; 
+        width: 95vw;
+    } @else {
+        width: 20rem;
+    }
+    span {
+        transition: all 300ms linear;
+        color: #717377;
+        font-size: 1.5rem;
+
+        @if ($isMobile) {
+            font-size: 1.2rem;
+            line-height: 2.2rem;
+
+        } @else {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0px;
+            padding-bottom: 1rem;
+            font-size: 1.5rem;
+            white-space: pre-line;
+        }
+    }
+  }
+  .floating_r {
+    width: 100%;
+  }
+
+  .LoadingBar {
+    display: block;
+    margin-bottom: 1rem;
+
+    &:last-child{
+        margin-bottom: 0rem;
+    }
+  }
+
+  .annoyingTalkWrapper{
+      text-align: right;
+      .annoyingTalk{
+          border-top-right-radius: 0px;
+          border-top-left-radius: 0px;
+      }
+     @if ($isMobile) {
+        display: block;
+    }     
+  }
+}
+
+
+
+:global(.isMobile) {
+  :local {
+    @include all($isMobile: true);
+  }
+}
+
+:global(.isDesktop) {
+  :local {
+    @include all($isMobile: false);
+  }
 }

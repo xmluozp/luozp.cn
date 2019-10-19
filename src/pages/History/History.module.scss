@@ -77,7 +77,7 @@
   }
   .itemList {
     display: block;
-    width: 100%;
+    flex:1;
     padding-left: 2rem;
     .item {
       position: relative;
@@ -140,9 +140,9 @@
     .title {
       padding-top: unset;
       width: 100%;
-      font-size: 2rem;
-      padding-left: 1.5rem;
-      border-bottom: 1px solid $color_bggrey;
+      font-size: 1.5rem;
+      padding-left: 0rem;
+      // border-bottom: 1px solid $color_bggrey;
       background-color: $color_border;
       line-height: 4rem;
 
@@ -151,14 +151,18 @@
       position: sticky;
       top: 0px;
       z-index: 1; // prevent covered
+  
+      // background-image: linear-gradient(to bottom, #2d303a 90%, #00000000  );
+
       .sticky {
         position: unset;
         padding-bottom: unset;
+        padding-left: 1rem;
       }
     }
 
     .itemList {
-      padding-top: 2.5rem;
+      padding-top: 1rem;
       padding-left: 1.5rem;
       .item {
         padding-bottom: 3rem;
@@ -200,7 +204,7 @@
     padding-top: 100px;
   }
   .category {
-    width: calc(100% - 30px);
+    width: 100%;
     .itemList {
       padding-left: 1rem;
       .item {
@@ -212,7 +216,7 @@
         }
         .itemTitle {
           display: block;
-          width: 100%;
+          // width: 100%;
           .position {
             font-size: 1.5rem;
             display: block;

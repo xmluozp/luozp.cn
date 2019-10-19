@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Social.module.scss';
 
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -13,9 +13,9 @@ export default ({theme}) => {
 
     return <>
 
-        <a className={mystyle} href="https://github.com/xmluozp" target="_blank" title="GitHub of Zhaoping Luo"><GitHubIcon /></a>
-        <a className={mystyle} href="https://www.linkedin.com/in/zhaopingluo/" target="_blank" title="LinkedIn of Zhaoping Luo"><LinkedInIcon /></a>
-        <a className={mystyle} href="https://www.facebook.com/luo.zhaoping" target="_blank" title="FaceBook of Zhaoping Luo"><FacebookIcon /></a>
+        <a className={mystyle} href="https://github.com/xmluozp" target="_blank" rel="noopener noreferrer" title="GitHub of Zhaoping Luo"><GitHubIcon /></a>
+        <a className={mystyle} href="https://www.linkedin.com/in/zhaopingluo/" target="_blank" rel="noopener noreferrer" title="LinkedIn of Zhaoping Luo"><LinkedInIcon /></a>
+        <a className={mystyle} href="https://www.facebook.com/luo.zhaoping" target="_blank" rel="noopener noreferrer" title="FaceBook of Zhaoping Luo"><FacebookIcon /></a>
 
     </>
 }

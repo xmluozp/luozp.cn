@@ -173,7 +173,10 @@
     &:after {
       content: none;}
   }
-}
+} // popup end
+
+
+
 :global(.isMobile) {
   :local{
     @media only screen and (max-width: 768px) {
@@ -202,6 +205,34 @@
   border-bottom: 1px solid #dde4ec;
   border-right: 1px solid #dde4ec;
 }
+
+
+@mixin standard_frame($isMobile: false) {
+  .pageInnerContainer {
+    @if ($isMobile == false) {
+      padding-top: 9rem;
+    } @else {
+      padding-top: 5.5rem;
+    }
+  }
+
+  //======================floating layer
+  .floating {
+    @if ($isMobile) {
+      display: block;
+      .floating_r {
+        width: 100%;
+      }
+    } @else {
+      display: flex;
+      flex-direction: row;
+      margin-left: 95px;
+      margin-right: 256px;
+    }
+  }
+}
+
+
 
 
 .annoyingTalk{

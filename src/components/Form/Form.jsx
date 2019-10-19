@@ -12,15 +12,15 @@ export default ({onMessage}) => {
     const handleFormMessage = (errors) => {
         let message = "";
         if(errors.email && errors.name && errors.message) {
-            message = "Fill your name, email and message, then submit a form."
+            message = "Fill your name, email and message, then submit the form."
         } else if(errors.email) {
-            message = "Submit a form but don't forget to fill your correct email."
+            message = "Submit the form but don't forget to fill your correct email."
         } else if(errors.name) {
-            message = "... Don't forget to tell us who you are."
+            message = "Don't forget to tell us who you are."
         } else if(errors.message){
             message = "Say something then submit the form."
         } else {
-            message = "...Good. Finish your speech then submit the form."
+            message = "Good. Finish your speech. He can't wait to join you"
         }
         onMessage(message);
     }

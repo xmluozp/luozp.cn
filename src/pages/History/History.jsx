@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './History.module.scss';
 // import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 import axios from 'axios';
-import LazyLoad,  { forceCheck }  from 'react-lazyload';
+// import LazyLoad,  { forceCheck }  from 'react-lazyload';
 import LazyLoadBox from '../../utils/LazyLoadBox/LazyLoadBox';
 
 

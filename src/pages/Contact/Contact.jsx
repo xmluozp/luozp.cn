@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from './Contact.module.scss';
 import GoogleApi from '../../utils/GoogleApiWrapper/GoogleApiWrapper';
 import Form from '../../components/Form/Form';
@@ -29,21 +29,21 @@ export default (props) => {
                         </div>
                     </div>
                     <div className={styles.floating_r}>
-                        <div className={styles.annoyingTalkWrapper}>
+                        {/* <div className={styles.annoyingTalkWrapper}>
                             <div className={styles.annoyingTalk}>
-                                Here you are!! Zhaoping is ready to join your adventure. To invite him, your just need to: 
-                                <br/><span className={styles.errorMessages}>{formMessage}</span>
+                                Here you are!! Zhaoping is ready to join your adventure. To invite him, your just need to...
+                                <br /><span className={styles.errorMessages}>{formMessage}</span>
                             </div>
-                        </div>
+                        </div> */}
                         <div className={styles.popup}>
-                            <Form onMessage = {handleFormMessage}/>
+                            <Form onMessage={handleFormMessage} />
                         </div>
 
                         <div className={styles.userFace}>
 
 
                             <div className={styles.mySocial}>
-                                <Social theme='darkbg'/>
+                                <Social theme='darkbg' />
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@ export default (props) => {
 
 
                 </div>
-                
+
             </div>
 
 
