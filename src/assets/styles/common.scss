@@ -22,10 +22,10 @@
 ) {
   
   // -------------------------general settings
-  $thick: 5px;
-  $angle: 30px;
-  $radius: 30px;
-  $tailheight: 10px;
+  $thick:5px;
+  $angle:30px;
+  $radius:30px;
+  $tailheight:10px;
   @if ($isMobile) {
     $radius: 10px;
     $tailheight: 5px;
@@ -162,6 +162,24 @@
     }
   }
 
+  // ------------------------- bottom middle
+  @if ($direction == "bm") {
+    border-left: 1px solid $border;
+    border-top: 1px solid $border;
+    border-radius: $radius;
+
+    &:before {
+      border-width: $tailheight * 2;
+      border-top: $tailheight * 2 solid $background;
+      content: "";
+      left: calc(50% - #{$tailheight * 2}); // no diea why "calc(50% - $tailheight)" not working. 
+      bottom: $tailheight * -4;
+    }
+    &:after {
+      top: $radius - $thick;
+      height: calc(100% - #{2 * $radius + $angle - $thick + $tailheight * 2}); // need to check how many radius
+    }
+  }
 
   @if ($isMobile) {
     padding: .7rem;

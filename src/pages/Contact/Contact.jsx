@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.scss';
-import GoogleApi from '../../utils/GoogleApiWrapper/GoogleApiWrapper';
+// import GoogleApi from '../../utils/GoogleApiWrapper/GoogleApiWrapper';
+import GoogleApi from '../../utils/GoogleApiWrapper/GoogleReactApiWrapper';
 import DelayLoader from '../../utils/DelayLoader/DelayLoader';
 import Form from '../../components/Form/Form';
 import Social from '../../components/Social/Social';

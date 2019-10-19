@@ -1,0 +1,12 @@
+@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/common.scss';
+
+.infoContainer{
+    height: 85px;
+    width: 200px;
+}
+.popup{
+    @include popup($isMobile:true, $direction:'bm');
+    padding: 10px;
+
+}

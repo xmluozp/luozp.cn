@@ -1,48 +1,74 @@
-import React from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import React, {useState} from 'react';
+import { compose, withProps } from "recompose"
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import InfoBox from 'react-google-maps/lib/components/addons/InfoBox';
+import styles from './GoogleReactApiWrapper.module.scss';
 
 
+export default () => {
 
-export class MapContainer extends React.Component {
-
-    render() {
-        const style = {
-            width: '900px',
-            height: '900px'
-        };
-
-
-        return (
-
-            <Map
-                google={this.props.google}
-                zoom={13}
-                style={style}
-                styles={styles}
-                initialCenter={{
-                    lat: 49.8866903,
-                    lng: -97.1401478
-                }}
-                zoomControl={false}
-                mapTypeControl={false}
-            >
-
-
-                <Marker onClick={this.onMarkerClick}
-                    name={'Current location'} />
-            </Map>
-        );
-    }
-
+    const [isAddressOpen, setIsOpen] = useState(false)
+    return <MyGoogleComponent isAddressOpen = {isAddressOpen} setIsOpen = {setIsOpen} />;
 }
 
+const MyGoogleComponent = compose(
+    withProps({
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyB-SzNmMsKcB1oGDhV8gUJ6EVxYt7yJl78&v=3.exp&libraries=geometry,drawing,places",
+        loadingElement: <div style={{ height: `100%` }} />,
+        containerElement: <div style={{ height: `400px` }} />,
+        mapElement: <div style={{ height: `100%` }} />,
+    }),
 
-export default GoogleApiWrapper({
-    apiKey: ("AIzaSyB-SzNmMsKcB1oGDhV8gUJ6EVxYt7yJl78")
-})(MapContainer)
+    withGoogleMap
+)(({isAddressOpen, setIsOpen}) => {
 
 
-const styles = [
+    console.log(isAddressOpen);
+    return <GoogleMap
+        defaultOptions={{
+            styles: mapstyles,
+            mapTypeControl: false,
+            zoomControl: false,
+            fullscreenControlOptions: {
+                position: window.google.maps.ControlPosition.RIGHT_TOP
+            },
+            streetViewControlOptions: {
+                position: window.google.maps.ControlPosition.RIGHT_TOP
+            }
+        }}
+        defaultZoom={14}
+        defaultCenter={{ lat: 49.8866903, lng: -97.1401478 }}
+
+    >
+        <Marker
+            position={{ lat: 49.8866903, lng: -97.1401478 }}
+            onClick={() => {
+                setIsOpen(!isAddressOpen);
+            }}
+        />
+        {isAddressOpen && <InfoBox
+            defaultPosition={new window.google.maps.LatLng(49.8866903, -97.1401478)}
+            options={{ closeBoxURL: ``, enableEventPropagation: true, alignBottom:true, pixelOffset: new window.google.maps.Size(-100, -43) }}>
+            {myAddress}
+        </InfoBox>}
+    </GoogleMap>
+}
+
+);
+
+
+// export default GoogleApiWrapper({
+//     apiKey: ("AIzaSyB-SzNmMsKcB1oGDhV8gUJ6EVxYt7yJl78")
+// })(MapContainer)
+
+const myAddress = <div className={styles.infoContainer}>
+    <div className={styles.popup}>
+        I do live here. Just don't want to put address online. Sorry...
+    </div>
+</div>
+
+
+const mapstyles = [
     {
         "elementType": "geometry",
         "stylers": [
@@ -152,7 +178,7 @@ const styles = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#ffdd40"
+                "color": "#a89c66"
             }
         ]
     },
@@ -208,7 +234,7 @@ const styles = [
                 "color": "#5e9cbd"
             },
             {
-                "lightness": -55
+                "lightness": -20
             }
         ]
     },
