@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.scss';
 import GoogleApi from '../../utils/GoogleApiWrapper/GoogleApiWrapper';
+import DelayLoader from '../../utils/DelayLoader/DelayLoader';
 import Form from '../../components/Form/Form';
 import Social from '../../components/Social/Social';
 
@@ -24,7 +25,10 @@ export default (props) => {
                     <div className={styles.floating_l}>
                         <div className={styles.googleMap}>
                             <div className={styles.googleMapWrapper}>
-                                <GoogleApi />
+                                <DelayLoader delay={2000}>
+                                    <GoogleApi />
+                                </DelayLoader>
+                                
                             </div>
                         </div>
                     </div>

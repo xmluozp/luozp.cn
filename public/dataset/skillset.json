@@ -68,7 +68,7 @@
                 },
                 {
                     "title": "Jest",
-                    "rank": 50
+                    "rank": 45
                 },
                 {
                     "title": "Docker",
@@ -105,11 +105,11 @@
                 },
                 {
                     "title": "Java",
-                    "rank": 60
+                    "rank": 40
                 },
                 {
                     "title": "C++",
-                    "rank": 50
+                    "rank": 35
                 },
                 {
                     "title": "C#.NET",

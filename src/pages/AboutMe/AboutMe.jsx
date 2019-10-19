@@ -47,7 +47,8 @@ export default (props) => {
 
 
             <div className={styles.popup}>
-              <p>I am a programmer who has over 5 years of web development experience, skilled in both front-end and back-end. (<Link to="/history">My past experience</Link>)</p>
+              <p>I am a programmer who has over 5 years of web development experience, skilled in both front-end and back-end.
+                 <br/>(<Link to="/history">My past experience</Link> and <Link to="/techstack">My skill set</Link> )</p>
               <p>In the year 2015, I immigrated to Canada. Then I went back to school, Red River College, Winnipeg. Besides a certificate, This journey also kept my programming knowledge up-to-date, as well as learning about modern software industry programming standards (Agile, Git, Docker, Es-lint, Linux. etc.).</p>
               <p>Recently, I graduated. It's time to get a job.</p>
               <div className={styles.mySocial}>
