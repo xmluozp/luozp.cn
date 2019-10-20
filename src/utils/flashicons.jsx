@@ -48,13 +48,22 @@ function initVaribles() {
     imgLoadedCount = 0;
     target = [];
     // isScroll = false;
+    // imageURLArr = [
+    //     "images/icons/logo96.png",
+    //     "images/icons/test.gif",
+    //     "images/icons/test.gif",
+    //     "images/icons/test.gif",
+    //     "images/icons/test.gif",
+    //     "images/icons/test.gif",
+    //     "images/icons/test.gif",
+    // ]
     imageURLArr = [
-        "images/icons/logo.png",
-        "images/icons/logo96.png",
+        "images/icons/logo128.png",
+        "images/icons/logo64.png",
         "images/icons/hammer.png",
         "images/icons/light-bulb.png",
         "images/icons/contact.png",
-        "images/icons/logo96.png",
+        "images/icons/logo64.png",
         "images/icons/nav.png",
     ]
     imageInfoArr = [];
@@ -144,7 +153,7 @@ function onLoadImageHandler(image, tempCanvas, ctx, number) {
     // 这是个Mask，搜索图片里所有的黑点，后面只打印黑点
     for (let index = 0; index < data.length; index += 4) {
 
-        if (data[index] === 0) {
+        if (data[index] !== 0) {
             var currentI = index / 4
             var currentX = currentI % size;
             var currentY = parseInt(currentI / size);
@@ -416,7 +425,7 @@ function draw() {
     // var dx = - 1 * animate_z_deviation[0] / 100;
     // var dy = animate_z_deviation[1] / 100;
 
-    const blur = coefficient * 0.7 ;
+    const blur = coefficient /2 ;
     const movingSpeed = coefficient * 2;
     // blur = 0.001;
 
