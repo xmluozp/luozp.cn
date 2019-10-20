@@ -8,7 +8,7 @@ import styles from './GoogleReactApiWrapper.module.scss';
 export default () => {
 
     const [isAddressOpen, setIsOpen] = useState(false)
-    return <MyGoogleComponent isAddressOpen = {isAddressOpen} setIsOpen = {setIsOpen} />;
+    return  window.google?<MyGoogleComponent isAddressOpen = {isAddressOpen} setIsOpen = {setIsOpen} />:null;
 }
 
 const MyGoogleComponent = compose(

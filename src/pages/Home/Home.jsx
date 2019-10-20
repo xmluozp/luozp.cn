@@ -58,7 +58,7 @@ export default withRouter(() => {
         </div>
 
 
-        <label className={styles.copyright}>Welcome to Zhaoping's Resume website</label>
+        <label className={styles.copyright}>Welcome to Zhaoping's website</label>
 
       </div>
     </div>

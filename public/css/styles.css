@@ -1,9 +1,9 @@
 body{
   background-image: url( "../images/stardust.png");
   background-color: #1e1e24;
-  background-position-x: 0px;
+  /* background-position-x: 0px;
   animation: bgmoving 20s infinite;
-  animation-timing-function: linear;
+  animation-timing-function: linear; */
 }
 
 .global_loader{
