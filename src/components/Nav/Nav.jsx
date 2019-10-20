@@ -165,7 +165,6 @@ export default withRouter((props) => {
         // if (toIndex === 0) {                    // if: its root, dont trigger the Nav hiding timer
         //     // onDelayCancel();
         // }
-        console.log("switch", fromIndex, loading);
     }, [loading, toIndex]);
 
     const cssNavShow = navShow ? styles.show : styles.hide;

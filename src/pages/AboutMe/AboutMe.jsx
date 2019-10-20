@@ -40,7 +40,7 @@ export default (props) => {
           </div>
           <div className={styles.floating_r}>
             {isBrowser ? <div className={styles.annoyingTalk}>
-              Let me fetch my log.. Hah.  <b>Who</b> is this Zhaoping guy? Let’s see if it's worth to <b>INSTANTIATE</b>!!
+              Let me fetch some data... Hah. <b>Who</b> is this Zhaoping guy in my list? Let’s see if it worth it to <b>INSTANTIATE</b>!!
               {/* ... db.npcElite.find( {'{'}name: Zhao... */}
             </div> : null}
             <div className={styles.myName}>

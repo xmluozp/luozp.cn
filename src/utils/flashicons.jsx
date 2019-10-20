@@ -49,12 +49,12 @@ function initVaribles() {
     target = [];
     // isScroll = false;
     imageURLArr = [
-        "images/icons/icons8-anonymous-mask-250.png",
         "images/icons/logo.png",
+        "images/icons/logo96.png",
         "images/icons/hammer.png",
         "images/icons/light-bulb.png",
         "images/icons/contact.png",
-        "images/icons/icons8-anonymous-mask-250.png",
+        "images/icons/logo96.png",
         "images/icons/nav.png",
     ]
     imageInfoArr = [];
@@ -320,7 +320,7 @@ let numLinesFade = 0;
  */
 const fadeOut = function () {
     if (loaded) {
-        coefficient = .1;
+        coefficient = .01;
         window.cancelRequestAnimFrame(id);
         numLinesFade = numLines;
         fadeOut_play();
@@ -417,7 +417,7 @@ function draw() {
     // var dy = animate_z_deviation[1] / 100;
 
     const blur = coefficient /2 ;
-    const movingSpeed = coefficient * 2;
+    const movingSpeed = coefficient * 1.5;
     // blur = 0.001;
 
     const t_numOfLines = numLines * 2;
