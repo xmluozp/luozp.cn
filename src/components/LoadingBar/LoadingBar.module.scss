@@ -1,74 +1,92 @@
 @import "../../assets/styles/colors.scss";
 @import "../../assets/styles/common.scss";
 
+$boxheight: 26px;
 
-$boxheight : 26px;
-
-.box{
-    font-size: .9rem;
+@mixin all($isMobile: false) {
+  .box {
+    font-size: 0.9rem;
     display: block;
-    width:100%;
+    width: 100%;
     position: relative;
     height: $boxheight;
     // background-color: #15181b;
-    border-radius:0px  $boxheight/2  $boxheight/2 0px;
+    border-radius: 0px $boxheight/2 $boxheight/2 0px;
     border: 1px solid #3a4b70;
+    border-left: none;
     border-top: 1px solid #8695b6;
     // border-left: 1px solid #6b7b9e;
     overflow: hidden;
-    background-image: url( "/images/darkness.png");
+    background-image: url("/images/darkness.png");
     // background-image: url( "/images/ep_naturalblack.png");
     background-color: #1e1e24;
     background-attachment: fixed;
     // box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.158);
-}
+  }
 
-.shine{
+  .shine {
     position: absolute;
     top: 0px;
     left: 0px;
     background: transparent;
-    border-top: $boxheight/20 solid rgba(255, 255, 255, .1);
-    border-bottom: $boxheight/20 solid rgba(0, 55, 143, 0.2);   
+    border-top: $boxheight/10 solid rgba(255, 255, 255, 0.1);
+    border-bottom: $boxheight/10 solid rgba(0, 55, 143, 0.2);
     width: 100%;
-    height: $boxheight - ($boxheight/20) * 2;
+    height: $boxheight - ($boxheight/10) * 2;
     z-index: 2;
-    span{
-        height: $boxheight - ($boxheight/20) * 2;
-        line-height: $boxheight - ($boxheight/20) * 2;
-        padding-left: 1rem;
-        color: white;
-        display: inline-block;
-        // text-shadow: 1px 1px 10px #fff;
+    span {
+      height: $boxheight - ($boxheight/10) * 2;
+      line-height: $boxheight - ($boxheight/10) * 2;
+      padding-left: 1rem;
+      color: white;
+      display: inline-block;
+      // text-shadow: 1px 1px 10px #fff;
     }
-}
+  }
 
-
-.fill{
-    background-color:#717790;
+  .fill {
+    background-color: #00d4ff;
     position: absolute;
     height: 100%;
     z-index: 1;
     overflow: hidden;
-    box-shadow: 0px 0px 3px 1px #4c00ff;
-}
-.color{
+    box-shadow: 0px 0px 0px 1px #273759;
+  }
+  .color {
     // background-image: linear-gradient(to right, #484752, #e0e3e67c, #9aa7b4,#717790);
-    background-image: linear-gradient(to right, #273759, #00000000, #00d4ff, #717790);
-    width: 50vw;
-    height: 100%;  
-}
-.empty{
-    position: absolute;
-    right:0px;
-    height: 100%;
-    z-index:2;
-    text-align: right;
-    span{
-        
-        color: whitesmoke;
-        height: $boxheight;
-        line-height: $boxheight;
-        padding-right: 1rem;
+    background-image: linear-gradient(to right, #273759, #717790, #00d4ff);
+
+    @if ($isMobile) {
+        width: 80vw;
+    } @else {
+        width: 30vw;
     }
+
+    height: 100%;
+  }
+  .empty {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    z-index: 2;
+    text-align: right;
+    span {
+      color: whitesmoke;
+      height: $boxheight;
+      line-height: $boxheight;
+      padding-right: 1rem;
+    }
+  }
+}
+
+:global(.isMobile) {
+  :local {
+    @include all($isMobile: true);
+  }
+}
+
+:global(.isDesktop) {
+  :local {
+    @include all($isMobile: false);
+  }
 }

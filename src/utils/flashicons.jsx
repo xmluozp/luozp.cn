@@ -416,8 +416,8 @@ function draw() {
     // var dx = - 1 * animate_z_deviation[0] / 100;
     // var dy = animate_z_deviation[1] / 100;
 
-    const blur = coefficient /2 ;
-    const movingSpeed = coefficient * 1.5;
+    const blur = coefficient * 0.7 ;
+    const movingSpeed = coefficient * 2;
     // blur = 0.001;
 
     const t_numOfLines = numLines * 2;
