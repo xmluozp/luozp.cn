@@ -17,7 +17,6 @@ export default ({ children, delay, fade }) => {
     );
 
     useEffect(() => {
-        console.log("ondelay", children);
         onDelayStart();
         return () => {
             setIsLoad(false);

@@ -30,17 +30,17 @@ import { PageStage, NavLinks } from '../context/store';
 //****************************************************************************************************/
 //****************************************************************************************************/
 //****************************************************************************************************/
+// only run once. hide the loader for the website
+const websiteLoading = document.getElementById('global_loader');
+if (websiteLoading) {
+  websiteLoading.classList.add('global_loader_hide');
+  setTimeout(() => {
+    websiteLoading && websiteLoading.parentNode && websiteLoading.parentNode.removeChild(websiteLoading);
+  }, 500);
+}
 
 function App(props) {
 
-  // only run once. hide the loader for the website
-  const websiteLoading = document.getElementById('global_loader');
-  if (websiteLoading) {
-    websiteLoading.classList.add('global_loader_hide');
-    setTimeout(() => {
-      websiteLoading && websiteLoading.parentNode && websiteLoading.parentNode.removeChild(websiteLoading);
-    }, 500);
-  }
 
 
   //**************************************************************************/
@@ -102,10 +102,8 @@ function App(props) {
     }
   }, [navLocks])
 
-
   return (
     <>
-
       {contextPageStage.toIndex !== -1 ?
         <>
           <Title />
@@ -141,6 +139,8 @@ export default withRouter(App);
  */
 const AnimationRoute = withRouter((props) => {
   const TIMEOUT = 1500;
+
+  // when first load. only the current page need appear animation.
   return (
     <TransitionGroup>
       <CSSTransition
@@ -151,7 +151,7 @@ const AnimationRoute = withRouter((props) => {
         onExited={props.onUnlock}
         onEnter={props.onLock}
         onEntered={props.onUnlock}
-        appear={true}
+        appear={props.location.pathname === props.path}
       >
         <div className={props.path} data-path={props.path}>
 

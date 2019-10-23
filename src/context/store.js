@@ -18,8 +18,6 @@ export const NavLinks = [
 export const isMobile = isMobileOnly;
 
 
-
-
 export default withRouter(({ children, location }) => {
 
   const getCurrentIndex = _.findIndex(NavLinks, (v) => {
@@ -49,6 +47,7 @@ export default withRouter(({ children, location }) => {
     get globalStage() { return c_globalStage },
   };
 
+
   React.useEffect(() => {
     setFromIndex(toIndex);
     setTromPath(toPath);
@@ -75,19 +74,12 @@ const reducer = (state, action) => {
       const {anchor} = action.payload;
       // console.log("store",action.payload);
       return anchor !==  state.anchor? action.payload : state;
-      // if (anchor ===  state.anchor) return state;
-      // if (y > state.y) return {anchor, y, direction: 1};
-      // if (y < state.y) return {anchor, y, direction: -1};
-
-      // break;
     //==============================================
     case 'globalStage':
       return action.payload !== state ? action.payload : state;
-      // break;
     //==============================================
     default:
         return state;
-      // break;
   }
 
 }
