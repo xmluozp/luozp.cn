@@ -7,10 +7,17 @@ import App from './pages/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import StoreProvider from "./context/store";
+import HttpsRedirect from 'react-https-redirect';
 
 
-
-ReactDOM.render(<Router><StoreProvider><App/></StoreProvider> </Router>, document.getElementById('root'));
+ReactDOM.render(
+<HttpsRedirect>
+    <Router>
+        <StoreProvider>
+            <App />
+        </StoreProvider>
+    </Router>
+</HttpsRedirect>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
