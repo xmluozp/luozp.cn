@@ -2,7 +2,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
-// import useCancelableTimeout from "use-cancelable-timeout";
 import _ from 'lodash';
 
 // export const PageStage = React.createContext({ fromIndex: 0, toIndex: 0, loading: true, toPath: "", fromPath: "", scroll:{ anchor: 'top', y: 0, direction: 0 }, globalStage:'NONE'});

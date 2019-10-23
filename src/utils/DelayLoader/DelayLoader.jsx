@@ -17,6 +17,7 @@ export default ({ children, delay, fade }) => {
     );
 
     useEffect(() => {
+        console.log("ondelay", children);
         onDelayStart();
         return () => {
             setIsLoad(false);
@@ -35,7 +36,7 @@ const renderChild = ( renderChild, fade) => {
     return fade ? <CSSTransition
         classNames="delayLoad"
         in={true}
-        timeout={500}
+        timeout={300}
         appear={true}>
         {renderChild}
     </CSSTransition> : renderChild;

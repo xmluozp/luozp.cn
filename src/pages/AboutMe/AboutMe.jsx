@@ -26,15 +26,13 @@ export default (props) => {
         "page_container",
         styles.conatiner
       ].join(' ')}>
+
       <div className={styles.pageInnerContainer}>
         <div className={styles.floating}>
           <div className={styles.floating_l}>
-          <DelayLoader delay={800} fade={true}>
+          <DelayLoader delay={1000} fade={true}>
             <div className={styles.picture}>
-              
-                <img src='./images/myself.png' alt='Zhaoping Luo' />
-              
-
+                <img src='./images/myself.png' alt='Zhaoping Luo'/>
             </div>
             </DelayLoader>
           </div>
