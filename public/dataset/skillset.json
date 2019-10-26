@@ -100,20 +100,23 @@
                     "rank": 15
                 },
                 {
+                    "title": "Redux",
+                    "rank": 55
+                },               {
                     "title": "Photoshop",
                     "rank": 75
                 },
                 {
                     "title": "Java",
-                    "rank": 40
+                    "rank": 70
                 },
                 {
                     "title": "C++",
-                    "rank": 35
+                    "rank": 45
                 },
                 {
                     "title": "C#.NET",
-                    "rank": 45
+                    "rank": 70
                 }
             ]
         }
