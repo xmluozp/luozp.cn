@@ -7,6 +7,7 @@ import App from './pages/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import StoreProvider from "./context/store";
+    // the store attribute is in this store file.
 import HttpsRedirect from 'react-https-redirect';
 
 
