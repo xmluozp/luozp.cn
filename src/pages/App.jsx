@@ -17,7 +17,7 @@ import AboutWebsite from './AboutWebsite/AboutWebsite';
 import Contact from './Contact/Contact';
 import TechStack from './TechStack/TechStack';
 import History from './History/History';
-import Error from './Error/Error';
+import ErrorPage from './Error/Error';
 
 // components
 import Nav from '../components/Nav/Nav';
@@ -26,10 +26,7 @@ import Title from '../components/Title/Title';
 // context
 import { PageStage, NavLinks } from '../context/store';
 
-//****************************************************************************************************/
-//****************************************************************************************************/
-//****************************************************************************************************/
-//****************************************************************************************************/
+
 // only run once. hide the loader for the website
 const websiteLoading = document.getElementById('global_loader');
 if (websiteLoading) {
@@ -39,9 +36,12 @@ if (websiteLoading) {
   }, 500);
 }
 
+
+//****************************************************************************************************/
+//************************************** Router code *************************************************/
+//****************************************************************************************************/
+
 function App(props) {
-
-
 
   //**************************************************************************/
   const [navLocks, setNavLocks] = useState([]);
@@ -124,7 +124,7 @@ function App(props) {
           </section>
         </>
         : 
-        <Error/>
+        <ErrorPage/>
       }
 
     </>

@@ -20,7 +20,7 @@
     "react-dom": "^16.9.0",
     "react-google-maps": "^9.4.5",
     "react-https-redirect": "^1.1.0",
-    "react-lazyload": "^2.6.2",
+    "react-lazy-load": "^3.0.13",
     "react-loading": "^2.0.3",
     "react-lorem-ipsum": "^1.4.3",
     "react-router-dom": "^5.1.0",

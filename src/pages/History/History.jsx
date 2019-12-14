@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './History.module.scss';
 // import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 import axios from 'axios';
-// import LazyLoad,  { forceCheck }  from 'react-lazyload';
 import LazyLoadBox from '../../utils/LazyLoadBox/LazyLoadBox';
 
 
@@ -22,18 +21,14 @@ export default (props) => {
       const resultEdu = await axios('./dataset/shortEducation.json');
       if (resultEdu.status === 200) {
         setDataEduExp(resultEdu.data.dataset);
-      }
+        // forceCheck();
+      }      
     }
     fetchData();
 
+
     return () => {};
   }, []);
-
-
-  useEffect(() => {
-    // console.log("forceCheck");
-    // forceCheck();
-  },[]);
 
 
   return (
@@ -58,8 +53,10 @@ export default (props) => {
           {/* wrapper of experiences */}
           <section className={styles.itemList}>
             {dataWorkExp && dataWorkExp.map((item, key)=> {
+
+              const itemHeight = 164 + item.duty.length * 32;
               return (
-                <LazyLoadBox height={400} key={key}>
+                <LazyLoadBox  key={`${item.position}_${key}`}  once={true}>
                   <ExperienceItem  dataSet={item}/>
                 </LazyLoadBox>
               );
@@ -76,8 +73,11 @@ export default (props) => {
           {/* wrapper of experiences */}
           <section className={styles.itemList}>
             {dataEduExp && dataEduExp.map((item, key)=> {
+
+              const itemHeight = 164 + item.duty.length * 32;
+
               return (
-                <LazyLoadBox height={400} key={key}>
+                <LazyLoadBox key={`${item.position}_${key}`} once={true}>
                   <ExperienceItem  dataSet={item}/>
                 </LazyLoadBox>
               );
@@ -89,8 +89,6 @@ export default (props) => {
     </div>
   );
 }
-
-
 
 const ExperienceItem = ({dataSet}) => {
 
