@@ -1,8 +1,20 @@
 {"code":200,
   "msg": "Request succeed!",
-  "dataset": [{
+  "dataset": [
+    {
+      "position": "Full-Stack",
+      "time": "2019 – Present",
+      "location": "Hongkong(remote)",
+      "org": "Creative Inox Co., Ltd.",
+      "duty": [          
+          "Go (RESTful API, basic MVC), React + Redux(Core-UI, Material-Ui), MySQL",
+        "Import and Export Management System: Production, Contract, Customer, Supplier, Financial."
+       ]
+
+    },  
+    {
       "position": "Front-End",
-      "time": "2018 – Present",
+      "time": "2018 – 2019",
       "location": "Winnipeg",
       "org": "HiGetUp Entertainment",
       "duty": [          

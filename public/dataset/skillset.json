@@ -30,7 +30,7 @@
                 },
                 {
                     "title": "JQuery",
-                    "rank": 75
+                    "rank": 70
                 }
             ]
         },
@@ -102,10 +102,6 @@
                 {
                     "title": "Node.js",
                     "rank": 15
-                },
-                {
-                    "title": "Redux",
-                    "rank": 55
                 },               {
                     "title": "Photoshop",
                     "rank": 75
