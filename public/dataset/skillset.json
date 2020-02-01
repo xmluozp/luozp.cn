@@ -25,8 +25,8 @@
                     "rank": 85
                 },
                 {
-                    "title": "React + Hooks",
-                    "rank": 80
+                    "title": "React + Redux",
+                    "rank": 90
                 },
                 {
                     "title": "JQuery",
@@ -40,6 +40,10 @@
                 {
                     "title": "PHP Codeigniter",
                     "rank": 80
+                },
+                {
+                    "title": "Go",
+                    "rank": 75
                 },
                 {
                     "title": "Meteor.js + MongoDb",
