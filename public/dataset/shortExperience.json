@@ -7,8 +7,9 @@
       "location": "Hongkong(remote)",
       "org": "Creative Inox Co., Ltd.",
       "duty": [          
-          "Go (RESTful API, basic MVC), React + Redux(Core-UI, Material-Ui), MySQL",
-        "Import and Export Management System: Production, Contract, Customer, Supplier, Financial."
+          "Go (RESTful API, basic MVC), MySQL",
+          "React + Redux, Core-UI, Material-UI",
+          "Build an import and Export Management System with 50+ table: Production, Contract, Customer, Supplier, Financial."
        ]
 
     },  
