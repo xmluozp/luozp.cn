@@ -34,7 +34,7 @@ const MyGoogleComponent = compose(
             }
         }}
         defaultZoom={14}
-        defaultCenter={{ lat: 49.876, lng: -97.1362323 }}
+        defaultCenter={{ lat: 49.885, lng: -97.1362323 }}
 
     >
         <Marker
