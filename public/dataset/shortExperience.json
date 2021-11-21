@@ -1,97 +1,40 @@
-{"code":200,
-  "msg": "Request succeed!",
-  "dataset": [
-    {
-      "position": "Full-Stack",
-      "time": "2019 – Present",
-      "location": "Hongkong(remote)",
-      "org": "Creative Inox Co., Ltd.",
-      "duty": [          
-          "Go (RESTful API, basic MVC), MySQL",
-          "React + Redux, Core-UI, Material-UI",
-          "Import and Export Management System with 50+ tables: Production, Contract, Customer, Supplier, Financial Management."
-       ]
-
-    },  
-    {
-      "position": "Front-End",
-      "time": "2018 – 2019",
-      "location": "Winnipeg",
-      "org": "HiGetUp Entertainment",
-      "duty": [          
-          "JQuery, Bootstrap4, HTML5, CSS3, SVN, Visual Studio Code, Eclipse",
-        "Built mobile website Higetup.com. Which provides tourism-related services."
-       ]
-
-    },
-     {
-      "position": "Full-Stack",
-      "time": "2018",
-      "location": "Winnipeg",
-      "org": "School of Health Science, Red River College",
-      "duty": [       
-        "Meteor.Js, React, Bootstrap, MongoDb, Git, Es-Lint, Visual Studio Code",
-        "Follow Agile methodology.",
-          "Built website MybabyManitoba.ca for subscribing SMS service of parenting knowledge."
-       ]
-    },
-    {
-      "position": "Full-Stack CO-OP",
-      "time": "2018",
-      "location": "Winnipeg",
-      "org": "Red River College",
-      "duty": [       
-        "PHP with Codeigniter, JQuery, Bootstrap, Codeigniter, MySql, PHP Storm",
-        "Follow Agile methodology.",
-         "Built a web application to dispatch vehicle shipping orders and routes to drivers.",
-         "Built ACE User Authentication System. It's a scaffold which will be re-used by future CO-OP students entering into the Red River College industry project."
-       ]
-    },
-    {
-      "position": "Customer Service Manager",
-      "time": "2013 - 2015",
-      "location": "China",
-      "org": "Tintop Technology",
-      "duty": [
-        "VMWare ESXI, MS Word or MS Excel",
-        "Requirement gathering, customer service, data entry.",
-        "Maintain Freeget.com e-commerce marketing platform."
-       ]
-    },
-    {
-      "position": "Project Manager",
-      "time": "2009 - 2010",
-      "location": "China",
-      "org": "Tintop Technology",
-      "duty": [    
-          "HTML+CSS, Javascript, Ext Js, Ms Sql Server.",
-          "Delivered Senior Citizens College Management System 1.0.",
-          "Using ID Card scanner to simplify register process for Seniors enrolling to Senior Citizens Colleges."
-        ]
-    },
-    {
-     "position": "Front-End",
-     "time": "2006 - 2015",
-     "location": "China",
-     "org": "Tintop Technology",
-     "duty": [       
-       "HTML + CSS, Javascript(ExtJs), JSP, Flash",
-       "Collaborate with variety of back-end technologies. Build plug-ins, prototypes, patch existing project.",
-       "Delivered Information Acquisition and Management System of China Ministry of Public Security.",
-       "Delivered Frontier Inspection System of Haicang District Customhouse Administration Department.",
-       "Delivered Equipment Management System of Xiamen City Railway Power Supply Division."
-     ]
-
-   },
-    {
-      "position": "Web Developer",
-      "time": "2006 - 2015",
-      "location": "China",
-      "org": "Tintop Technology",
-
-      "duty": [
-        "ASP+Access/MySQL, HTML+CSS, Javascript, Flash",
-        "Delivered over 50 websites for small businesses."
-      ]
-   }]
-  }
+{
+	"code": 200,
+	"msg": "Request succeed!",
+	"dataset": [
+		{
+			"position": "Full-Stack",
+			"time": "2020 – Present",
+			"location": "Castro Valley, CA, US(remote)",
+			"org": "Monkey Byte Development, Inc.",
+			"duty": ["Node, React, MySql", "Multi-language CMS System for UnitedHealth - Optum, Inc(Nasdaq: UNH)", "Serving over 8000 business clients all over the world includes Google, IBM, Cisco, eBay, Yahoo, etc.", "CMS for Anthem(NYSE: ANTM)"]
+		},
+		{
+			"position": "Full-Stack",
+			"time": "2019 – 2020",
+			"location": "Hongkong(remote)",
+			"org": "Creative Inox Co., Ltd.",
+			"duty": ["Go (RESTful API, basic MVC), MySQL", "React + Redux, Core-UI, Material-UI", "Import and Export Management System with 50+ tables: Production, Contract, Customer, Supplier, Financial Management."]
+		},
+		{
+			"position": "Developer & Education Assistant",
+			"time": "2018",
+			"location": "Winnipeg",
+			"org": "School of Health Science, Red River College",
+			"duty": ["Meteor.Js, React, Bootstrap, MongoDb, Git, Es-Lint, Visual Studio Code", "Follow Agile methodology.", "Built website MybabyManitoba.ca for subscribing SMS service of parenting knowledge."]
+		},
+		{
+			"position": "Front-End",
+			"time": "2006 - 2015",
+			"location": "China",
+			"org": "Tintop Technology",
+			"duty": [
+				"HTML + CSS, Javascript(ExtJs), JSP, Flash",
+				"Collaborate with variety of back-end technologies. Build plug-ins, prototypes, patch existing project.",
+				"Delivered Information Acquisition and Management System of China Ministry of Public Security.",
+				"Delivered Frontier Inspection System of Haicang District Customhouse Administration Department.",
+				"Delivered Equipment Management System of Xiamen City Railway Power Supply Division."
+			]
+		}
+	]
+}
