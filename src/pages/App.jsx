@@ -142,7 +142,7 @@ const AnimationRoute = withRouter((props) => {
 
   // when first load. only the current page need appear animation.
   return (
-    <TransitionGroup>
+    <TransitionGroup component={null}>
       <CSSTransition
         classNames="slide-in"
         timeout={TIMEOUT}
