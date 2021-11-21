@@ -13,7 +13,7 @@ export default () => {
 
 const MyGoogleComponent = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyB-SzNmMsKcB1oGDhV8gUJ6EVxYt7yJl78&v=3.exp&libraries=geometry,drawing,places",
+       // googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjXps9xugdwzI-teCYjYGMbmh3PHOMvs&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `400px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
@@ -21,7 +21,6 @@ const MyGoogleComponent = compose(
 
     withGoogleMap
 )(({isAddressOpen, setIsOpen}) => {
-
     return <GoogleMap
         defaultOptions={{
             styles: mapstyles,
@@ -35,17 +34,17 @@ const MyGoogleComponent = compose(
             }
         }}
         defaultZoom={14}
-        defaultCenter={{ lat: 49.887, lng: -97.1401478 }}
+        defaultCenter={{ lat: 49.876, lng: -97.1362323 }}
 
     >
         <Marker
-            position={{ lat: 49.8866903, lng: -97.1401478 }}
+            position={{ lat: 49.8805021, lng: -97.1362323 }}
             onClick={() => {
                 setIsOpen(!isAddressOpen);
             }}
         />
         {isAddressOpen && <InfoBox
-            defaultPosition={new window.google.maps.LatLng(49.8866003, -97.1401478)}
+            defaultPosition={new window.google.maps.LatLng(49.8805021, -97.1362323)}
             options={{ closeBoxURL: ``, enableEventPropagation: true, alignBottom:true, pixelOffset: new window.google.maps.Size(-100, -43) }}>
             {myAddress}
         </InfoBox>}
