@@ -10,7 +10,7 @@ import DelayLoader from '../../utils/DelayLoader/DelayLoader';
 // import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 
 export default (props) => {
-
+ 
   useEffect(() => {
     // forceCheck();
     return () => {
